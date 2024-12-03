@@ -1,0 +1,3307 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Configuring the Likelihood Detector – PAMGuard Help</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-77daa0f5ea4008280c2bc2d8c0b5a283.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../.././images/redHelpIcon.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">PAMGuard Help</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="http://www.pamguard.org"> 
+<span class="menu-text">PAMGuard Website</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/PAMGuard/PAMGuard" target="pggitpage">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/PAMGuard/PAMGuard/issues" target="pggitpage">
+            Report and Issue
+            </a>
+          </li>
+      </ul>
+    </div>
+    <a href="https://www.facebook.com/pamguard" title="" class="quarto-navigation-tool px-1" aria-label="" target="pgfbpage"><i class="bi bi-facebook"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Detectors</li><li class="breadcrumb-item"><a href="../../../detectors/likelihoodDetectionModuleHelp/docs/LikelihoodDetector_Introduction.html">Likelihood Detector</a></li><li class="breadcrumb-item"><a href="../../../detectors/likelihoodDetectionModuleHelp/docs/LikelihoodDetector_Config.html">Configuring the Likelihood Detector</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../../index.html" class="sidebar-logo-link">
+      <img src="../../../images/PAMGuardIcon2.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Overview</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/pamguardBackground.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PAMGUARD Background</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/pamGuardArchitecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PAMGUARD Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/modules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PAMGUARD Modules</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/normalMode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Normal Operation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/viewerMode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PAMGUARD Viewer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/mixedMode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mixed Mode operation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Core Features</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/guiOverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graphical User Interface</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/CopyingPrinting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Copying and Printing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/multipleDisplays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multiple Displays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/addingRemovingPlugins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding and Removing Plug-ins</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/ImportingModules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Importing PAMGuard Modules</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/modelViewer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Viewer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/multithreading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multithreading</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/xmloutput.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">XML Configuration Output</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/performanceTests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Performance Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/datastorage2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Storage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/uid/docs/uid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uinique Data Identifiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Hydrophone Array Manager</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/hydrophoneArrayManagerHelp/docs/Array_Overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/hydrophoneArrayManagerHelp/docs/Array_Configuration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Array Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/hydrophoneArrayManagerHelp/docs/Array_NewStreamer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Streamer Dialog</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/hydrophoneArrayManagerHelp/docs/Array_NewHydrophone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">New Hydrophone Dialog</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Data Map</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/datamap/docs/datamap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Data Annotation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/annotations/docs/annotations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/annotations/docs/textannotation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Text Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/annotations/docs/loggerannotation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logger Forms Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/annotations/docs/targetmotionannotation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Target Motion Annotation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Data Export</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/dataexport/docs/dataexport.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Export</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Maps and Mapping</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">NMEA and GPS</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/NMEA/docs/configuringNMEADataSource.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuring the NMEA Data Source</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/NMEA/docs/ConfiguringGPS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GPS Processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/NMEA/docs/ClockOptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Setting the PC Clock</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/NMEA/docs/Troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NMEA / GPS Troubleshooting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/NMEA/docs/NMEAConnections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NMEA Connections</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Map Display</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/mapHelp/docs/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/mapHelp/docs/mapDisplay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Display</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/mapHelp/docs/MapOverlays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Map Overlays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/mapHelp/docs/mapInformationDisplayPanel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Map Information Display Panel</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/mapHelp/docs/mapControlPanel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Map Controls</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/mapHelp/docs/mapMaking.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Making Map Files</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+ <span class="menu-text">AIS</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/AIS/docs/AISOverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AIS Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/AIS/docs/AISConfiguration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AIS Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/AIS/docs/AISDisplay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AIS Display</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">docs </span></span>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
+ <span class="menu-text">Airgun Display</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/AirgunDisplay/docs/AirgunOverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Airgun Display Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/AirgunDisplay/docs/AirgunConfiguration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Airgun Display Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../mapping/AirgunDisplay/docs/AirgunDisplay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Airgun Display</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
+ <span class="menu-text">Utilities</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false">
+ <span class="menu-text">Database</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/generalDatabaseHelp/docs/database_database.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/generalDatabaseHelp/docs/database_sqlite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SQLite Databases</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/generalDatabaseHelp/docs/database_MySQL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MySQL Databases</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/generalDatabaseHelp/docs/database_msAccess.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Microsoft Access Databases</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/generalDatabaseHelp/docs/import_export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Importing and Exporting</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false">
+ <span class="menu-text">Binary Storage</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/BinaryStore/docs/binarystore_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Binary Storage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/BinaryStore/docs/matlabandr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matlab and R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false">
+ <span class="menu-text">User Input</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/userInputHelp/docs/userInput.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">User Input Panel</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false">
+ <span class="menu-text">Aural Listening Form</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/listening/docs/Listening_Overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/listening/docs/Listening_Configuration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false">
+ <span class="menu-text">Alarms</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/Alarms/docs/Alarms_Overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/Alarms/docs/Alarms_Configuration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/Alarms/docs/Alarms_Actions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Actions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/Alarms/docs/Alarms_Display.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Displays</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false">
+ <span class="menu-text">SIDE Module</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/SIDEModule/docs/SIDE_Overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/SIDEModule/docs/SIDE_Configure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creation and Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/SIDEModule/docs/SIDE_SpClust.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Species Cluster Selection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/SIDEModule/docs/SIDE_TestParams.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Test Parameters</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/SIDEModule/docs/SIDE_OpStat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Operations Status</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/SIDEModule/docs/SIDE_InfoTables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Information Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/SIDEModule/docs/SIDE_ReportMatrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reporting Matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/SIDEModule/docs/SIDE_Sidebar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sidebar</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/SIDEModule/docs/SIDE_Process.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/SIDEModule/docs/SIDE_Output.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Output</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false">
+ <span class="menu-text">Spectrogram Annotations</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-20" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/spectrogramannotations/docs/spectrogramannotations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/spectrogramannotations/docs/adding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding and Configuring</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/spectrogramannotations/docs/using.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using Editing and Deleting</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-21" role="navigation" aria-expanded="false">
+ <span class="menu-text">Quick Annotations</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-21" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-21" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/quickAnnotations/docs/quickAnnotations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/quickAnnotations/docs/adding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding and Configuring</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/quickAnnotations/docs/using.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using Editing and Deleting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/quickAnnotations/docs/import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Importing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/backupmanager/docs/backupmanager.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../utilities/backupmanager/docs/backupmanager.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Backup Manager </span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-22" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-22" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/backupmanager/docs/backupmanager.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-23" role="navigation" aria-expanded="false">
+ <span class="menu-text">Tethys Interface</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-23" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-23" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/tethys/docs/tethys_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tethys Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/tethys/docs/tethys_module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tethys Module</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/tethys/docs/tethys_server.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tethys Server</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/tethys/docs/connection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Connecting to Tethys</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/tethys/docs/calibrations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instrument Calibrations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/tethys/docs/deployments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instrument Deployments</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/tethys/docs/detect_localize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Detections and Localizations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/tethys/docs/tethys_speciescodes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITIS Species Codes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-24" role="navigation" aria-expanded="false">
+ <span class="menu-text">Sensors</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-24" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-24" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-25" role="navigation" aria-expanded="false">
+ <span class="menu-text">Analog Array Sensors</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-25" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-25" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sensors/analogarray/docs/analogarray.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sensors/analogarray/docs/analogarrayconfig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sensors/analogarray/docs/analogarraycalibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calibration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sensors/analogarray/docs/analogarraydisplays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Displays</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-26" role="navigation" aria-expanded="false">
+ <span class="menu-text">Hydrophone Depth Readout</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-26" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-26" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/depthreadout/docs/depth_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/depthreadout/docs/depth_configuration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-27" role="navigation" aria-expanded="false">
+ <span class="menu-text">Array Accelerometer</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-27" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-27" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sensors/arrayAccelerometer/docs/arrayAccelerometer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Array Accelerometer Readout</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sensors/arrayAccelerometer/docs/accelerometer_configuration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-28" role="navigation" aria-expanded="false">
+ <span class="menu-text">CPOD</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-28" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-28" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sensors/cpod/docs/cpod.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CPOD Module</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-29" role="navigation" aria-expanded="false">
+ <span class="menu-text">Displays</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-29" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-29" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-30" role="navigation" aria-expanded="false">
+ <span class="menu-text">Data Selection</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-30" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-30" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../displays/dataselect/docs/selectandsymbol.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../displays/dataselect/docs/dataselection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Selectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../displays/dataselect/docs/symbolchoice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symbol Choosers</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-31" role="navigation" aria-expanded="false">
+ <span class="menu-text">Display Marking</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-31" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-31" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../displays/displaymarks/docs/displaymarks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-32" role="navigation" aria-expanded="false">
+ <span class="menu-text">User Display Panel</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-32" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-32" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../displays/userDisplayHelp/docs/userDisplayPanel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-33" role="navigation" aria-expanded="false">
+ <span class="menu-text">Spectrogram Display</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-33" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-33" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../displays/spectrogramDisplayHelp/docs/UserDisplay_Spectrogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../displays/spectrogramDisplayHelp/docs/UserDisplay_Spectrogram_Creating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creating a Spectrogram Display</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../displays/spectrogramDisplayHelp/docs/UserDisplay_Spectrogram_Configuring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuring a Spectrogram Display</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../displays/spectrogramDisplayHelp/docs/UserDisplay_Spectrogram_Overlays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spectrogram Display Overlays</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-34" role="navigation" aria-expanded="false">
+ <span class="menu-text">Radar Display</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-34" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-34" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../displays/radarDisplayHelp/docs/UserDisplay_Radar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../displays/radarDisplayHelp/docs/UserDisplay_Radar_Creating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creating a Radar Display</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../displays/radarDisplayHelp/docs/UserDisplay_Radar_Configuring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuring a Radar Display</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-35" role="navigation" aria-expanded="false">
+ <span class="menu-text">Local Time</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-35" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-35" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../displays/LocalTime/Docs/LocalTime.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Local Time</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-36" role="navigation" aria-expanded="false">
+ <span class="menu-text">Level Meters</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-36" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-36" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../displays/LevelMeters/Docs/LevelMeters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Level Meters</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-37" role="navigation" aria-expanded="false">
+ <span class="menu-text">Time Display FX</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-37" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-37" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../displays/timedisplayfx/docs/timedisplayfx.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-38" role="navigation" aria-expanded="false">
+ <span class="menu-text">Sound Processing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-38" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-38" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-39" role="navigation" aria-expanded="false">
+ <span class="menu-text">Sound Acquisition</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-39" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-39" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/AcquisitionHelp/docs/AcquisitionOverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/AcquisitionHelp/docs/AcquisitionConfiguration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/AcquisitionHelp/docs/AcquisitionSoundCard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sound Cards</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/AcquisitionHelp/docs/AcquisitionAsioSoundCard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asio Sound Cards</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/AcquisitionHelp/docs/AcquisitionFile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Audio Files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../sound_processing/AcquisitionHelp/docs/AcquisitionFile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Audio Files </span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-40" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-40" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/AcquisitionHelp/docs/sudfiles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SUD Files</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/AcquisitionHelp/docs/AcquisitionFileFolder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Audio File Folders</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/AcquisitionHelp/docs/FileTimeZone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">File Dates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/AcquisitionHelp/docs/AcquisitionNIDAQ.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">National Instruments DAQ Cards</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/AcquisitionHelp/docs/SAILDaqCard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAIL Daq Cards</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/AcquisitionHelp/docs/AcquisitionSimulator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulated Sources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-41" role="navigation" aria-expanded="false">
+ <span class="menu-text">Sound Output</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-41" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-41" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/soundPlaybackHelp/docs/soundPlayback_soundPlayback.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sound Output Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/soundPlaybackHelp/docs/soundPlayback_Config.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sound Output Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/soundPlaybackHelp/docs/soundPlayback_Control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sound Output Control</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-42" role="navigation" aria-expanded="false">
+ <span class="menu-text">FFT (Spectrogram) Engine</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-42" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-42" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/fftManagerHelp/docs/FFTEngine_Overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/fftManagerHelp/docs/FFTEngine_Creating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creating</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/fftManagerHelp/docs/FFTEngine_Configuring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuring</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/fftManagerHelp/docs/noise_removal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Noise Removal</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-43" role="navigation" aria-expanded="false">
+ <span class="menu-text">Filters (IIR and FIR)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-43" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-43" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/FiltersHelp/Docs/Filters_filters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/FiltersHelp/Docs/Filters_panel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Filter Design</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-44" role="navigation" aria-expanded="false">
+ <span class="menu-text">Decimator</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-44" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-44" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/decimatorHelp/docs/decimator_decimator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Decimator</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-45" role="navigation" aria-expanded="false">
+ <span class="menu-text">Sound Recorder</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-45" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-45" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/soundRecorderHelp/docs/RecorderOverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sound Recorder Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/soundRecorderHelp/docs/RecorderConfiguration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sound Recorder Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/soundRecorderHelp/docs/RecorderOperation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sound Recorder Operation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-46" role="navigation" aria-expanded="false">
+ <span class="menu-text">Clip Generator</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-46" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-46" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/ClipGenerator/docs/ClipGenerator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/ClipGenerator/docs/ClipGeneratorDisplay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Display</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/ClipGenerator/docs/ClipGeneratorBearings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bearings</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-47" role="navigation" aria-expanded="false">
+ <span class="menu-text">Signal Amplifier</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-47" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-47" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/amplifier/docs/amplifier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-48" role="navigation" aria-expanded="false">
+ <span class="menu-text">Patch Panel</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-48" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-48" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/patchPanelHelp/docs/patchpanel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Patch Panel</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-49" role="navigation" aria-expanded="false">
+ <span class="menu-text">Spectrogram Smoothing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-49" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-49" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/SpectrogramSmoothing/docs/SpectrogramSmoothing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spectrogram Smoothing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/SpectrogramSmoothing/docs/AddingConfiguring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-50" role="navigation" aria-expanded="false">
+ <span class="menu-text">Seismic Veto</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-50" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-50" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/seismicveto/docs/veto_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/seismicveto/docs/veto_configuration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-51" role="navigation" aria-expanded="false">
+ <span class="menu-text">Noise Band Measurement</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-51" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-51" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/NoiseBands/Docs/NoiseBands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Noise Band Measurement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/NoiseBands/Docs/NoiseBandDisplays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Noise Band Displays</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-52" role="navigation" aria-expanded="false">
+ <span class="menu-text">Filtered Noise Measurement</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-52" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-52" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/NoiseOneBand/Docs/NoiseOneBand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/NoiseOneBand/Docs/NoiseOneBandDisplays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Displays and Output</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-53" role="navigation" aria-expanded="false">
+ <span class="menu-text">LTSA (Long Term Spectral Averaging)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-53" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-53" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/LTSA/Docs/LTSA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LTSA (Long Term Spectral Averaging)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/LTSA/Docs/LTSADisplays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LTSA Displays</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-54" role="navigation" aria-expanded="false">
+ <span class="menu-text">Envelope Tracing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-54" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-54" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/EnvelopeTrace/Docs/EnvelopeOverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Envelope Tracing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-55" role="navigation" aria-expanded="false">
+ <span class="menu-text">Beamformer</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-55" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-55" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/beamformer/docs/Beamformer_Overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Beamformer Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/beamformer/docs/Beamformer_Settings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Beamformer Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/beamformer/docs/Beamformer_AlgoConfig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Beamformer Algorithm Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../sound_processing/beamformer/docs/Beamformer_Output.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Beamformer Output</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-56" role="navigation" aria-expanded="true">
+ <span class="menu-text">Detectors</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-56" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-56" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-57" role="navigation" aria-expanded="false">
+ <span class="menu-text">Click Detector</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-57" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-57" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/ClickDetector_clickDetector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/ClickDetector_clickDetectorDisplays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Click Detector Displays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../detectors/clickDetectorHelp/docs/ClickDetector_clickDetectorDisplays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Click Detector Displays </span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-58" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-58" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/ClickDetector_clickTabPanelDisplays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tab Panel Displays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/ClickDetector_clickSidePanel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Side Panel</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/ClickDetector_MapOverlays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graphic Overlays</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/ClickDetector_clickClassification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Click Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../detectors/clickDetectorHelp/docs/ClickDetector_clickClassification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Click Classification </span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-59" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-59" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/ClickDetector_basicClassification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basic classifier</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/ClickDetector_betterClassification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Classifier with frequency sweep</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/ClickDetector_clickTrainLocalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tracking and Click Train Identification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/ClickDetector_clickAlarmOptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Click Detector Alarm</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-60" role="navigation" aria-expanded="false">
+ <span class="menu-text">Viewer Functions</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-60" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-60" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/offline_Overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/offline_ImportingRBC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Importing RBC Files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/offline_Navigating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Navigating</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/offline_MarkingOutEvents.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Marking out Events</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/offline_Reclassify_clicks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reclassify Clicks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/offline_Tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Offline Click Analysis Tools</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../utilities/BinaryStore/docs/CreateBinariesOffline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Create Binary Files Offline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/clickDetectorHelp/docs/SoundTrapClickDetector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SoundTrap Click Detector</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-61" role="navigation" aria-expanded="false">
+ <span class="menu-text">Whistle and Moan Detector</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-61" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-61" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/whistleMoanHelp/docs/whistleMoan_Overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/whistleMoanHelp/docs/whistleMoan_Configure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/whistleMoanHelp/docs/whistleMoan_ConfigSource.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Source</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/whistleMoanHelp/docs/whistleMoan_ConfigGrouping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Channel Grouping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/whistleMoanHelp/docs/whistleMoan_ConfigNoise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Noise Removal and Thresholding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/whistleMoanHelp/docs/whistleMoan_ConfigConnect.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Connected Region Search</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/whistleMoanHelp/docs/whistleMoan_ConfigBranching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Region Branching</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-62" role="navigation" aria-expanded="false">
+ <span class="menu-text">Whistle Detector</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-62" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-62" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/whistleDetectorHelp/docs/whistleDetector_Overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/whistleDetectorHelp/docs/whistleDetector_Creating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creating a Whistle Detector</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/whistleDetectorHelp/docs/whistleDetector_Configuring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuring a Whistle Detector</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/whistleDetectorHelp/docs/whistleDetector_Display.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Whistle Detector Display</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-63" role="navigation" aria-expanded="true">
+ <span class="menu-text">Likelihood Detector</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-63" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-63" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/likelihoodDetectionModuleHelp/docs/LikelihoodDetector_Introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Likelihood Detector Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/likelihoodDetectionModuleHelp/docs/LikelihoodDetector_NewModule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding a new Likelihood Detector</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/likelihoodDetectionModuleHelp/docs/LikelihoodDetector_Config.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Configuring the Likelihood Detector</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/likelihoodDetectionModuleHelp/docs/LikelihoodDetector_ImportExport.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Importing and Exporting Target Configurations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/likelihoodDetectionModuleHelp/docs/LikelihoodDetector_RemoveModule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Removing a Likelihood Detector</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-64" role="navigation" aria-expanded="false">
+ <span class="menu-text">Generalised Power Law (GPL) Detector</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-64" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-64" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/gpl/docs/gpldetector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GPL Detector Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/gpl/docs/configure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GPL Detector Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../detectors/gpl/docs/configure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GPL Detector Configuration </span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-65" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-65" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/gpl/docs/detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Detection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/gpl/docs/contours.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Contours</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/gpl/docs/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/gpl/docs/defaults.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Defaults</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/gpl/docs/gploutputs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Outputs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/gpl/docs/gpldisplays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Displays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/gpl/docs/localisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Localisation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/ClickTrainDetector/docs/ClickTrainDetector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../detectors/ClickTrainDetector/docs/ClickTrainDetector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Click Train Detector </span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-66" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-66" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/ClickTrainDetector/docs/ClickTrainDetector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-67" role="navigation" aria-expanded="false">
+ <span class="menu-text">Classifiers</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-67" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-67" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-68" role="navigation" aria-expanded="false">
+ <span class="menu-text">Whistle Classifier</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-68" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-68" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/whistleClassifierHelp/docs/whistleClassifier_Overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/whistleClassifierHelp/docs/whistleClassifier_Configure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/whistleClassifierHelp/docs/whistleClassifier_CollectTraining.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Collecting Training Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/whistleClassifierHelp/docs/whistleClassifier_Training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Training the classifier</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/whistleClassifierHelp/docs/whistleClassifier_Running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Running the classifier</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/whistleClassifierHelp/docs/whistleClassifier_Output.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Classifier Output</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-69" role="navigation" aria-expanded="false">
+ <span class="menu-text">ROCCA</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-69" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-69" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/roccaHelp/docs/rocca_Overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/roccaHelp/docs/rocca_Configure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/roccaHelp/docs/rocca_SelectingWhistle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Selecting a Whistle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/roccaHelp/docs/rocca_Spectrogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rocca Spectrogram</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/roccaHelp/docs/rocca_ContourExtractionManipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Contour Extraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/roccaHelp/docs/rocca_WhistleSchoolClassification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Measurements and Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/roccaHelp/docs/rocca_Sidebar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sidebar Controls</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/roccaHelp/docs/rocca_SavedFiles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">File Output</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-70" role="navigation" aria-expanded="false">
+ <span class="menu-text">Deep Learning Module</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-70" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-70" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/rawDeepLearningHelp/docs/rawDeepLearning_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/rawDeepLearningHelp/docs/rawDeepLearning_CreateAndConfig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creation and Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/rawDeepLearningHelp/docs/rawDeepLearning_Running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Running</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/rawDeepLearningHelp/docs/rawDeepLearning_Results.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/rawDeepLearningHelp/docs/rawDeepLearning_Bugs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Common Mistakes and Bugs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-71" role="navigation" aria-expanded="false">
+ <span class="menu-text">Matched Template Classifier</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-71" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-71" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../classifiers/matchedtemplate/mathchedtemplate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matched Template Classifier</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-72" role="navigation" aria-expanded="false">
+ <span class="menu-text">Localisation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-72" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-72" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/docs/localisation_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/docs/localisation_algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Localisation Techniques</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/docs/localisation_arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of Array</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/docs/localisation_generic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Generic Localisers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/docs/localisation_tdoa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time Difference of Arrival</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-73" role="navigation" aria-expanded="false">
+ <span class="menu-text">Bearing Calculator</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-73" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-73" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/bearingLocaliser/docs/BL_Overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bearing Calculator Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/bearingLocaliser/docs/BL_Settings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bearing Calculator Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/bearingLocaliser/docs/BL_AlgoConfig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bearing Calculator Algorithm Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/bearingLocaliser/docs/BL_Output.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bearing Calculator Output</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/group3d/docs/3doverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../localisation/group3d/docs/3doverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Group 3D Localiser </span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-74" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-74" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/group3d/docs/3doverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/group3d/docs/3dconfig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/group3d/docs/3dalgorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algorithms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../localisation/group3d/docs/3dalgorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algorithms </span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-75" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-75" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/group3d/docs/3dcrossedbearing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Crossed Bearing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/group3d/docs/3dhyperbolic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hyperbolic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/group3d/docs/3dsimplex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simplex</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/group3d/docs/3doutput.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Output</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-76" role="navigation" aria-expanded="false">
+ <span class="menu-text">Detection Grouper</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-76" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-76" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/detectiongroup/docs/dglocaliser.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Detection Grouper</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-77" role="navigation" aria-expanded="false">
+ <span class="menu-text">Target Motion Analysis</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-77" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-77" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/targetmotion/docs/targetmotion_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Target Motion Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/targetmotion/docs/targetmotion_Localising.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Localising an Event</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/targetmotion/docs/targetmotion_LocalisationAlgorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Localisation Algorithms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">localisation/targetmotion/docs/targetmotion_LocalisationResults.qmd</span>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-78" role="navigation" aria-expanded="false">
+ <span class="menu-text">Multipath 3D Localiser</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-78" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-78" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../detectors/Pam3DHelp/docs/guiOverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multipath 3D Localisation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-79" role="navigation" aria-expanded="false">
+ <span class="menu-text">DIFAR</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-79" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-79" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/difar/difarAzigram/docs/azigram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Azigram (DIFAR Azigram Engine)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/difar/difarAudio/docs/directionalAudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DIFAR Directional Audio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-80" role="navigation" aria-expanded="false">
+ <span class="menu-text">DIFAR Localisation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-80" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-80" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/difar/difarLocalisation/docs/difar_Overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/difar/difarLocalisation/docs/difar_ConfigureModule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configure the Module</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/difar/difarLocalisation/docs/difar_HydrophoneArray.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deploying Sonobuoys</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/difar/difarLocalisation/docs/difar_ConfigureUserDisplay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configure User Display</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/difar/difarLocalisation/docs/difar_ConfigureProcessing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configure Processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/difar/difarLocalisation/docs/difar_RunningSystem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Running the System</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../localisation/difar/difarLocalisation/docs/difar_RunningSystem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Running the System </span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-81" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-81" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/difar/difarLocalisation/docs/difar_UsingSpectrogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using the Spectrogram</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/difar/difarLocalisation/docs/difar_ManagingQueue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Managing the Queue</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/difar/difarLocalisation/docs/difar_UsingDifarGramDisplay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using DIFARGram Display</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/difar/difarLocalisation/docs/difar_CrossingBearings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Advanced Localisation (Triangulation and Groups)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/difar/difarLocalisation/docs/difar_Calibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Compass Calibration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/difar/difarLocalisation/docs/difar_GraphicsOutput.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graphics Output</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../localisation/difar/difarLocalisation/docs/difar_DifarOutput.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DIFAR Output</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-82" role="navigation" aria-expanded="false">
+ <span class="menu-text">Visual Methods</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-82" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-82" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-83" role="navigation" aria-expanded="false">
+ <span class="menu-text">Video Range</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-83" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-83" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../visual_methods/videoRangeHelp/docs/videoRange_videoRange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../visual_methods/videoRangeHelp/docs/VideoRange_SidePanel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Side Panel</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../visual_methods/videoRangeHelp/docs/videoRange_Calibrating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calibration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../visual_methods/videoRangeHelp/docs/videoRange_videoRange.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../visual_methods/videoRangeHelp/docs/videoRange_Measuring_Plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Measuring to the horizon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../visual_methods/videoRangeHelp/docs/videoRange_MeasureToShoreline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Measuring to a shoreline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-84" role="navigation" aria-expanded="false">
+ <span class="menu-text">Logger forms</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-84" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-84" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../visual_methods/loggerFormsHelp/docs/loggerFormsOverview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../visual_methods/loggerFormsHelp/docs/designingForms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Designing Forms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-likelihood-detector-module" id="toc-the-likelihood-detector-module" class="nav-link active" data-scroll-target="#the-likelihood-detector-module">The Likelihood Detector Module</a>
+  <ul class="collapse">
+  <li><a href="#configuring-the-likelihood-detector" id="toc-configuring-the-likelihood-detector" class="nav-link" data-scroll-target="#configuring-the-likelihood-detector">Configuring the Likelihood Detector</a></li>
+  <li><a href="#selecting-an-audio-data-source" id="toc-selecting-an-audio-data-source" class="nav-link" data-scroll-target="#selecting-an-audio-data-source">Selecting an Audio Data Source</a></li>
+  <li><a href="#adding-a-target-configuration" id="toc-adding-a-target-configuration" class="nav-link" data-scroll-target="#adding-a-target-configuration">Adding a Target Configuration</a>
+  <ul class="collapse">
+  <li><a href="#general-parameters" id="toc-general-parameters" class="nav-link" data-scroll-target="#general-parameters">General Parameters</a></li>
+  <li><a href="#parameter-tooltips" id="toc-parameter-tooltips" class="nav-link" data-scroll-target="#parameter-tooltips">Parameter Tooltips</a></li>
+  <li><a href="#editing-a-parameter" id="toc-editing-a-parameter" class="nav-link" data-scroll-target="#editing-a-parameter">Editing a Parameter</a></li>
+  <li><a href="#parameter-validation" id="toc-parameter-validation" class="nav-link" data-scroll-target="#parameter-validation">Parameter Validation</a></li>
+  <li><a href="#errorwarning-reporting" id="toc-errorwarning-reporting" class="nav-link" data-scroll-target="#errorwarning-reporting">Error/Warning reporting</a></li>
+  </ul></li>
+  <li><a href="#adding-a-signal-band" id="toc-adding-a-signal-band" class="nav-link" data-scroll-target="#adding-a-signal-band">Adding a Signal Band</a>
+  <ul class="collapse">
+  <li><a href="#signal-band-parameters" id="toc-signal-band-parameters" class="nav-link" data-scroll-target="#signal-band-parameters">Signal Band Parameters</a></li>
+  </ul></li>
+  <li><a href="#adding-a-guard-band" id="toc-adding-a-guard-band" class="nav-link" data-scroll-target="#adding-a-guard-band">Adding a Guard Band</a>
+  <ul class="collapse">
+  <li><a href="#guard-band-parameters" id="toc-guard-band-parameters" class="nav-link" data-scroll-target="#guard-band-parameters">Guard Band Parameters</a></li>
+  </ul></li>
+  <li><a href="#enabling-and-disabling-a-target-configuration" id="toc-enabling-and-disabling-a-target-configuration" class="nav-link" data-scroll-target="#enabling-and-disabling-a-target-configuration">Enabling and Disabling a Target Configuration</a></li>
+  <li><a href="#removing-a-signal-or-guard-band" id="toc-removing-a-signal-or-guard-band" class="nav-link" data-scroll-target="#removing-a-signal-or-guard-band">Removing a Signal or Guard Band</a></li>
+  <li><a href="#removing-a-target-configuration" id="toc-removing-a-target-configuration" class="nav-link" data-scroll-target="#removing-a-target-configuration">Removing a Target Configuration</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Detectors</li><li class="breadcrumb-item"><a href="../../../detectors/likelihoodDetectionModuleHelp/docs/LikelihoodDetector_Introduction.html">Likelihood Detector</a></li><li class="breadcrumb-item"><a href="../../../detectors/likelihoodDetectionModuleHelp/docs/LikelihoodDetector_Config.html">Configuring the Likelihood Detector</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Configuring the Likelihood Detector</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="the-likelihood-detector-module" class="level1">
+<h1>The Likelihood Detector Module</h1>
+<section id="configuring-the-likelihood-detector" class="level2">
+<h2 class="anchored" data-anchor-id="configuring-the-likelihood-detector">Configuring the Likelihood Detector</h2>
+<p>Once there is a Likelihood detector module added to the PAMGuard system, the module can be configured by selecting the <code>Detection-&gt;</code> menu item and choosing the menu option with the name that was supplied when the module was added.</p>
+<p>If this is the first time the module has been configured, then a dialog resembling the following will appear.</p>
+<p>Likelihood Detector Parameters Dialog</p>
+<p><img src="images/parameters-dialog.png" class="img-fluid"></p>
+</section>
+<section id="selecting-an-audio-data-source" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-an-audio-data-source">Selecting an Audio Data Source</h2>
+<p>Located at the top of the Likelihood Detector configuration dialog is the standard PAMGuard <code>Raw Data Source</code> management panel. Using the drop-down box you can select a single audio source for the module. A Likelihood Detection module can only have one audio source. If you would like to process multiple target configurations on multiple audio sources simultaneously, you will need to add another Likelihood Detection module. See the section on <a href="LikelihoodDetector_NewModule.html">adding a new Likelihood Detection module</a> for more information.</p>
+<p>You can also select which channels of audio data to process. By default, all channels will be selected, but by using the checkboxes you can filter out specific channeles.</p>
+<p>Selecting an audio source</p>
+<p><img src="images/selecting-audio-source.png" class="img-fluid"></p>
+</section>
+<section id="adding-a-target-configuration" class="level2">
+<h2 class="anchored" data-anchor-id="adding-a-target-configuration">Adding a Target Configuration</h2>
+<p>To add a new target configuration to the Likelihood Detector module, right-click on the “Target Configurations” row in the list box and select <code>"Add Configuration"</code>.</p>
+<p><img src="images/new-config.png" class="img-fluid"></p>
+<p>A dialog box will open and prompt you to enter a unique name for the target configuration. The dialog will not allow you to enter in a name that is already taken. Note that target configuration names are <em>case sensitive</em>.</p>
+<section id="general-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="general-parameters">General Parameters</h3>
+<p>Once a target configuration is added, it will be displayed in the configuration area, showing the default values for the general parameters. These general parameters are discussed in brief below.</p>
+<p><img src="images/general-parameters.png" class="img-fluid"></p>
+<ul>
+<li><p><em>Time and Frequency Resolutions</em><br>
+The time resolution and frequency resolution parameters provide configurable values that are used in conjunction with the audio source properties in order to derive the signal processing settings for the Fast Fourier Transform (FFT) process found at the start of the processing stream. The FFT process operates on the raw input data, converting it to the frequency domain. A Hann window (raised cosine) is used in all cases. Note that changes in sample rate do not require a change to the various settings.</p>
+<p>For very short signals (&lt; 50ms) the time_res should be on the order of the signal duration to twice that. Setting it to be much larger than the signal duration will reduce the detectors ability to detect low SNR (weak) signals.</p>
+<p>For longer signals, a time_res less than the signal is appropriate, and helps to get better detection timing. The default of 0.1 seconds is often appropriate. The data is still averaged over the length of a signal (using the signal window parameter) in the Normalizer block. This is a sliding window, which is more appropriate for several reasons.</p>
+<p>The frequency resolution is normally set to <code>freq_res = 1 / (2 * time_res)</code> which results in 50% overlap.</p></li>
+<li><p><em>Algorithm</em><br>
+This parameter specifies the normalization algorithm that is to be used for the target configuration. There are two possible normalizers: Decaying Average and Block Average. The Decaying Average algorithm uses feedback to generate estimates similar to the Click Detector. The Block Average algorithm averages a specified block of data history.</p>
+<p>In general, the block averager is a better choice because it doesn’t have a long-term memory. For signal processors the block average is like an FIR filter, whereas the decaying averager is like an IIR filter.</p>
+<p>The normalizer produces a likelihood ratio L = S / N.</p>
+<p>Here are some guidelines for normalization:</p>
+<ul>
+<li><p>For the block averager, a good choice for the signal window is the duration of the click or call being detected, while the noise window should be at least 3 times longer. If the actual signal’s duration is variable, the signal window can be biased to the longer cases. If the difference between short and long duration signals is significant (more than 2x), another option is to create multiple bands each tuned to the different durations. The noise window shouldn’t be so long as to cause neighbouring signals to be in the noise window during detection. For example, if the real signal’s duration is 1.0 seconds and the inter-call interval (time between start of one call and the start of the next call) is 3.0 seconds a noise window of 5 seconds would be appropriate, but a noise window of 10.0 seconds would be too long. In this case the longest suggested noise window would be 5 seconds to avoid corrupting the noise estimate with other signals of interest.</p></li>
+<li><p>For the decaying averager, which uses feedback to generate estimates similar to the click detector, a different strategy for selecting signal and noise windows is appropriate. The signal window can still be on the order of the duration of the vocalization of interest, though it will effectively smear out the signal if many more times than the time resolution. As a general rule of thumb, it should not be more than 4 times the time resolution. The noise window needs to be longer, especially if loud calls are occurring frequently, or the noise estimate will develop a bias due to the feedback.</p></li>
+</ul></li>
+<li><p><em>Minimum detection interval:</em><br>
+This parameter indicates the minimum interval between individual detections. If two or more detections occur within this configured amount of time, then they will be considedered all part of the same event, and will be considered one detection.</p></li>
+</ul>
+</section>
+<section id="parameter-tooltips" class="level3">
+<h3 class="anchored" data-anchor-id="parameter-tooltips">Parameter Tooltips</h3>
+<p>Most of the target configuration parameters have legal bounds that are determined either by the audio data source’s parameters or by other target configuration parameter values. In order to ease configuration of the Likelihood Detector module, tool tips are provided in the configuration dialog. Leaving the mouse pointer over a parameter’s value in the <code>Value</code> column of the dialog’s target configuration window will display a tool tip indicating the valid lower and upper bounds for a parameter. The bounds displayed by the tool tip will be enforced by the editing widget for the parameter.</p>
+<p>Showing a parameter’s tool tip</p>
+<p><img src="images/tooltip.png" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p><em>Note: Some parameters are co-dependent, for example the signal/guard band’s noise window and the signal window. To be able to enter the value you want, it may be necessary to alter a dependent parameter. The tool tips will help you with this by explaining if any parameter boundries are dependent on another parameter.</em></p>
+</blockquote>
+</section>
+<section id="editing-a-parameter" class="level3">
+<h3 class="anchored" data-anchor-id="editing-a-parameter">Editing a Parameter</h3>
+<p>All of the configurable parameters for a target configuration are editable in-place within the configuration dialog. To edit a parameter, simply double-click with the left mouse button on a value in the <code>Value</code> column and an editing widget will appear.</p>
+<p>The editing widget for a parameter will enforce the valid values on the numbers that are entered.</p>
+<p>Editing configuration parameters</p>
+<p><img src="images/editing-double.png" class="img-fluid"></p>
+<p><img src="images/editing-combo.png" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p><em>Note: Some parameters are co-dependent, for example the signal/guard band’s noise window and the signal window. To be able to enter the value you want, it may be necessary to alter a dependent parameter. The tool tips will help you with this by explaining if any parameter boundries are dependent on another parameter.</em></p>
+</blockquote>
+</section>
+<section id="parameter-validation" class="level3">
+<h3 class="anchored" data-anchor-id="parameter-validation">Parameter Validation</h3>
+<p>The Likelihood Detector’s configuration dialog provides validation of user input. When a tool tip displays a range of valid values (see Parameter Tooltips, above) the configuration dialog will give live feedback to the operator by disallowing invalid characters and values to be entered. This feature works in conjunction with the error reporting described below.</p>
+<p>The Java Validator used to implement the validation can be very literal with what it allows you to type. Here are some helpful hints to keep in mind when entering floating-point values:</p>
+<ul>
+<li><p>You can hit the ESCAPE key at any time to cancel editing and return the parameter to its original value.</p></li>
+<li><p>If you want to type a fractional number beginning with zero (e.g., 0.5), make sure you type the zero first. The validator may get confused if you type “.5”.</p></li>
+<li><p>Sometimes deleting digits from the middle of a number creates an invalid value and the validator will attempt to correct it for you. You can always select the whole number with the mouse or the keyboard and start over.</p></li>
+</ul>
+<blockquote class="blockquote">
+<p><em>Note: Some parameters are co-dependent, for example the signal/guard band’s noise window and the signal window. To be able to enter the value you want, it may be necessary to alter a dependent parameter. The tool tips will help you with this by explaining if any parameter boundries are dependent on another parameter.</em></p>
+</blockquote>
+</section>
+<section id="errorwarning-reporting" class="level3">
+<h3 class="anchored" data-anchor-id="errorwarning-reporting">Error/Warning reporting</h3>
+<p>When a new target configuration is added, or when all of the signal bands for a target configuration have been removed, the target configuration isn’t valid. Since a configuration isn’t valid without at least one signal band, the target configuration selection box will display a red border prompting you to add a signal band.</p>
+<p>Invalid configuration error with tool tip showing</p>
+<p><img src="images/needs-signal-band.png" class="img-fluid"></p>
+<p>While editing a target configuration parameter, if the text entered isn’t valid or is not within the allowed legal boundries for the parameter, then the configuration dialog will display a red border around the parameter’s editor and keep the editing focus there until a valid value is entered.</p>
+<p>A parameter error while editing</p>
+<p><img src="images/invalid-value.png" class="img-fluid"></p>
+<p>Since many of the target configuration’s parameters have legal boundries based on audio data source parameters or on other configuration parameters, it is possible that a change to a parameter will invalidate some other parameter in a target configuration. In addition, a change to an audio data source may invalidate values in one or more whole target configurations.</p>
+<p>If this condition occurs, then the existance of invalid parameter(s) will be indicated in two ways:</p>
+<ul>
+<li><p>The background colour for the entire value box for the parameter will change to red until the parameter is adjusted.</p></li>
+<li><p>The target configuration activation checkbox will change its state to inactive and will display a red border around it until the parameter is adjusted.</p></li>
+</ul>
+<p>A parameter dependency error</p>
+<p><img src="images/parameter-dependency-error.png" class="img-fluid"></p>
+<p>In certain cases, a value can be within an accepted range, but it will produce an undesirable result. For example, the Noise Window parameter of the signal and guard bands will produce a warning if it is set to a value that is greater-than or equal to the time resolution times 500. In this case, the warning is provided to make the user aware of the increased processing load that would be required.</p>
+<p>When a warning condition is detected, the configuration dialog will change the background of that parameter to yellow:</p>
+<p>A parameter warning</p>
+<p><img src="images/config-warning.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="adding-a-signal-band" class="level2">
+<h2 class="anchored" data-anchor-id="adding-a-signal-band">Adding a Signal Band</h2>
+<p>To add a new signal band to a target configuration, right click on the <code>Detection Bands</code> tree item for the name of the target configuration you wish to add a new band to, and a pop-up dialog will appear. Select the <code>Add Signal Band</code> menu option. You will be prompted to add a new unique signal band identifier for the target configuration. The band name dialog will ensure that the identifier you choose is unique.</p>
+<p>Adding a signal band</p>
+<p><img src="images/add-signal-band.png" class="img-fluid"></p>
+<section id="signal-band-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="signal-band-parameters">Signal Band Parameters</h3>
+<p>When a new signal band is added, the Likelihood Detection module will add a series of default parameter values for the band.The default thresholds should be acceptable for most environments but can be lowered if the detector has too many missed detections, or raised if the detector is generating too many false detections. These are shown and described below:</p>
+<p>Signal band parameters</p>
+<p><img src="images/signal-band-parameters.png" class="img-fluid"></p>
+<ul>
+<li><p><em>In-Band Threshold</em><br>
+The threshold in Decibels for the in-band Likelihood Ratio test (ie signal versus noise estimate threshold). The trigger level for each detection is recorded in the database, which may support threshold selection.</p></li>
+<li><p><em>Guard Band Threshold</em><br>
+The threshold in Decibels of the guard band ratio test. If the average of all guard bands signal estimate versus the in-band signal estimate band is less than the threshold, there is a target present. Otherwise, the detection is prevented by the guard band.</p></li>
+<li><p><em>Start/Min Frequency and End/Max Frequency</em><br>
+It is normal to define the band low and high frequency to contain the entire expected signal, or at least that portion of the signal that contains the most energy.</p></li>
+<li><p><em>Noise Window</em><br>
+The noise window parameter represents the amount of time around the signal that is used for background noise estimation. How the noise window parameter should be configured is dependent on the type of normalization that is being used. See the <em>Guidelines for Normalization</em> section above for more information.</p></li>
+<li><p><em>Signal Window</em><br>
+The signal window is the representation of the duration of the click or call that is being searched for. How the signal window should be configured is dependent on the type of normalization that is being used. See the <em>Guidelines for Normalization</em> section above for more information.</p></li>
+</ul>
+</section>
+</section>
+<section id="adding-a-guard-band" class="level2">
+<h2 class="anchored" data-anchor-id="adding-a-guard-band">Adding a Guard Band</h2>
+<p>To add a new signal band to a target configuration, right click on the <code>Detection Bands</code> tree item for the name of the target configuration you wish to add a new band to, and a pop-up dialog will appear. Select the <code>Add Guard Band</code> menu option. You will be prompted to add a new unique signal band identifier for the target configuration. The band name dialog will ensure that the identifier you choose is unique.</p>
+<p>Adding a guard band</p>
+<p><img src="images/add-guard-band.png" class="img-fluid"></p>
+<section id="guard-band-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="guard-band-parameters">Guard Band Parameters</h3>
+<p>When a new guard band is added, the Likelihood Detection module will add a series of default parameter values for the band. The default thresholds should be acceptable for most environments but can be lowered if the detector has too many missed detections, or raised if the detector is generating too many false detections. These are shown and described below:</p>
+<p>Guard band parameters</p>
+<p><img src="images/guard-band-parameters.png" class="img-fluid"></p>
+<ul>
+<li><p><em>Associated Signal Band</em><br>
+The signal band that this guard band is applied to.</p></li>
+<li><p><em>Start/Min Frequency and End/Max Frequency</em><br>
+It is normal to define the band low and high frequency to contain the entire expected signal, or at least that portion of the signal that contains the most energy.</p></li>
+<li><p><em>Noise Window</em><br>
+The noise window parameter represents the amount of time around the signal that is used for background noise estimation. How the noise window parameter should be configured is dependent on the type of normalization that is being used. See the <em>Guidelines for Normalization</em> section above for more information.</p></li>
+<li><p><em>Signal Window</em><br>
+The signal window is the representation of the duration of the click or call that is being searched for. How the signal window should be configured is dependent on the type of normalization that is being used. See the <em>Guidelines for Normalization</em> section above for more information.</p></li>
+</ul>
+</section>
+</section>
+<section id="enabling-and-disabling-a-target-configuration" class="level2">
+<h2 class="anchored" data-anchor-id="enabling-and-disabling-a-target-configuration">Enabling and Disabling a Target Configuration</h2>
+<p>A single Likelihood Detection module can have many different target configurations configured, but not all of them need to be active during a detection run.</p>
+<p>Enabling and disabling a target configuration is as easy as selecting the target configuration checkbox located next to the name of the target configuration in the configuration tree.</p>
+<p>An enabled target configuration</p>
+<p><img src="images/enabled-target-configuration.png" class="img-fluid"></p>
+<p>A disabled target configuration</p>
+<p><img src="images/disabled-target-configuration.png" class="img-fluid"></p>
+<p>Various target configuration states</p>
+<p><img src="images/combination-enabled-configs.png" class="img-fluid"></p>
+</section>
+<section id="removing-a-signal-or-guard-band" class="level2">
+<h2 class="anchored" data-anchor-id="removing-a-signal-or-guard-band">Removing a Signal or Guard Band</h2>
+<p>Removing a signal or guard band from a target configuration is easy. Simply right-click on the name of the band you wish to remove, and a pop-up menu will display an option to remove the band.</p>
+<p>Deleting a signal band</p>
+<p><img src="images/delete-signal-band.png" class="img-fluid"></p>
+<p>Deleting a guard band</p>
+<p><img src="images/delete-guard-band.png" class="img-fluid"></p>
+</section>
+<section id="removing-a-target-configuration" class="level2">
+<h2 class="anchored" data-anchor-id="removing-a-target-configuration">Removing a Target Configuration</h2>
+<p>If you wish to completely remove a target configuration from a Likelihood Detection module, right-click on the name of the target configuration you want to remove. A pop-up dialog will appear, providing you with the option to delete the configuration.</p>
+<p>Deleting a target configuration</p>
+<p><img src="images/delete-target-config.png" class="img-fluid"></p>
+<hr>
+<p><a href="LikelihoodDetector_ImportExport.html">Next: Importing and Exporting Target Configurations</a></p>
+<p><a href="LikelihoodDetector_NewModule.html">Previous: Adding a New Likelihood Detection Module</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
