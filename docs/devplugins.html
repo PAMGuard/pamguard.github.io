@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.37">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -36,10 +36,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-77daa0f5ea4008280c2bc2d8c0b5a283.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,10 +106,6 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">About</span>
@@ -120,16 +116,16 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
  <span class="dropdown-text">About PAMGuard</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./funding.html">
- <span class="dropdown-text">Funding</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./license.html">
  <span class="dropdown-text">License</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./funding.html">
+ <span class="dropdown-text">Funding</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./contact.html">
- <span class="dropdown-text">Contact</span></a>
+ <span class="dropdown-text">Contact and Support</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./team/team.html">
@@ -176,6 +172,10 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
         <li>
     <a class="dropdown-item" href="./downloadsurvey.html">
  <span class="dropdown-text">PAMGuard Installers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./plugins/plugins.html">
+ <span class="dropdown-text">Download Plugins</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./configs/configs.html">
@@ -268,7 +268,7 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#writing-pamguard-plug-ins" id="toc-writing-pamguard-plug-ins" class="nav-link active" data-scroll-target="#writing-pamguard-plug-ins">Writing PAMGUARD Plug-ins</a>
+  <li><a href="#writing-pamguard-plug-ins" id="toc-writing-pamguard-plug-ins" class="nav-link active" data-scroll-target="#writing-pamguard-plug-ins">Writing PAMGuard Plug-ins</a>
   <ul class="collapse">
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes:</a></li>
   </ul></li>
@@ -300,25 +300,21 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
 <p>There are two types of PAMGuard module. <a href="coremodules.html">Core modules</a> which are built into the main PAMGuard code and <a href="pluginmodules.html">Plugin modules</a> which are distributed sparately. This page tells you how to prepare a <a href="pluginmodules.html">Plugin modules</a> for PAMGuard.</p>
 <p>Before reading this page, make sure you’ve read up on how to <a href="devmodules.html">develop a core module</a></p>
 <section id="writing-pamguard-plug-ins" class="level2">
-<h2 class="anchored" data-anchor-id="writing-pamguard-plug-ins">Writing PAMGUARD Plug-ins</h2>
+<h2 class="anchored" data-anchor-id="writing-pamguard-plug-ins">Writing PAMGuard Plug-ins</h2>
 <p>ARCHIVING PLUG-INS INTO A JAR FILE FOR DISTRIBUTION</p>
 <p>Even if the plugin is intended as an External module, it is easiest to develop it as a Core module. In other words, create a new package in the PAMGuard code base to hold all of the new classes, and add a reference to the package classes in PamModel. This way, dependencies do not need to be explicitly managed and debugging is simplified. All development should be done within the new package, and the core PAMGuard classes should not be changed (if modifications are necessary, please contact the PAMGuard development team first).</p>
-<p>To make an external PAMGUARD plug-in available to PAMGUARD users once development is complete, it is necessary to archive the class files and support files (including help files, graphics, sound files, etc.) into a java archive (jar) file.</p>
-<p>Prior to archiving, the developer must add a class to the project package which implements one of two interfaces: PamModel.PamPluginInterface (for standard plug-in modules) or Acquisition.DaqSystemInterface (for data acquisition modules such as sound cards, file streams, etc.). Override all of the Interface’s inherited methods, returning appropriate values as specified in the Javadoc comments. Create a String object to hold the jar file name. This parameter does not need to be initialized to anything specific; the value will be set by PAMGUARD via the inherited setter method. The code could be as simple as</p>
-<p>String jarFile; <span class="citation" data-cites="Override">@Override</span> public void setJarFile(String jarFile) { this.jarFile = jarFile; }</p>
-<p>It is strongly recommended that help files be included with the plug-in. PAMGUARD uses Oracle’s JavaHelp 2.0 system (complete details can be found here). Each page in the help file is an HTML document. Create individual HTML pages (with links and images) to describe the setup and operation of the plug-in, and save all files in the same package folder that your java program is in. Once the pages are completed, create the helpset and support files (map, TOC, index, etc.). Programs like jhelpdev can greatly simplify the process of creating these files.</p>
+<p>To make an external PAMGuard plug-in available to PAMGuard users once development is complete, it is necessary to archive the class files and support files (including help files, graphics, sound files, etc.) into a java archive (jar) file.</p>
+<p>Prior to archiving, the developer must add a class to the project package which implements one of two interfaces: PamModel.PamPluginInterface (for standard plug-in modules) or Acquisition.DaqSystemInterface (for data acquisition modules such as sound cards, file streams, etc.). Override all of the Interface’s inherited methods, returning appropriate values as specified in the Javadoc comments. Create a String object to hold the jar file name. This parameter does not need to be initialized to anything specific; the value will be set by PAMGuard via the inherited setter method. The code could be as simple as</p>
+<p><code> String jarFile; <span class="citation" data-cites="Override">@Override</span> public void setJarFile(String jarFile) { this.jarFile = jarFile; } </code></p>
+<p>It is strongly recommended that help files be included with the plug-in. PAMGuard uses Oracle’s JavaHelp 2.0 system (complete details can be found here). Each page in the help file is an HTML document. Create individual HTML pages (with links and images) to describe the setup and operation of the plug-in, and save all files in the same package folder that your java program is in. Once the pages are completed, create the helpset and support files (map, TOC, index, etc.). Programs like jhelpdev can greatly simplify the process of creating these files.</p>
 <section id="notes" class="level3">
 <h3 class="anchored" data-anchor-id="notes">Notes:</h3>
-<pre><code>To have the help files added to an existing category (i.e. Classifiers, Detectors, etc.) in the PAMGUARDhelp table of contents, the top-level  tag text attribute in the plug-in’s TOC xml file must match the category name exactly.  Some category names have a space character at the end.  If in doubt, check the PAMGUARDTOC.xml file found in src/help for a list of the TOC entries.
-If the top-level tag text attribute in the plug-in’s TOC xml file does not match any of the category names in the table of contents, the item is simply appended to the bottom of the list.
-To match the existing table of contents look-and-feel, each tag in the plug-in’s TOC xml file should have image=”topic” added as an attribute.  Copy the image.gif file found in src/help to the plug-in package folder.  Ensure the line is in the plug-in’s map.jhm file</code></pre>
+<p>To have the help files added to an existing category (i.e.&nbsp;Classifiers, Detectors, etc.) in the PAMGUARDhelp table of contents, the top-level tag text attribute in the plug-in’s TOC xml file must match the category name exactly. Some category names have a space character at the end. If in doubt, check the PAMGUARDTOC.xml file found in src/help for a list of the TOC entries. If the top-level tag text attribute in the plug-in’s TOC xml file does not match any of the category names in the table of contents, the item is simply appended to the bottom of the list. To match the existing table of contents look-and-feel, each tag in the plug-in’s TOC xml file should have image=”topic” added as an attribute. Copy the image.gif file found in src/help to the plug-in package folder. Ensure the line is in the plug-in’s map.jhm file</p>
 <p>Specify the name of the helpset file in the plug-in interface class. Look through the interface Javadoc documentation for the correct format to use.</p>
 <p>Follow these steps to bundle all files together into a single jar, ready for distribution. Note the following are specific to the Eclipse IDE. Other IDE’s will have similar functionality:</p>
-<pre><code>Right-click on the project name in the Package Explorer view and select Export
-In the Export window, click on the Java folder and highlight JAR file.  Hit Next
-In the window frame on the left, make sure the package and all necessary subfolders are selected to export (sometimes subfolders created by JavaHelp - such as JavaHelpSearch – are not included in the export list by default).  Click on the box beside “Export generated class files and resources” and “Export Java source files and resources”.  Enter the name of the exported jar file in the text box under “Select the export destination”.  You can click on the box beside “Compress the contents of the JAR file”, though this is optional.  The default values for the remainder of the windows can be used.  Hit Finish to export the package to the location specified.</code></pre>
-<p>To test the jar file, move it to the plugins subfolder in the PAMGUARD installation folder. If there is no plugins folder, create one. When PAMGUARD is started, it should find the jar file and use the information in the interface class to dynamically load the code. Remember to rename/delete the package in the PAMGuard code first, to ensure that you are really testing the jar file contents and not the original code.</p>
-<p>Final note: if plug-in development has been done in the core Pamguard code and then exported to a jar, the <em>.class files may still exist in the Pamguard project’s bin subfolder (even if the original package has been deleted). If testing the plug-in jar in the IDE, first look through the bin subfolder and delete any plug-in</em> .class files that are stored. If PAMGUARD finds the classes in both the bin folder and the jar file, it is unclear which would get loaded at runtime. The class files are replaced in the bin folder every time a build is completed. Also, remember to remove references to the new module from the PamModel class, as this will be taken care of by the jar file.</p>
+<p>Right-click on the project name in the Package Explorer view and select Export In the Export window, click on the Java folder and highlight JAR file. Hit Next In the window frame on the left, make sure the package and all necessary subfolders are selected to export (sometimes subfolders created by JavaHelp - such as JavaHelpSearch – are not included in the export list by default). Click on the box beside “Export generated class files and resources” and “Export Java source files and resources”. Enter the name of the exported jar file in the text box under “Select the export destination”. You can click on the box beside “Compress the contents of the JAR file”, though this is optional. The default values for the remainder of the windows can be used. Hit Finish to export the package to the location specified.</p>
+<p>To test the jar file, move it to the plugins subfolder in the PAMGuard installation folder. If there is no plugins folder, create one. When PAMGuard is started, it should find the jar file and use the information in the interface class to dynamically load the code. Remember to rename/delete the package in the PAMGuard code first, to ensure that you are really testing the jar file contents and not the original code.</p>
+<p>Final note: if plug-in development has been done in the core PAMGuard code and then exported to a jar, the *.class files may still exist in the PAMGuard project’s bin subfolder (even if the original package has been deleted). If testing the plug-in jar in the IDE, first look through the bin subfolder and delete any plug-in* .class files that are stored. If PAMGuard finds the classes in both the bin folder and the jar file, it is unclear which would get loaded at runtime. The class files are replaced in the bin folder every time a build is completed. Also, remember to remove references to the new module from the PamModel class, as this will be taken care of by the jar file.</p>
 
 
 </section>
@@ -407,6 +403,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -517,6 +515,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

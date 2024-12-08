@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MMO and Service Providers – PAMGuard</title>
+<title>Plugin Downloads – PAMGuard</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,6 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../images/PAMGuardIcon2.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -67,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-E42Z1E7BZT"></script>
 
 <script type="text/javascript">
@@ -82,6 +113,35 @@ gtag('js', new Date());
 gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -263,15 +323,24 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#available-plugin-modules" id="toc-available-plugin-modules" class="nav-link active" data-scroll-target="#available-plugin-modules">Available Plugin Modules</a>
+  <ul class="collapse">
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MMO and Service Providers</h1>
+<h1 class="title">Plugin Downloads</h1>
 </div>
 
 
@@ -288,94 +357,301 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
 </header>
 
 
-<p style="text-align: justify;">
-<a href="http://www.aisobservers.com/" target="_blank">A.I.S. Inc.</a>
-</p>
-<p style="text-align: justify;">
-<a href="http://www.benthicsolutions.com" target="_blank">Benthic Solutions Limited</a>
-</p>
-<p style="text-align: justify;">
-<a href="http://www.blueplanetmarine.com/" target="_blank">Blue Planet Marine</a>
-</p>
-<p style="text-align: justify;">
-<a href="http://www.csaocean.com/" target="_blank">CSA Ocean Sciences</a>
-</p>
-<p style="text-align: justify;">
-<a href="http://www.eomoffshore.com/" target="_blank">EOM Offshore</a>
-</p>
-<p style="text-align: justify;">
-<a href="http://www.epi.co.uk" target="_blank">EPI</a>
-</p>
-<p style="text-align: justify;">
-<a href="https://www.gardline.com/explore-services/environmental-services.html" target="_blank">Gardline Environmental</a>
-</p>
-<p style="text-align: justify;">
-<a href="http://www.globalseismicmmo.com/" target="_blank">Global Seismic MMO Ltd</a>
-</p>
-<p>
-<a href="http://www.hydenlyne.com" target="_blank">Hydenlyne</a>&nbsp;
-</p>
-<p style="text-align: justify;">
-<span><a href="http://www.oceanscienceanalytics.com/" target="_blank">Ocean Science Analytics</a></span>
-</p>
-<p style="text-align: justify;">
-<a href="http://www.oceanscienceconsulting.com/" target="_blank">Ocean Science Consulting (OSC) Ltd</a><br><br><a href="http://www.oceanear.com/" target="_blank">OceanEar Limited</a>
-</p>
-<p style="text-align: justify;">
-<a href="http://www.rpsplc.co.uk/energy/services/environmentalsupport_2.html" target="_blank">RPS Energy</a>
-</p>
-<p style="text-align: justify;">
-<a href="http://www.sa-instrumentation.com/" target="_blank">SA Instrumentation</a>
-</p>
-<p style="text-align: justify;">
-<a href="http://www.seamap.com/" target="_blank">Seamap</a>
-</p>
-<p style="text-align: justify;">
-<a href="http://www.seiche.eu.com/" target="_blank">Seiche</a>
-</p>
-<p style="text-align: justify;">
-<a href="http://www.vpmarine.co.uk" target="_blank"><span>Vanishing Point Marine</span></a>
-</p>
-<p>
-&nbsp;
-</p>
-<h2 class="anchored">
-MMO and PAM Training&nbsp;
-</h2>
-<p>
-<a href="http://aisobservers.com/wordpress/protected-species-observer-training/" target="_blank">A.I.S. Inc.</a>
-</p>
-<p>
-<a href="http://www.carolynbarton.co.uk/" target="_blank">Carolyn Barton</a>
-</p>
-<p>
-<span><a href="http://www.csaocean.com/" target="_blank">CSA Ocean Sciences</a></span>
-</p>
-<p>
-<span><a href="https://www.edgewiseenvironmental.com/training/" target="_blank">Edgewise Environmental Ltd</a><br></span>
-</p>
-<p>
-<a href="http://www.whaledolphintrust.co.uk/" target="_blank">Hebridean Whale and Dolphin Trust</a>
-</p>
-<p>
-<a href="http://www.intelligentocean.com/" target="_blank">Intelligent Ocean</a>
-</p>
-<p>
-<a href="http://www.oceanscienceanalytics.com/" target="_blank">Ocean Science Analytics</a>
-</p>
-<p style="text-align: justify;">
-<a href="http://www.oceanscienceconsulting.com/" target="_blank">Ocean Science Consulting (OSC) Ltd</a>
-</p>
-<p style="text-align: justify;">
-<a href="https://manadaenv.net/" target="_blank">Patrick Lyne</a>
-</p>
-<p>
-<a href="http://www.seiche.eu.com/" target="_blank">Seiche</a>
-</p>
+<section id="available-plugin-modules" class="level2">
+<h2 class="anchored" data-anchor-id="available-plugin-modules">Available Plugin Modules</h2>
+<p>These are <a href="../pluginmodules.html">Plugin modules</a> developed by the PAMGuard team, or hosted on our website. Other developers may distribute plugins from their own sites.</p>
+<section id="installation" class="level3">
+<h3 class="anchored" data-anchor-id="installation">Installation</h3>
+<p>Usually, a plugin is distributed in the form of a .jar file (that’s compiled Java, the language PAMGuard is written in). All you have to do is copy the file into the plugins folder in the PAMGuard installation directory (e.g.&nbsp;C:\Program Files\Pamguard\plugins for most installation). In some cases, you may need to add other files, for example some additional C libraries. In this case check any instructions distributed with the plugin.</p>
+<p>We attempt to ensure that these plugins remain compatible with the latest released version of PAMGuard.</p>
 
 
 
-</main> <!-- /main -->
+</section>
+</section>
+
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+         <option value="listing-author" data-direction="asc">
+          Author
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-listing-date-sort="1733443200000" data-listing-file-modified-sort="1733575918099" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="127">
+<a href="../plugins/batchprocessor.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../plugins/images/batchrun.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Batch Processor
+</h5>
+<div class="card-text listing-description">
+Allows you to easily run the same PAMGuard configuration on multiple datasets.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Doug Gillespie
+</div>
+<div class="listing-date">
+Dec 6, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-listing-date-sort="1709510400000" data-listing-file-modified-sort="1733575918099" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="87">
+<a href="../plugins/contactcollator.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../plugins/images/contactcollator.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Contact Collator
+</h5>
+<div class="card-text listing-description">
+Provides a single display and output of all detectors
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Doug Gillespie
+</div>
+<div class="listing-date">
+Mar 4, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-listing-date-sort="1718578800000" data-listing-file-modified-sort="1733575918115" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="86">
+<a href="../plugins/wams.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../plugins/images/wamsChart.PNG" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+NMMF WAMS Plugin
+</h5>
+<div class="card-text listing-description">
+Provides a simple way to monitor a detector and/or multiple alarms, and generate reports summarizing activity over specific time periods
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Mike Oswald
+</div>
+<div class="listing-date">
+Jun 17, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-listing-date-sort="1691190000000" data-listing-file-modified-sort="1733575918106" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="17">
+<a href="../plugins/rioncompass.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../plugins/images/rion.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+RION Compass
+</h5>
+<div class="card-text listing-description">
+Serial port readout of heading, pitch and roll from a RION HCM508 compass module.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Doug Gillespie
+</div>
+<div class="listing-date">
+Aug 5, 2023
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="4" data-listing-date-sort="1670284800000" data-listing-file-modified-sort="1733575918106" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
+<a href="../plugins/resourcemon.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../plugins/images/resourcemon.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Resource Monitor
+</h5>
+<div class="card-text listing-description">
+Provides additional monitoring of PAMGUard memory usage
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Doug Gillespie
+</div>
+<div class="listing-date">
+Dec 6, 2022
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="5" data-listing-date-sort="1701388800000" data-listing-file-modified-sort="1733575918106" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="98">
+<a href="../plugins/spermipi.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../plugins/images/spermipi.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Sperm Whale IPI Measurement
+</h5>
+<div class="card-text listing-description">
+Acquisition and processing of data from Tritech Gemini sonars.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Brian Miller
+</div>
+<div class="listing-date">
+Dec 1, 2023
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="6" data-listing-date-sort="1725577200000" data-listing-file-modified-sort="1733575918106" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="106">
+<a href="../plugins/tritech.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../plugins/images/gemini720is.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Tritech Sonar Processing
+</h5>
+<div class="card-text listing-description">
+Acquisition and processing of data from Tritech Gemini sonars.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Doug Gillespie
+</div>
+<div class="listing-date">
+Sep 6, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="7" data-listing-date-sort="1645056000000" data-listing-file-modified-sort="1733575918113" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="98">
+<a href="../plugins/videorange.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../plugins/images/videorange.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Video Range (legacy)
+</h5>
+<div class="card-text listing-description">
+Older and simpler version of the video range measurement module
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Doug Gillespie
+</div>
+<div class="listing-date">
+Feb 17, 2022
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="8" data-listing-date-sort="1718578800000" data-listing-file-modified-sort="1733575918113" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="108">
+<a href="../plugins/visangles.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../plugins/images/visangles.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Visual to Array Angles
+</h5>
+<div class="card-text listing-description">
+Converts angles from observers to angles expected from an array further behind the vessel
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Doug Gillespie
+</div>
+<div class="listing-date">
+Jun 17, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="9" data-listing-date-sort="1682463600000" data-listing-file-modified-sort="1733575918099" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="80">
+<a href="../plugins/demodetector.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../plugins/images/demodetector.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Workshop Demo Detector
+</h5>
+<div class="card-text listing-description">
+Simple detector designed to demonstrate main PAMGuard developer environment, using as many PAMguard features as possible, but in a really simple way.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Doug Gillespie
+</div>
+<div class="listing-date">
+Apr 26, 2023
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

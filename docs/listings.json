@@ -16,6 +16,17 @@
     ]
   },
   {
+    "listing": "/index.html",
+    "items": [
+      "/mainpagetable/realtime.html",
+      "/mainpagetable/offline.html",
+      "/mainpagetable/opensource.html",
+      "/news/V2_02_15.html",
+      "/news/batchprocessor.html",
+      "/news/newwebsite.html"
+    ]
+  },
+  {
     "listing": "/configs/configs.html",
     "items": [
       "/configs/clickswhistles.html",
@@ -25,16 +36,9 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/plugins/plugins.html",
     "items": [
-      "/mainpagetable/realtime.html",
-      "/mainpagetable/offline.html",
-      "/mainpagetable/opensource.html"
-    ]
-  },
-  {
-    "listing": "/pluginmodules.html",
-    "items": [
+      "/plugins/batchprocessor.html",
       "/plugins/contactcollator.html",
       "/plugins/wams.html",
       "/plugins/rioncompass.html",

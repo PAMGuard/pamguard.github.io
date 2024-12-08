@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.37">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -36,10 +36,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-77daa0f5ea4008280c2bc2d8c0b5a283.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,10 +106,6 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">About</span>
@@ -120,16 +116,16 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
  <span class="dropdown-text">About PAMGuard</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../funding.html">
- <span class="dropdown-text">Funding</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../license.html">
  <span class="dropdown-text">License</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../funding.html">
+ <span class="dropdown-text">Funding</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../contact.html">
- <span class="dropdown-text">Contact</span></a>
+ <span class="dropdown-text">Contact and Support</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../team/team.html">
@@ -176,6 +172,10 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
         <li>
     <a class="dropdown-item" href="../downloadsurvey.html">
  <span class="dropdown-text">PAMGuard Installers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../plugins/plugins.html">
+ <span class="dropdown-text">Download Plugins</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../configs/configs.html">
@@ -380,6 +380,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -490,6 +492,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
