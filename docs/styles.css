@@ -2,10 +2,35 @@ body {
   /*background-image: url("./images/bodybannerw.jpg");
   background-repeat: no-repeat;
   margin-top: 100px;*/
-  background-color: #e0e0e0;
+  background-color: rgb(225,225,225);
+  font-family: Arial, sans-serif;
 }
 
 * {box-sizing:border-box}
+
+.theme-text {
+  color:  rgb(45, 96, 128);
+}
+
+/*table, th, td { 
+  border: 1px solid; 
+  padding-left: 10px;
+  padding-right: 10px;
+}*/ 
+
+/* Style the grid container */
+#threepanels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
+  grid-gap: 20px; /* Gap between grid items */
+}
+
+/* Style the grid items */
+#threepanels.grid-item {
+  border: 10px solid #ccc;
+  padding: 5px;
+  background-color: rgb(45, 96, 128);
+}
 
 /* Slideshow container 
 .slideshow-container {

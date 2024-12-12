@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Mike Oswald">
+<meta name="dcterms.date" content="2024-06-17">
 <meta name="description" content="Provides a simple way to monitor a detector and/or multiple alarms, and generate reports summarizing activity over specific time periods">
 
 <title>NMMF WAMS Plugin – PAMGuard</title>
@@ -41,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-77daa0f5ea4008280c2bc2d8c0b5a283.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-82c2df2c124aae0c2d6d54eb15b4d7a3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-E42Z1E7BZT"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-0N9ELT30EX"></script>
 
 <script type="text/javascript">
 
@@ -81,7 +82,7 @@ gtag('js', new Date());
     'ad_storage': 'denied',
     'analytics_storage': 'denied'
   });
-gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
+gtag('config', 'G-0N9ELT30EX', { 'anonymize_ip': true});
 </script>
 
 
@@ -108,10 +109,6 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">About</span>
@@ -122,16 +119,16 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
  <span class="dropdown-text">About PAMGuard</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../funding.html">
- <span class="dropdown-text">Funding</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../license.html">
  <span class="dropdown-text">License</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../funding.html">
+ <span class="dropdown-text">Funding</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../contact.html">
- <span class="dropdown-text">Contact</span></a>
+ <span class="dropdown-text">Contact and Support</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../team/team.html">
@@ -178,6 +175,10 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
         <li>
     <a class="dropdown-item" href="../downloadsurvey.html">
  <span class="dropdown-text">PAMGuard Installers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../plugins/plugins.html">
+ <span class="dropdown-text">Download Plugins</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../configs/configs.html">
@@ -257,8 +258,8 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <div id="quarto-announcement" data-announcement-id="b1b935ba201d35cb8659da06346127d5" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
-<p><strong>Warning</strong> - this site is still under development please go to the official PAMGuard site at <a href="http://www.pamguard.org">www.pamguard.org</a></p>
+  <div id="quarto-announcement" data-announcement-id="2ac1f613e42fee8ba240cb794bb06ef1" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p><strong>New Release</strong> : Version 2.02.15 is now available on our <a href="downloadsurvey.qmd">downloads page</a></p>
 </div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
 </header>
 <!-- content -->
@@ -302,6 +303,12 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 17, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -316,7 +323,7 @@ gtag('config', 'G-E42Z1E7BZT', { 'anonymize_ip': true});
 <p>The NMMF WAMS plugin provides a simple way to monitor a detector and/or multiple alarms, and generate reports summarizing activity over specific time periods. Information is saved to the database and can be displayed in table and chart form on User Display modules.</p>
 <section id="references" class="level3">
 <h3 class="anchored" data-anchor-id="references">References</h3>
-<p>Brittany L Jones, Michael Oswald, Samantha Tufano et al.&nbsp;Introducing NMMF WAMS, an open-source PAMGuard plug-in, and some pilot data for its use as a welfare acoustic monitoring system, 12 August 2020, PREPRINT (Version 1) available at Research Square <a href="https://doi.org/10.21203/rs.3.rs-55999/v1">https://doi.org/10.21203/rs.3.rs-55999/v1</a></p>
+<p>Brittany L Jones, Michael Oswald, Samantha Tufano et al.&nbsp;Introducing NMMF WAMS, an open-source PAMGuard plug-in, and some pilot data for its use as a welfare acoustic monitoring system, 12 August 2020, PREPRINT (Version 1) available at Research Square <a href="https://doi.org/10.21203/rs.3.rs-55999/v1" class="uri">https://doi.org/10.21203/rs.3.rs-55999/v1</a></p>
 </section>
 <section id="downloads" class="level3">
 <h3 class="anchored" data-anchor-id="downloads">Downloads</h3>
