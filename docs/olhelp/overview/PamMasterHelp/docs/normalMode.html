@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.37">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,10 +35,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-77daa0f5ea4008280c2bc2d8c0b5a283.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-040cfeca40bcb7825294c7532941f085.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -190,6 +190,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../../../overview/PamMasterHelp/docs/mixedMode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixed Mode operation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/PamdogHelp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PAMGuard WatchDog</span></a>
   </div>
 </li>
       </ul>
@@ -861,12 +867,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../../../utilities/tethys/docs/tethys_module.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tethys Module</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../utilities/tethys/docs/tethys_server.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tethys Server</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -2661,7 +2661,9 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#running-pamguard" id="toc-running-pamguard" class="nav-link" data-scroll-target="#running-pamguard">Running PAMGuard</a></li>
-  <li><a href="#the-psf-file" id="toc-the-psf-file" class="nav-link" data-scroll-target="#the-psf-file">The PSF File</a></li>
+  <li><a href="#the-psfx-file" id="toc-the-psfx-file" class="nav-link" data-scroll-target="#the-psfx-file">The PSFX File</a></li>
+  <li><a href="#pamguard-watchdog" id="toc-pamguard-watchdog" class="nav-link" data-scroll-target="#pamguard-watchdog">PAMGuard WatchDog</a></li>
+  <li><a href="#batch-processing" id="toc-batch-processing" class="nav-link" data-scroll-target="#batch-processing">Batch Processing</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -2703,12 +2705,12 @@ ul.task-list li input[type="checkbox"] {
 <p>(If you’re reading this, you’ve probably already worked this out !)</p>
 <p>If you’ve used one of the platform dependent installers, then you should start PAMGuard from one of the shortcuts placed in your system menus. This will check that you have a compatible JAVA virtual machine installed and will allocate additional memory.</p>
 <p>If you are running one of the platform independent jar files, then you should tell the JAVA virtual machine to allocate as much memory as possible. For instance, under Windows, the command line for starting PAMGuard Beta version 1.3.02 with 1 Gigabyte of memory is:</p>
-<p>java -jar -mx1024m PamguardBeta_1_3_02.jar Pamguard</p>
+<p>java -jar -mx1024m PAMGuardBeta_1_3_02.jar PAMGuard</p>
 </section>
-<section id="the-psf-file" class="level3">
-<h3 class="anchored" data-anchor-id="the-psf-file">The PSF File</h3>
-<p>PAMGuard saves it’s configuration between runs in PAMGuard Settings Files (.psf).</p>
-<p>Each time you start PAMGuard a dialog will open asking you to select the psf file you want to use.</p>
+<section id="the-psfx-file" class="level3">
+<h3 class="anchored" data-anchor-id="the-psfx-file">The PSFX File</h3>
+<p>PAMGuard saves it’s configuration between runs in PAMGuard Settings Files (.psfx).</p>
+<p>Each time you start PAMGuard a dialog will open asking you to select the psfx file you want to use.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/startupDialog.png" class="img-fluid figure-img"></p>
@@ -2716,9 +2718,17 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>Either select a recently used psf from the drop down list or press the browse button to select a psf file stored elsewhere on your system.</p>
-<p>Sample psf files may be downloaded from the <a href="http://www.pamguard.org">www.pamguard.org</a> web site.</p>
+<p>Sample psfx files may be downloaded from the <a href="http://www.PAMGuard.org">www.PAMGuard.org</a> web site.</p>
+</section>
+<section id="pamguard-watchdog" class="level3">
+<h3 class="anchored" data-anchor-id="pamguard-watchdog">PAMGuard WatchDog</h3>
+<p>When collecting and processing data in real time you can use the <a href="PamdogHelp.html">PAMGuard WatchDog</a> to keep PAMGuard running whatever happens</p>
+</section>
+<section id="batch-processing" class="level3">
+<h3 class="anchored" data-anchor-id="batch-processing">Batch Processing</h3>
+<p>If you’re processing sets of data offline, you can use the <a href="https://www.pamguard.org/plugins/plugins.html">Batch Processing Plugin</a> to run the same configuration file on several different sets of data.</p>
 <p><a href="modules.html">Previous: PAMGuard Modules</a></p>
-<p><a href="viewerMode.html">Next: PAMGuard Viewer</a></p>
+<p><a href="viewerMode.html">Next: PAMGuard Viewer.</a></p>
 
 
 </section>

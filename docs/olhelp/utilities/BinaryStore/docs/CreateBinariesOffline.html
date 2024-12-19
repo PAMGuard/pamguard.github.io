@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.37">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,10 +35,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-77daa0f5ea4008280c2bc2d8c0b5a283.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-040cfeca40bcb7825294c7532941f085.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -190,6 +190,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../../../overview/PamMasterHelp/docs/mixedMode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixed Mode operation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../overview/PamMasterHelp/docs/PamdogHelp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PAMGuard WatchDog</span></a>
   </div>
 </li>
       </ul>
@@ -861,12 +867,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../../../utilities/tethys/docs/tethys_module.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tethys Module</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../utilities/tethys/docs/tethys_server.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tethys Server</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -2655,7 +2655,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pamguard-viewer" id="toc-pamguard-viewer" class="nav-link active" data-scroll-target="#pamguard-viewer">Pamguard Viewer</a>
+  <li><a href="#pamguard-viewer" id="toc-pamguard-viewer" class="nav-link active" data-scroll-target="#pamguard-viewer">PAMGuard Viewer</a>
   <ul class="collapse">
   <li><a href="#create-binary-files-offline" id="toc-create-binary-files-offline" class="nav-link" data-scroll-target="#create-binary-files-offline">Create binary files offline</a>
   <ul class="collapse">
@@ -2691,12 +2691,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 <section id="pamguard-viewer" class="level1">
-<h1>Pamguard Viewer</h1>
+<h1>PAMGuard Viewer</h1>
 <section id="create-binary-files-offline" class="level2">
 <h2 class="anchored" data-anchor-id="create-binary-files-offline">Create binary files offline</h2>
-<p>The Viewer funtion is new so you probably did not include binary storage module when you collected your data. Also what about older data sets you would like to analyse now with viewer. This brief description shows you the necessary steps to process your data so you can create binary files offline so you can use <a href="../../../overview/PamMasterHelp/docs/viewerMode.html">Pamguard Viewer</a>.</p>
+<p>The Viewer funtion is new so you probably did not include binary storage module when you collected your data. Also what about older data sets you would like to analyse now with viewer. This brief description shows you the necessary steps to process your data so you can create binary files offline so you can use <a href="../../../overview/PamMasterHelp/docs/viewerMode.html">PAMGuard Viewer</a>.</p>
 <p>First you have collected <a href="../../../detectors/clickDetectorHelp/docs/offline_ImportingRBC.html">Rainbow Click Files</a>. These can be imported and converted directly.</p>
-<p>Secondly, you have collected continous recordings (.wav files) but no binaries. You need to process your .wav files offline to create binaries. Open up Pamguard (online) and add the following modules:<a href="../../../sound_processing/AcquisitionHelp/docs/AcquisitionOverview.html">Sound Acquisition</a>, <a href="../../../ detectors/clickDetectorHelp/docs/ClickDetector_clickDetector.html">Click detector</a>, <a href="../../../utilities/generalDatabaseHelp/docs/database_database.html">Database</a> and <a href="../../../utilities/BinaryStore/docs/binarystore_overview.html">Binary Stoarage</a>. If you are not interested in clicks but whistles the same principle applies. You just have to add the <a href="../../../detectors/whistleMoanHelp/docs/whistleMoan_Overview.html">whistle &amp; moan detector</a>. Noise measurments can also be processed this way.</p>
+<p>Secondly, you have collected continous recordings (.wav files) but no binaries. You need to process your .wav files offline to create binaries. Open up PAMGuard (online) and add the following modules:<a href="../../../sound_processing/AcquisitionHelp/docs/AcquisitionOverview.html">Sound Acquisition</a>, <a href="../../../ detectors/clickDetectorHelp/docs/ClickDetector_clickDetector.html">Click detector</a>, <a href="../../../utilities/generalDatabaseHelp/docs/database_database.html">Database</a> and <a href="../../../utilities/BinaryStore/docs/binarystore_overview.html">Binary Stoarage</a>. If you are not interested in clicks but whistles the same principle applies. You just have to add the <a href="../../../detectors/whistleMoanHelp/docs/whistleMoan_Overview.html">whistle &amp; moan detector</a>. Noise measurments can also be processed this way.</p>
 <section id="sound-acquisition" class="level3">
 <h3 class="anchored" data-anchor-id="sound-acquisition">Sound Acquisition</h3>
 <p>Go to <strong><em>Detection&gt;Sound Aquistion</em></strong>. Choose either <em>‘Audio file’</em> or <em>‘Audio file folder or multiple files’</em> in the Data Dource Type dropdown list. Choose the appropiate folder where your file/files are stored. Make sure the box <em>‘include subfolders is ticked’</em> so all files get processed. Check that the box_‘Repeat: Ant end of file list, start again’_ is NOT ticked. Press ok.</p>
@@ -2726,7 +2726,7 @@ Go to <strong><em>File&gt;database selection</em></strong> and select the approp
 <figcaption>Data_model</figcaption>
 </figure>
 </div>
-<p>The next step is to start processing the data. Go to <strong><em>Detection&gt;Start</em></strong>. Now the .wav files are processed and binary files are created. This can be quite time consuming depending on how much data you process and how fast your computer is. It could take a couple of hours to a couple of days. Pamguard will tell you approximatley when it is finishing, which file it is processing and how fast real time it is processing (RT). After it is finished you can open up <a href="../../../overview/PamMasterHelp/docs/viewerMode.html">Pamguard Viewer</a>.</p>
+<p>The next step is to start processing the data. Go to <strong><em>Detection&gt;Start</em></strong>. Now the .wav files are processed and binary files are created. This can be quite time consuming depending on how much data you process and how fast your computer is. It could take a couple of hours to a couple of days. PAMGuard will tell you approximatley when it is finishing, which file it is processing and how fast real time it is processing (RT). After it is finished you can open up <a href="../../../overview/PamMasterHelp/docs/viewerMode.html">PAMGuard Viewer</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Running.png" class="img-fluid figure-img"></p>

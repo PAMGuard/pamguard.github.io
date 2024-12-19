@@ -16,25 +16,28 @@
     ]
   },
   {
-    "listing": "/index.html",
-    "items": [
-      "/mainpagetable/realtime.html",
-      "/mainpagetable/offline.html",
-      "/mainpagetable/opensource.html",
-      "/news/241218_Garrobeetal.html",
-      "/news/241214_bluesky.html",
-      "/news/241209_V2_02_15.html",
-      "/news/241208_batchprocessor.html",
-      "/news/241207_newwebsite.html"
-    ]
-  },
-  {
     "listing": "/configs/configs.html",
     "items": [
       "/configs/clickswhistles.html",
       "/configs/difar.html",
       "/configs/porpoise.html",
       "/configs/sperm.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/mainpagetable/readyforAI.html",
+      "/mainpagetable/realtime.html",
+      "/mainpagetable/automatedalgorithms.html",
+      "/mainpagetable/offline.html",
+      "/mainpagetable/opensource.html",
+      "/mainpagetable/watchdog.html",
+      "/news/241218_Garrobeetal.html",
+      "/news/241214_bluesky.html",
+      "/news/241209_V2_02_15.html",
+      "/news/241208_batchprocessor.html",
+      "/news/241207_newwebsite.html"
     ]
   },
   {
