@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Process data back at the lab, using the same algorithms and displays that can be used for real time monitoring">
+<meta name="description" content="This tutorial will introduce the PAMGaurd-Tethys interface, show you how to export data from PAMGuard to Tethys, and view the data with the Tethys web client and data explorer">
 
-<title>Data Visualisation – PAMGuard</title>
+<title>PAMGuard Tethys Interface – PAMGuard</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a271c0970ac86c9dba7a5e5724ba6d33.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-82c2df2c124aae0c2d6d54eb15b4d7a3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -290,20 +290,27 @@ cookieconsent.run({
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link active" data-scroll-target="#learning-outcomes">Learning Outcomes</a></li>
+  <li><a href="#downloads" id="toc-downloads" class="nav-link" data-scroll-target="#downloads">Downloads</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Visualisation</h1>
+<h1 class="title">PAMGuard Tethys Interface</h1>
 </div>
 
 <div>
   <div class="description">
-    Process data back at the lab, using the same algorithms and displays that can be used for real time monitoring
+    This tutorial will introduce the PAMGaurd-Tethys interface, show you how to export data from PAMGuard to Tethys, and view the data with the Tethys web client and data explorer
   </div>
 </div>
 
@@ -320,18 +327,37 @@ cookieconsent.run({
 </header>
 
 
+<p>Tethys is a temporal-spatial database for metadata related to passive acoustic studies. Unlike the PAMGuard databases, which hold a lot of detail about a single dataset, a Tethys database can hold summary data for many projects – that can be every project for you as an individual, your lab, or for multiple labs across a larger organisation.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/datamap_screenshot.png" class="img-fluid figure-img"></p>
-<figcaption>The PAMGuard datamap allows rapid navigation through large datasets</figcaption>
+<p><img src="./tethysfiles/Tethys.png" class="img-fluid figure-img"></p>
+<figcaption>Deployments tab of the Tethys Data Explorer showing overall deployment effort of stationary moorings (colored circles) and survey track lines (blue lines)</figcaption>
 </figure>
 </div>
-<p>When processing data back at the lab, PAMGuard can process data at many times real time. This is great for processing data from autonomous recorders or for reprocessing old data from ship based surveys with the latest algorithms.</p>
-<p>The PAMGuard Viewer allows you to scroll through the detection data and further annotate the automatic detections.</p>
-<p>Next: <a href="../mainpagetable/opensource.html">Read about open source</a></p>
-<p>Previous: <a href="../mainpagetable/realtime.html">Read about real time operation</a></p>
+<p>Tethys does not replace existing PAMGuard databases and binary storage system since it’s not possible to get the level of detail PAMGuard uses during analysis into a single general database. However, the intent is that Tethys will contain enough detail for extensive meta-analysis across large temporal and spatial scales, eliminating (or at least minimising) the requirement for researchers to go back to the original PAMGuard data sets.</p>
+<section id="learning-outcomes" class="level3">
+<h3 class="anchored" data-anchor-id="learning-outcomes">Learning Outcomes</h3>
+<p>You will learn how to export data from PAMGuard to a Tethys database and to view the exported data both within PAMGuard and through the Tethys web interface.</p>
+<ol type="1">
+<li>Install Tethys and launch the Tethys Server</li>
+<li>Add a Tethys module to PAMGuard and connect to the Tethys Server</li>
+<li>Export data from PAMGuard to Tethys, including:
+<ul>
+<li>Calibration data</li>
+<li>Deployment data</li>
+<li>Detections</li>
+</ul></li>
+<li>View the exported data both from within PAMGuard and using the Tethys Web client</li>
+</ol>
+</section>
+<section id="downloads" class="level3">
+<h3 class="anchored" data-anchor-id="downloads">Downloads</h3>
+<p>Detailed tutorial documentation is in <a href="https://github.com/PAMGuardLearning/pamguard_tethys/releases/download/V1.1/TethysTutorial_V1.1.pdf">TethysTutorial_V1.1.pdf</a></p>
+<p>A Zipped archive of <a href="https://github.com/PAMGuardLearning/pamguard_tethys/releases/download/V1.1/NARWExampleDataset.zip">processed binary data and PAMGuard database</a></p>
+<p>Download <a href="https://research-portal.st-andrews.ac.uk/en/datasets/dclde-2013-workshop-dataset">Raw audio data</a> files NOPPWavFiles.zip from the St Andrews university research portal.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
