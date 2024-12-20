@@ -87,6 +87,7 @@ function countFile(aDown, account, repo, tag, file) {
  */
   $.getJSON(url, {}, function(data) {
     var nAsset = 0;
+    console.log(data);
     const body = document.body;
     table = document.createElement('table')
     table.setAttribute('border', '1');
@@ -148,13 +149,30 @@ function countFile(aDown, account, repo, tag, file) {
     parent.insertBefore(table, aDown);
     parent.insertBefore(aDown, table);
     //return nAsset;
+  }).fail(function(data) {
+    errStr = getErrorString(data.status);
+  //console.log("Error getting json data");
+    txt = aDown.textContent + ': Error ' + data.status + ' retreiving data ' + errStr;
+    aDown.textContent = txt;
   });
- // console.log('end of loopy function')
-//  console.log(' set total = ' + nAsset);
-//  return nAsset;
-  //console.log(' set total = ' + nAsset);
-  //return 0;
 }
+
+function getErrorString(status) {
+  switch (status) {
+    case 403:
+      return "You've exceeded GitHub's rate limiting. Try again in about an hour.";
+    case 404:
+      return "unknown project";
+    default:
+      return "unknown error " + status;
+  }
+}
+
+/*function reportErr(aDown) {
+  console.log("Error getting json data");
+    txt = aDown.textContent + ': Error retreiving data';
+    aDown.textContent = txt;
+}*/
 /*function CallMethod() {
      $.getJSON('/website/RESTfulService.svc/LiveLocation/json', 
      {
