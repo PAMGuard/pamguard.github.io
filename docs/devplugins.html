@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -331,7 +365,10 @@ cookieconsent.run({
 <p>Even if the plugin is intended as an External module, it is easiest to develop it as a Core module. In other words, create a new package in the PAMGuard code base to hold all of the new classes, and add a reference to the package classes in PamModel. This way, dependencies do not need to be explicitly managed and debugging is simplified. All development should be done within the new package, and the core PAMGuard classes should not be changed (if modifications are necessary, please contact the PAMGuard development team first).</p>
 <p>To make an external PAMGuard plug-in available to PAMGuard users once development is complete, it is necessary to archive the class files and support files (including help files, graphics, sound files, etc.) into a java archive (jar) file.</p>
 <p>Prior to archiving, the developer must add a class to the project package which implements one of two interfaces: PamModel.PamPluginInterface (for standard plug-in modules) or Acquisition.DaqSystemInterface (for data acquisition modules such as sound cards, file streams, etc.). Override all of the Interface’s inherited methods, returning appropriate values as specified in the Javadoc comments. Create a String object to hold the jar file name. This parameter does not need to be initialized to anything specific; the value will be set by PAMGuard via the inherited setter method. The code could be as simple as</p>
-<p><code> String jarFile; <span class="citation" data-cites="Override">@Override</span> public void setJarFile(String jarFile) { this.jarFile = jarFile; } </code></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> jarFile<span class="op">;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">@Override</span> <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setJarFile</span><span class="op">(</span><span class="bu">String</span> jarFile<span class="op">)</span> <span class="op">{</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="fu">jarFile</span> <span class="op">=</span> jarFile<span class="op">;</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>It is strongly recommended that help files be included with the plug-in. PAMGuard uses Oracle’s JavaHelp 2.0 system (complete details can be found here). Each page in the help file is an HTML document. Create individual HTML pages (with links and images) to describe the setup and operation of the plug-in, and save all files in the same package folder that your java program is in. Once the pages are completed, create the helpset and support files (map, TOC, index, etc.). Programs like jhelpdev can greatly simplify the process of creating these files.</p>
 <section id="notes" class="level3">
 <h3 class="anchored" data-anchor-id="notes">Notes:</h3>
