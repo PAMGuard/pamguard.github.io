@@ -139,10 +139,6 @@ cookieconsent.run({
  <span class="dropdown-text">Funding</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./contact.html">
- <span class="dropdown-text">Contact and Support</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./publications.html">
  <span class="dropdown-text">Publications</span></a>
   </li>  
@@ -172,6 +168,10 @@ cookieconsent.run({
         <li>
     <a class="dropdown-item" href="./matlabandr.html">
  <span class="dropdown-text">Export Matlab and R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./contact.html">
+ <span class="dropdown-text">Contact and Support</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="././olhelp/index.html">
@@ -324,7 +324,7 @@ cookieconsent.run({
 &gt;&lt;/div&gt;
 &lt;div class="about-contents"&gt;&lt;%= about.title %&gt;&lt;%= about.body %&gt;&lt;/div&gt;</code></pre>
 </div>
-<p>&lt;% partial(’_links.ejs.html’, { about, imgOpts: {} }) %&gt;</p>
+<p>&lt;% partial(‘_links.ejs.html’, { about, imgOpts: {} }) %&gt;</p>
 </div>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -424,36 +424,36 @@ img {vertical-align: middle;}
 <div class="slideshow-container">
 <div class="mySlides fade">
 <div class="numbertext">
-1 / 3
+<p>1 / 3</p>
 </div>
-<img src="images/slide1.png" style="width:100%">
+<p><img src="images/slide1.png" style="width:100%"></p>
 <div class="text">
-Caption Text
+<p>Caption Text</p>
 </div>
 </div>
 <div class="mySlides fade">
 <div class="numbertext">
-2 / 3
+<p>2 / 3</p>
 </div>
-<img src="images/slide2.png" style="width:100%">
+<p><img src="images/slide2.png" style="width:100%"></p>
 <div class="text">
-Caption Two
+<p>Caption Two</p>
 </div>
 </div>
 <div class="mySlides fade">
 <div class="numbertext">
-3 / 3
+<p>3 / 3</p>
 </div>
-<img src="images/slide3.png" style="width:100%">
+<p><img src="images/slide3.png" style="width:100%"></p>
 <div class="text">
-Caption Three
+<p>Caption Three</p>
 </div>
 </div>
 <p><a class="prev" onclick="plusSlides(-1)">❮</a> <a class="next" onclick="plusSlides(1)">❯</a></p>
 </div>
 <p><br></p>
 <div style="text-align:center">
-<p><span class="dot" onclick="currentSlide(1)"></span> <span class="dot" onclick="currentSlide(2)"></span> <span class="dot" onclick="currentSlide(3)"></span></p>
+
 </div>
 <script>
 let slideIndex = 1;
