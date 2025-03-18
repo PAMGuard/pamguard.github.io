@@ -911,6 +911,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../utilities/tethys/docs/tethys_granularity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Granularity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../utilities/tethys/docs/tethys_speciescodes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ITIS Species Codes</span></a>
   </div>
@@ -2683,7 +2689,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#configuration" id="toc-configuration" class="nav-link active" data-scroll-target="#configuration">Configuration</a></li>
+  <li><a href="#configuration" id="toc-configuration" class="nav-link active" data-scroll-target="#configuration">Configuration</a>
+  <ul class="collapse">
+  <li><a href="#filter-type" id="toc-filter-type" class="nav-link" data-scroll-target="#filter-type">Filter Type</a></li>
+  <li><a href="#filter-response" id="toc-filter-response" class="nav-link" data-scroll-target="#filter-response">Filter Response</a></li>
+  <li><a href="#bode-plot" id="toc-bode-plot" class="nav-link" data-scroll-target="#bode-plot">Bode Plot</a></li>
+  <li><a href="#pole-zero-or-impulse-response-plot" id="toc-pole-zero-or-impulse-response-plot" class="nav-link" data-scroll-target="#pole-zero-or-impulse-response-plot">Pole-Zero or Impulse Response Plot</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -2711,20 +2723,20 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Two main types of filter are available in PAMGuard. IIRF (Infinite Impulse Response) Filters are generally preferred since they are faster than the alternative FIR (Finite Impulse Response) filter types. However there may be circumstances when you prefer to use an FIR filter, particularly if an unusual filter response is required (for instance, one mimicking the hearing response of an animal, or with multiple ‘notches’ to remove noise).</p>
 <p>Both types of filter can be configured from within PAMGuard’s filter design panel. This is used in the stand alone <a href="Filters_filters.html">Filters Module</a>, but also appears in the configuration for several other modules, including the <a href="../../../detectors/clickDetectorHelp/docs/ClickDetector_clickDetector.html">click detector</a>, the <a href="../../decimatorHelp/docs/decimator_decimator.html">Decimator</a> and some noise measurement modules.</p>
-<section id="configuration" class="level3">
-<h3 class="anchored" data-anchor-id="configuration">Configuration</h3>
+<section id="configuration" class="level2">
+<h2 class="anchored" data-anchor-id="configuration">Configuration</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Images/FiltersSettings.png" class="img-fluid figure-img"></p>
 <figcaption>Filters Settings</figcaption>
 </figure>
 </div>
-<section id="filter-type" class="level4">
-<h4 class="anchored" data-anchor-id="filter-type">Filter Type</h4>
+<section id="filter-type" class="level3">
+<h3 class="anchored" data-anchor-id="filter-type">Filter Type</h3>
 <p>Select the type of filter, which can be one of: “None”, “IIR <a href="http://en.wikipedia.org/wiki/Butterworth_filter">Butterworth</a>”, “IIR <a href="http://en.wikipedia.org/wiki/Chebyshev_filter">Chebyshev</a>”, “FIR Filter (Window Method)”, “Arbitrary FIR Filter”.</p>
 </section>
-<section id="filter-response" class="level4">
-<h4 class="anchored" data-anchor-id="filter-response">Filter Response</h4>
+<section id="filter-response" class="level3">
+<h3 class="anchored" data-anchor-id="filter-response">Filter Response</h3>
 <p>For Butterworth, Chebychev and FIR Filters using the Window Method, select either a High pass, Band Pass, Band Stop or Low Pass response and the filter cut off frequencies in Hz. Note that these should be greater than 0 and less than half of the sample rate.</p>
 <p>Also set the filter order - this controls how steeply the filter will attenuate close to the cut off frequencies. High order filters use more processing power than low order ones and can also have a long impulse response which can reduce the time resolution of transient signals. Note that for FIR filters, the filter order parameter that you enter is actually the log base 2 of the length of the actual filter, i.e.&nbsp;a filter order of 6 will generate 64 tap filer, 7 a 128 tap filter, etc.</p>
 <p>For Chebychev filters, you can also set the amount of ripple in the passband and for FIR filters, you can set ‘gamma’ which alters the rate of filter attenuation verses ripple in the stop band.</p>
@@ -2756,9 +2768,14 @@ ul.task-list li input[type="checkbox"] {
 24000, -80</p>
 <p>Use the import button to import the values from your text file</p>
 </section>
-<section id="bode-plot" class="level4">
-<h4 class="anchored" data-anchor-id="bode-plot">Bode Plot</h4>
+<section id="bode-plot" class="level3">
+<h3 class="anchored" data-anchor-id="bode-plot">Bode Plot</h3>
 <p>The filter dialog displays a bode plot (attenuation verses frequency) for the chosen filter parameters. You can show this on either a logarithmic of linear frequency scale. Double clicking the amplitude axis will change the range of the amplitude scale.</p>
+</section>
+<section id="pole-zero-or-impulse-response-plot" class="level3">
+<h3 class="anchored" data-anchor-id="pole-zero-or-impulse-response-plot">Pole-Zero or Impulse Response Plot</h3>
+<p>In the lower left corner you will see either a plot of the filters Impulse Response, or a Pole-Zero plot (IIR Filters only). The Impulse response of a filter is the signal that will come out of a filter if a single unit sample is input to the filter, i.e.&nbsp;a 1 followed by an infinite number of zeros. It is important to understand since it shows how a filter will distort a waveform, generally delaying it, and elongating it in time. Particularly for very short sounds, such as dolphin echolocation clicks, the waveform you see in the click detector may be a function of any filters you’ve included in the detector as much as it is a function of the sound coming out of the animal.</p>
+<p>Pole Zero plots are a part of IIR Filter design, but understanding them is probably not important to most PAMGuard users. When designiing IIR Filters, you can switch between pole-zero and impulse responde plots by right clicking on the display.</p>
 
 
 </section>

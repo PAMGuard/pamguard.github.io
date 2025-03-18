@@ -911,6 +911,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../utilities/tethys/docs/tethys_granularity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Granularity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../utilities/tethys/docs/tethys_speciescodes.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">ITIS Species Codes</span></a>
   </div>
@@ -2687,6 +2693,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#call-types" id="toc-call-types" class="nav-link" data-scroll-target="#call-types">Call types</a></li>
   <li><a href="#export-dialog" id="toc-export-dialog" class="nav-link" data-scroll-target="#export-dialog">Export dialog</a></li>
   <li><a href="#searching-for-itis-taxonomic-serial-numbers-tsns" id="toc-searching-for-itis-taxonomic-serial-numbers-tsns" class="nav-link" data-scroll-target="#searching-for-itis-taxonomic-serial-numbers-tsns">Searching for ITIS Taxonomic Serial Numbers (TSNs)</a></li>
+  <li><a href="#export-and-import" id="toc-export-and-import" class="nav-link" data-scroll-target="#export-and-import">Export and Import</a></li>
   </ul>
 </nav>
     </div>
@@ -2728,13 +2735,14 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="call-types">Call types</h2>
 <p>Some detectors identify specific call types. When this is the case, users will need to specify the call type name. While species names are standardized in Tethys, call names do not have a well-defined standard and experts frequently use different names for the same type of call. Consequently, Tethys does not provide a standard coding for call types and users are free to choose the call type names with which they feel most comfortable.</p>
 <p>That said, the authors of Tethys do however provide a list of recommend call types for many species. These recommendations can be accessed in the <a href="https://ars.els-cdn.com/content/image/1-s2.0-S1574954115001983-mmc1.docx">supplemental information</a> of the open access article “Management of acoustic metadata for bioacoustics,” Roch et al.&nbsp;(2016), (<a href="https://doi.org/10.1016/j.ecoinf.2015.12.002">DOI:10.1016/j.ecoinf.2015.12.002</a>).</p>
+<p>Within PAMGuard, different detectors have different numbers of call types. Some, such as the <a href="../../../detectors/whistleMoanHelp/docs/whistleMoan_Overview.html">Whistle and Moan detector</a>, have only one fixed call type “Tonal”, for others such as the <a href="../../../detectors/clickDetectorHelp/docs/ClickDetector_clickClassification.html">Click Detector</a>, the user can define any number of different call types in the click classification configuration. The Tethys interface allows the user to map the internal call types from PAMGuard to ITIS species codes and call types.</p>
 </section>
 <section id="export-dialog" class="level2">
 <h2 class="anchored" data-anchor-id="export-dialog">Export dialog</h2>
-<p>During export of records that are species-specific, a dialog will appear that lists the types of events that were found by PAMGuard modules. This dialog permits users to specify how the ad-hoc species species/call encoding scheme used by PAMGuard modules can be systematically translated to the TSNs and call types are stored in Tethys.</p>
-<p>PAMGuard events typically are a short name that represents the species and/or potentially a call. Knowledge of the PAMGuard modules that were run and the data on which they executed will let a user infer what should be recorded. The dialog below shows a sample set of events produced by one or more PAMGuard modules using the names: HP, DO, SON, KW, UNK, and PHP:</p>
-<p><img src="./images/species_codes.png" class="img-fluid"></p>
-<p>The dialog above was produced from detections on data that were recorded near the mouth of the River Tay in Scotland. Consequently, we can infer that the harbour porpoise that is denoted by “HP” is <em>Phocena phocena</em>, the only harbour porpoise endemic to Scottish waters.</p>
+<p>Before you can export records to Tethys, you must complete a mapping that can translate the ad-hoc encodings defined within PAMGuard to valid ITIS codes and call types. The dialog for these mappings can be accessed in two ways, firstly, in the table of PAMGuard data blocks in the lower left of the display, right click on any row and select the menu item “PAMGuard ITIS Species mapping …”, Otherwise, a similar dialog will appear as a page with the export wizard once you’ve pressed the “Export …” button.</p>
+<p>PAMGuard events typically are a short name that represents the species and/or potentially a call. Knowledge of the PAMGuard modules that were run and the data on which they executed will let a user infer what should be recorded. The dialog below shows a sample set of species defined in the PAMGuard click detector, where the user has defined the codes Porpoise, BWC, Oo, Pm, UNK, and Zc. Note that the first entry “Click” has been added automatically as a default for when no classification result was returned.</p>
+<p><img src="./images/species_codes1a.png" class="img-fluid"></p>
+<p>In the dialog above, we can infer that the only porpoise present in the study area was Harbour Porpoise, so have selected ITIS code 180473, <em>Phocoena phocoena</em>. However, the identity of species BWC is unclear, though believed to be some type of beaked whale, so it has been given the code 770799 for <em>Hyperoodontidae</em>.</p>
 <p>An ITIS code and call/sound type can be associated with each event. The dialog lists:</p>
 <ul>
 <li><p>Name - The ad-hoc name given by the PAMGuard module. This may not be changed.</p></li>
@@ -2750,6 +2758,14 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="./images/species_search.png" class="img-fluid"></p>
 <p>The top of this dialog has a search box where one can enter either a Latin name or the common name for a species. The Tethys server will search for all species that match the search-box contents. For many species, there are common name entries in languages other than English, and these are searched as well.</p>
 <p>Once you press the search button, a list will appear with all matches for your search term. If there are too many, a scroll bar will permit you to look through the list. Select the entry that you wish and press OK. The TSN on the species dialog will be populated along with the Latin name and common names from the ITIS database.</p>
+</section>
+<section id="export-and-import" class="level2">
+<h2 class="anchored" data-anchor-id="export-and-import">Export and Import</h2>
+<p>Entering all of these codes can get a little tedious and you’ll hopefully also want to be consistent between your different datasets. PAMGuard therefore has options to save the species mapping to a file, which can then be re-imported into a different configuration.</p>
+<p>Mappings are stored individually for each PAMGuard datablock and are identified by the datablock name. To Export, go to the “Tethys/Export Species Maps …” menu and in the dialog, select the maps you want to export.</p>
+<p><img src="./images/exportmap.png" class="img-fluid"></p>
+<p>You will be then be asked for the name of a file to export to and data will be saved to that file.</p>
+<p>Importing is similar: From the Tethys menu, select “Import Species Maps …”, you will be asked to select a previously exported file, and can then choose which maps to import.</p>
 <p><a href="detect_localize.html">Previous: Detections &amp; Localizations</a></p>
 <p><a href="tethys_mappings.html">Next: Tethys / PAMGuard mappings</a></p>
 

@@ -911,6 +911,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../utilities/tethys/docs/tethys_granularity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Granularity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../utilities/tethys/docs/tethys_speciescodes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ITIS Species Codes</span></a>
   </div>
@@ -2678,8 +2684,16 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#table-display" id="toc-table-display" class="nav-link active" data-scroll-target="#table-display">Table Display</a></li>
+  <li><a href="#display-graphic" id="toc-display-graphic" class="nav-link" data-scroll-target="#display-graphic">Display Graphic</a></li>
+  <li><a href="#side-panel" id="toc-side-panel" class="nav-link" data-scroll-target="#side-panel">Side Panel</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -2703,8 +2717,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>For diagnostic purposes, a simple display is available which can be added to any <a href="../../../displays/userDisplayHelp/docs/userDisplayPanel.html">PAMGuard user display</a>.</p>
-<p>This will show the configuration and the latest value read from each sensor channel.</p>
+<p>Three different displays can be used to display array sensor data.</p>
+<section id="table-display" class="level3">
+<h3 class="anchored" data-anchor-id="table-display">Table Display</h3>
+<p>A table of values is available which can be added to any <a href="../../../displays/userDisplayHelp/docs/userDisplayPanel.html">PAMGuard user display</a> from the <em>User Display / New Analog Array Sensors table</em> menu item.</p>
+<p>This will show the configuration and the latest value read from each sensor channel in both it’s raw and calibrated forms.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/analogarraydisplay.png" class="img-fluid figure-img"></p>
@@ -2712,9 +2729,28 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>Hover the mouse over any item for additional information.</p>
+</section>
+<section id="display-graphic" class="level3">
+<h3 class="anchored" data-anchor-id="display-graphic">Display Graphic</h3>
+<p>A geometry diagram can be added to any <a href="../../../displays/userDisplayHelp/docs/userDisplayPanel.html">PAMGuard user display</a> from the <em>User Display / New Analog Array Sensor graphic</em> menu item.</p>
+<p>This will show the configuration and the latest value read from each sensor channel in both it’s raw and calibrated forms.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/arraydiagram.png" class="img-fluid figure-img"></p>
+<figcaption>Accelerometer side panel</figcaption>
+</figure>
+</div>
+<p>This will show a moving graphic of the pitch and roll of the array, with the array heading at the top of the display, and depth on the right.</p>
+</section>
+<section id="side-panel" class="level3">
+<h3 class="anchored" data-anchor-id="side-panel">Side Panel</h3>
+<p>A side panel can also be added to the main PAMGuard displa by adding an additional Array Orientation module from the <em>Display / Array Orientation</em> menu item. This shows similar information to the other displays in numerical and graphical format.</p>
+<p>This will show the configuration and the latest value read from each sensor channel in both it’s raw and calibrated forms.</p>
+<p><img src="images/arraysidepanel2.png" class="img-fluid" alt="Accelerometer side panel"> <img src="images/arraysidepanel.png" class="img-fluid" alt="Accelerometer side panel"></p>
 <p><a href="analogarraycalibration.html">Previous: Calibration</a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
