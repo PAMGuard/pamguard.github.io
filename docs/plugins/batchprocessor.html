@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Doug Gillespie">
-<meta name="dcterms.date" content="2024-12-06">
+<meta name="dcterms.date" content="2025-03-18">
 <meta name="description" content="Allows you to easily run the same PAMGuard configuration on multiple datasets.">
 
 <title>Batch Processor – PAMGuard</title>
@@ -207,6 +207,10 @@ cookieconsent.run({
     <a class="dropdown-item" href="../rocca/rocca.html">
  <span class="dropdown-text">Rocca Classifiers</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../whistleclassifier.html">
+ <span class="dropdown-text">Whistle Classifiers</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -300,6 +304,7 @@ cookieconsent.run({
   <li><a href="#pamguard-batch-processor" id="toc-pamguard-batch-processor" class="nav-link active" data-scroll-target="#pamguard-batch-processor">PAMGuard Batch Processor</a>
   <ul class="collapse">
   <li><a href="#downloads" id="toc-downloads" class="nav-link" data-scroll-target="#downloads">Downloads</a></li>
+  <li><a href="#tutorial" id="toc-tutorial" class="nav-link" data-scroll-target="#tutorial">Tutorial</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -331,7 +336,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 6, 2024</p>
+      <p class="date">March 18, 2025</p>
     </div>
   </div>
   
@@ -345,13 +350,20 @@ cookieconsent.run({
 
 <section id="pamguard-batch-processor" class="level2">
 <h2 class="anchored" data-anchor-id="pamguard-batch-processor">PAMGuard Batch Processor</h2>
+<p><strong>The batch processor module currently only works on Windows</strong></p>
 <p>The Batch Processing module can be used to run the same configuration file on multiple datasets using the same psfx file without having to go into the configuration for every dataset to change the location of the source files, the output database name, and the location of the binary store.</p>
 <p>It is particularly useful for processing datasets from deployments of multiple autonomous recorders, but also has application in reprocessing of any data where you want to run the same PAMGuard algorithms on multiple sets of data.</p>
-<p>Currently, it can only be used to process raw data files in normal mode. We are currently developing a version that can run viewer mode tasks on multiple datasets, such as reclassifying clicks, or running the click train detector.</p>
+<p>The latest version can now also run Viewer Mode offline tasks, such as click reclassification, or bulk output of data to a Tethys database.</p>
 <section id="downloads" class="level3">
 <h3 class="anchored" data-anchor-id="downloads">Downloads</h3>
 <p><a href="https://github.com/douggillespie/PAMGuardBatch">Source Code</a></p>
-<p><a href="https://github.com/douggillespie/PAMGuardBatch/releases/download/V1.6/BatchProcessing_1_6.jar">Built Module</a></p>
+<p><a href="https://github.com/douggillespie/PAMGuardBatch/releases/download/V2.0/BatchProcessing_2_0.jar">Current Version 2.0</a></p>
+<p><a href="https://github.com/douggillespie/PAMGuardBatch/releases">Earlier Versions</a></p>
+</section>
+<section id="tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="tutorial">Tutorial</h3>
+<p><a href="../tutorials/batchprocessing.html">User tutorial</a></p>
+<p><a href="https://www.pamguard.org/batchhelp/docs/batchoverview.html">Online Help</a></p>
 
 
 </section>
