@@ -47,6 +47,7 @@
       "/featurepanels/opensource.html",
       "/featurepanels/watchdog.html",
       "/casestudypanels/tidalturbinecasestudy.html",
+      "/news/250401_Haggis.html",
       "/news/250318_V2_02_16.html",
       "/news/240108_Montabaranom.html",
       "/news/241218_Garrobeetal.html",
@@ -68,6 +69,7 @@
       "/plugins/tritech.html",
       "/plugins/videorange.html",
       "/plugins/visangles.html",
+      "/plugins/haggis.html",
       "/plugins/demodetector.html"
     ]
   },
