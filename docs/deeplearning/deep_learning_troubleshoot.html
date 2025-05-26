@@ -242,6 +242,10 @@ cookieconsent.run({
     <a class="dropdown-item" href="../whistleclassifier.html">
  <span class="dropdown-text">Whistle Classifiers</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../deep_learning_models/deeplearningmodels.html">
+ <span class="dropdown-text">Deep Learning Classifiers</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -383,15 +387,15 @@ cookieconsent.run({
 <h4 class="anchored" data-anchor-id="for-windows-x86-only">For Windows (x86 only)</h4>
 <p>Download <a href="https://www.dropbox.com/scl/fi/u5j6gufzqa5pd31z323xo/deep_learning_files_windows.djl.ai.zip?rlkey=thxalju9cfmo7ehhosbthqbpm&amp;dl=1">this zip</a> and place the hidden <code>.djl.ai</code> folder in your user folder, e.g., <code>C:\Users\me</code>.</p>
 </section>
-<section id="for-macos-m-series-only" class="level4">
-<h4 class="anchored" data-anchor-id="for-macos-m-series-only">For MacOS (M series only)</h4>
+<section id="for-macos-apple-silicon-only" class="level4">
+<h4 class="anchored" data-anchor-id="for-macos-apple-silicon-only">For MacOS (Apple Silicon only)</h4>
 <p>Download <a href="https://www.dropbox.com/scl/fi/ri1tb4xrxb385ve1hj0s7/deeplearning-files.djl.ai.zip?rlkey=hvprh431xi0e5t1u9usc5vg86&amp;st=5qy2cmwd&amp;dl=1">this zip</a> and place the hidden <code>.djl.ai</code> folder in your user folder, e.g., <code>/Users/me/</code>.</p>
 </section>
 </section>
 <section id="model-metadata-failure" class="level3">
 <h3 class="anchored" data-anchor-id="model-metadata-failure">Model metadata failure</h3>
-<p>This indicates that the model metadata has failed. Each model contains a <code>.pgtf</code> file, which contains JSON-formatted metadata on how to load the model—i.e., what the model needs to run. More information on how this works can be found in the help files. This error usually indicates that the JSON data is incorrect or the <code>.pgdl</code> file is not present at all.</p>
-<p>If you have created your own model file for PAMGuard by zipping a <code>.pgtf</code> file with a deep learning model, this is most likely a user error. Check your JSON using a <a href="https://jsonlint.com/">JSON validator</a>, ensure you are following the <a href="https://github.com/macster110/jpam/blob/master/jpam/jdl4pam/src/main/java/org/jamdev/jdl4pam/transforms/dl_transform_schema.json">JSON schema</a>, and compare it against another <code>.pgtf</code> file. For example, here is the JSON for a right whale model by Shiu et al., 2019:</p>
+<p>This indicates that the model metadata has failed. Each model contains a <code>.pgtf</code> file, which contains JSON-formatted metadata on how to load the model—i.e., what the model needs to run. More information on how this works can be found in the help files. This error usually indicates that the JSON data is incorrect or the <code>.pgtf</code> file is not present at all.</p>
+<p>If you have created your own model file for PAMGuard by zipping a <code>.pgtf</code> file with a deep learning model, this is most likely a user error. Check your JSON using a <a href="https://jsonlint.com/">JSON validator</a>, ensure you are following the <a href="https://github.com/macster110/jpam/blob/master/jpam/jdl4pam/src/main/java/org/jamdev/jdl4pam/transforms/dl_transform_schema.json">JSON schema</a>, and compare it against another <code>.pgtf</code> file. For example, here is the JSON for a right whale model by Shiu et al., (2019):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"framework_info"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"framework"</span><span class="fu">:</span> <span class="st">"Bespoke"</span><span class="fu">},</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"model_info"</span><span class="fu">:</span> <span class="fu">{</span></span>
