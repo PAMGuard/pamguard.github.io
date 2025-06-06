@@ -17,27 +17,22 @@
     ]
   },
   {
-    "listing": "/plugins/plugins.html",
+    "listing": "/releases/download.html",
     "items": [
-      "/plugins/batchprocessor.html",
-      "/plugins/contactcollator.html",
-      "/plugins/wams.html",
-      "/plugins/rioncompass.html",
-      "/plugins/resourcemon.html",
-      "/plugins/spermipi.html",
-      "/plugins/tritech.html",
-      "/plugins/videorange.html",
-      "/plugins/visangles.html",
-      "/plugins/haggis.html",
-      "/plugins/demodetector.html"
+      "/releases/V2_02_17.html",
+      "/releases/V2_02_16.html",
+      "/releases/V2_02_15.html",
+      "/releases/V2_02_14.html",
+      "/releases/V2_02_13.html",
+      "/releases/V2_02_06.html"
     ]
   },
   {
     "listing": "/deep_learning_models/deeplearningmodels.html",
     "items": [
-      "/deep_learning_models/deep_learning_models/delphinID_NEAtlantic.html",
       "/deep_learning_models/deep_learning_models/humpback_pacific.html",
-      "/deep_learning_models/deep_learning_models/right_whale_shiu_palmer.html"
+      "/deep_learning_models/deep_learning_models/right_whale_shiu_palmer.html",
+      "/deep_learning_models/deep_learning_models/delphinID_NEAtlantic.html"
     ]
   },
   {
@@ -59,6 +54,7 @@
       "/featurepanels/opensource.html",
       "/featurepanels/watchdog.html",
       "/casestudypanels/tidalturbinecasestudy.html",
+      "/news/250605_V2_02_17.html",
       "/news/250526_Deep learning version 2.html",
       "/news/250401_Haggis.html",
       "/news/250318_V2_02_16.html",
@@ -71,13 +67,19 @@
     ]
   },
   {
-    "listing": "/releases/download.html",
+    "listing": "/plugins/plugins.html",
     "items": [
-      "/releases/V2_02_16.html",
-      "/releases/V2_02_15.html",
-      "/releases/V2_02_14.html",
-      "/releases/V2_02_13.html",
-      "/releases/V2_02_06.html"
+      "/plugins/batchprocessor.html",
+      "/plugins/contactcollator.html",
+      "/plugins/wams.html",
+      "/plugins/rioncompass.html",
+      "/plugins/resourcemon.html",
+      "/plugins/spermipi.html",
+      "/plugins/tritech.html",
+      "/plugins/videorange.html",
+      "/plugins/visangles.html",
+      "/plugins/haggis.html",
+      "/plugins/demodetector.html"
     ]
   },
   {

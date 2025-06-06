@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="This folder contains two Random Forest classifiers (one for clicks and one for whistles) for six commonly occurring northeast Atlantic delphinid species. These classifiers were trained with data collected from dipped hydrophones and towed hydrophone arrays deployed in combined visual and acoustic surveys. Only recordings of single species groups that had visual confirmation of species identity and were at least 4 nmi from any other species were included in the training dataset.">
+<meta name="description" content="ROCCA classifiers for the Northeast Atlantic - process clicks and whistle contours detected using PAMGuard’s Whistle &amp; Moan Detector and Click Detector to classify seven delphinid species.">
 
 <title>Northeast Atlantic – PAMGuard</title>
 <style>
@@ -303,7 +303,11 @@ cookieconsent.run({
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#northeast-atlantic-classifier" id="toc-northeast-atlantic-classifier" class="nav-link active" data-scroll-target="#northeast-atlantic-classifier">Northeast Atlantic Classifier</a></li>
+  <li><a href="#northeast-atlantic-classifier" id="toc-northeast-atlantic-classifier" class="nav-link active" data-scroll-target="#northeast-atlantic-classifier">Northeast Atlantic Classifier</a>
+  <ul class="collapse">
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
+  <li><a href="#models" id="toc-models" class="nav-link" data-scroll-target="#models">Models</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -317,7 +321,7 @@ cookieconsent.run({
 
 <div>
   <div class="description">
-    This folder contains two Random Forest classifiers (one for clicks and one for whistles) for six commonly occurring northeast Atlantic delphinid species. These classifiers were trained with data collected from dipped hydrophones and towed hydrophone arrays deployed in combined visual and acoustic surveys. Only recordings of single species groups that had visual confirmation of species identity and were at least 4 nmi from any other species were included in the training dataset.
+    ROCCA classifiers for the Northeast Atlantic - process clicks and whistle contours detected using PAMGuard’s Whistle &amp; Moan Detector and Click Detector to classify seven delphinid species.
   </div>
 </div>
 
@@ -336,18 +340,27 @@ cookieconsent.run({
 
 <section id="northeast-atlantic-classifier" class="level2">
 <h2 class="anchored" data-anchor-id="northeast-atlantic-classifier">Northeast Atlantic Classifier</h2>
-<p>This folder contains two Random Forest classifiers (one for clicks and one for whistles) for six commonly occurring northeast Atlantic delphinid species. These classifiers were trained with data collected from dipped hydrophones and towed hydrophone arrays deployed in combined visual and acoustic surveys. Only recordings of single species groups that had visual confirmation of species identity and were at least 4 nmi from any other species were included in the training dataset.</p>
-<pre><code>Delphinus delphis (Dde)
-Grampus griseus (Ggr)
-Globicephala melas (Gme)
-Lagenorhynchus albirostris (Lal)
-Orcinus orca (Oor)
-Tursiops truncatus (Ttr)</code></pre>
-<p>Full details can be found in the pdf document contained in the zip file.</p>
-<p><a href="https://drive.google.com/file/d/1wxxkkgMBGMfkHl-u_iY7-8gwQXHBYamP/view?usp=drive_link" target="roccadown">Download Northeast Atlantic Classifier</a></p>
+<p>When used together to classify encounters containing multiple vocalizations, these ROCCA classifiers performed with an overall accuracy of 78%, ranging from 60% for Grampus griseus encounters to 92% for Orcinus orca encounters. The following seven species can be identified:</p>
+<ul>
+<li>Atlantic white-sided dolphin (<em>Lagenorhynchus acutus</em>)</li>
+<li>Common bottlenose dolphin (<em>Tursiops truncatus</em>)</li>
+<li>Killer whale (<em>Orcinus orca</em>)</li>
+<li>Long-finned pilot whale (<em>Globicephala melas</em>)</li>
+<li>Risso’s dolphin (<em>Grampus griseus</em>)</li>
+<li>Short-beaked common dolphin (<em>Delphinus delphis</em>)</li>
+<li>White-beaked dolphin (<em>Lagenorhynchus albirostris</em>)</li>
+</ul>
+<section id="reference" class="level3">
+<h3 class="anchored" data-anchor-id="reference">Reference</h3>
+<p>Paper in prep.</p>
+</section>
+<section id="models" class="level3">
+<h3 class="anchored" data-anchor-id="models">Models</h3>
+<p>Northeast Atlantic ROCCA click and whistle classifiers can be found on Zenodo: <a href="https://zenodo.org/records/14936662">zenodo.org/records/14936662</a>. Separate click and whistle predictions are intended to be combined for final species classification via an R application (see README file) also accessible through the Zenodo download. Also included in the download are a PAMGuard settings file (.psfx) for ROCCA and a README file in the download containing documentation, tutorials, and extra information.</p>
 <p><a href="rocca.html">Back to ROCCA Classifiers</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
