@@ -2722,14 +2722,18 @@ ul.task-list li input[type="checkbox"] {
 <p>This can be useful in diagnosing that all input channels are active and that none are saturating.</p>
 <section id="creating-the-module" class="level3">
 <h3 class="anchored" data-anchor-id="creating-the-module">Creating the module</h3>
-<p>From the <em><strong>File&gt;Add modules&gt;Displays</strong></em> menu, or from the pop-up menu on the data model display select “<em><strong>Level Meters</strong></em>”. Enter a name for the new module and press Ok.</p>
+<p>From the <strong><em>File&gt;Add modules&gt;Displays</em></strong> menu, or from the pop-up menu on the data model display select “<strong><em>Level Meters</em></strong>”. Enter a name for the new module and press Ok.</p>
 </section>
 <section id="configuring-the-module" class="level3">
 <h3 class="anchored" data-anchor-id="configuring-the-module">Configuring the module</h3>
-<p>To configure the module, open the settings dialog from the <em><strong>Detection&gt;“your module name”</strong></em> menu:</p>
+<p>To configure the module, open the settings dialog from the <strong><em>Detection&gt;“your module name”</em></strong> menu:</p>
 <p><img src="Images/LevelMeters.png" class="img-fluid"></p>
 <p>In the dialog select the sound source (generally the sound acquisition module, but you could connect to the output of some other process such as a filter or decimator).</p>
-<p>The module has no other settings, but you might want to adjust the position of the display in the side panel which can be done by changing the order of the modules from the File&gt;Module Ordering menu command.</p>
+<p>You can also chose whether to display levels as peak, or RMS. Peak is better for diagnosing saturation problems.</p>
+<p>It’s also possible to select to display the data relative to full scale of the input device, in volts (input to the acquisition module) or in micropascals.</p>
+<p>The level meters will show as a small display in the PAMGuard side panel.</p>
+<p><img src="images/leveldisplay.png" class="img-fluid"></p>
+<p>You can adjust the position of the display in the side panel which can be done by changing the order of the modules from the File&gt;Module Ordering menu command.</p>
 
 
 </section>
