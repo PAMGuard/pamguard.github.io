@@ -28,20 +28,20 @@
     ]
   },
   {
-    "listing": "/deep_learning_models/deeplearningmodels.html",
+    "listing": "/plugins/plugins.html",
     "items": [
-      "/deep_learning_models/deep_learning_models/humpback_pacific.html",
-      "/deep_learning_models/deep_learning_models/right_whale_shiu_palmer.html",
-      "/deep_learning_models/deep_learning_models/delphinID_NEAtlantic.html"
-    ]
-  },
-  {
-    "listing": "/configs/configs.html",
-    "items": [
-      "/configs/clickswhistles.html",
-      "/configs/difar.html",
-      "/configs/porpoise.html",
-      "/configs/sperm.html"
+      "/plugins/batchprocessor.html",
+      "/plugins/contactcollator.html",
+      "/plugins/wams.html",
+      "/plugins/rioncompass.html",
+      "/plugins/resourcemon.html",
+      "/plugins/spermipi.html",
+      "/plugins/tritech.html",
+      "/plugins/videorange.html",
+      "/plugins/visangles.html",
+      "/plugins/haggis.html",
+      "/plugins/windowssound.html",
+      "/plugins/demodetector.html"
     ]
   },
   {
@@ -67,19 +67,20 @@
     ]
   },
   {
-    "listing": "/plugins/plugins.html",
+    "listing": "/configs/configs.html",
     "items": [
-      "/plugins/batchprocessor.html",
-      "/plugins/contactcollator.html",
-      "/plugins/wams.html",
-      "/plugins/rioncompass.html",
-      "/plugins/resourcemon.html",
-      "/plugins/spermipi.html",
-      "/plugins/tritech.html",
-      "/plugins/videorange.html",
-      "/plugins/visangles.html",
-      "/plugins/haggis.html",
-      "/plugins/demodetector.html"
+      "/configs/clickswhistles.html",
+      "/configs/difar.html",
+      "/configs/porpoise.html",
+      "/configs/sperm.html"
+    ]
+  },
+  {
+    "listing": "/deep_learning_models/deeplearningmodels.html",
+    "items": [
+      "/deep_learning_models/deep_learning_models/humpback_pacific.html",
+      "/deep_learning_models/deep_learning_models/right_whale_shiu_palmer.html",
+      "/deep_learning_models/deep_learning_models/delphinID_NEAtlantic.html"
     ]
   },
   {
