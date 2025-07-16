@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Adding Core Modules – PAMGuard</title>
+<title>Data Export, R, Matlab, &amp; Python – PAMGuard</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -200,7 +200,7 @@ cookieconsent.run({
  <span class="dropdown-text">Plugin Modules</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./matlabandr.html">
+    <a class="dropdown-item" href="./exportingandprocessing.html">
  <span class="dropdown-text">Data Export, R, Matlab, &amp; Python</span></a>
   </li>  
         <li>
@@ -331,26 +331,15 @@ cookieconsent.run({
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#writing-pamguard-plug-ins" id="toc-writing-pamguard-plug-ins" class="nav-link active" data-scroll-target="#writing-pamguard-plug-ins">Writing PAMGuard Plug-ins</a>
-  <ul class="collapse">
-  <li><a href="#adding-plug-ins-to-the-core-pamguard-model" id="toc-adding-plug-ins-to-the-core-pamguard-model" class="nav-link" data-scroll-target="#adding-plug-ins-to-the-core-pamguard-model">Adding plug-ins to the Core PAMGuard model</a></li>
-  <li><a href="#set-module-data-dependencies" id="toc-set-module-data-dependencies" class="nav-link" data-scroll-target="#set-module-data-dependencies">Set module data dependencies</a></li>
-  <li><a href="#setting-the-minimum-and-maximum-numbers-of-module-instances" id="toc-setting-the-minimum-and-maximum-numbers-of-module-instances" class="nav-link" data-scroll-target="#setting-the-minimum-and-maximum-numbers-of-module-instances">Setting the minimum and maximum numbers of module instances</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Adding Core Modules</h1>
+<h1 class="title">Data Export, R, Matlab, &amp; Python</h1>
 </div>
 
 
@@ -367,47 +356,157 @@ cookieconsent.run({
 </header>
 
 
-<p>There are two types of PAMGuard module. <a href="coremodules.html">Core modules</a> which are built into the main PAMGuard code and <a href="pluginmodules.html">Plugin modules</a> which are distributed sparately. This page tells you how to add a <a href="coremodules.html">core module</a> to PAMGuard.</p>
-<p>Before reading this page, make sure you’ve read up on how to <a href="devmodules.html">develop a core module</a></p>
-<section id="writing-pamguard-plug-ins" class="level2">
-<h2 class="anchored" data-anchor-id="writing-pamguard-plug-ins">Writing PAMGuard Plug-ins</h2>
-<section id="adding-plug-ins-to-the-core-pamguard-model" class="level3">
-<h3 class="anchored" data-anchor-id="adding-plug-ins-to-the-core-pamguard-model">Adding plug-ins to the Core PAMGuard model</h3>
-<p>To make a PAMGuard plug-in available to PAMGuard users it is necessary to edit the java file PamModel/PamModel.java.</p>
-<p>First you register the module with PAMGuard using</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>PamModuleInfo myModule <span class="op">=</span> PamModuleInfo<span class="op">.</span><span class="fu">registerControlledUnit</span> <span class="op">(</span><span class="bu">String</span> className<span class="op">,</span> <span class="bu">String</span> description<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>where className is the class name of the class PamControlledUnit and description is the descriptive name of the module.</p>
-<p>For example</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>PamModuleInfo myModule <span class="op">=</span> PamModuleInfo<span class="op">.</span><span class="fu">registerControlledUnit</span> <span class="op">(</span><span class="st">"GPS.GPSControl"</span><span class="op">,</span> <span class="st">"GPS Processing"</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>adds the GPS module.</p>
-<p>The module will now be listed in the PAMGuard File/Add Modules menu from where the user can create instances of the module.</p>
-<p>The PAMGuard settings manager will be aware of the new module and will automatically create the module the next time PAMGuard is run. ### Add the module to a menu group</p>
-<p>Due to the large number of PAMGuard modules now in existence, you will want to have your module listed in one of the sub menus of the File/Add Modules menu. You can add your module to one of the existing groups or you can create a new group of your own. For example, the following code adds the GPS module to the Map menu group</p>
-<p>myModule.setModulesMenuGroup(mapsGroup);</p>
+<p>PAMGuard outputs data both to a SQL relational <a href="./olhelp/utilities/generalDatabaseHelp/docs/database_database.html">database</a> and to <a href="./olhelp/utilities/BinaryStore/docs/binarystore_overview.html">binary data files</a>.</p>
+<p>Users wishing to further process PAMGuard output data in a more flexible programming environment (for example, to develop or run bespoke classifiers on PAMGuard detections, or to mike nicer plots for publication), will need to read those data into their programming language of choice.</p>
+<p>Most programming languages will be able to connect to and read the database using standard libraries. However, the binary files are in a bespoke format, which requires special software libraries to read data from those files.</p>
+<p>Libraries exist to read data from PAMGuard binary files written in <a href="https://www.r-project.org/" target="matlab">R</a> and <a href="https://uk.mathworks.com/products/matlab.html" target="matlab">MATLAB</a>. A <a href="https://www.python.org/" target="python">Python</a> library is under development. Read below how to install and use these libraries.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Export</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">MATLAB</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="columns">
+<div class="column" style="width:60%;">
+<div style="text-align: left;">
+<p style="font-weight: bold; font-size: 18px;">
+</p><p>Export data to other platforms</p>
+<p></p>
+</div>
+<p>PAMGuard has a powerful exporter which can quickly export detections to;</p>
+<ul>
+<li>.mat files which can be opened in MATLAB.</li>
+<li>.RData frames which can be open in R.</li>
+<li>.wav file which can be opened in any acoustics program.</li>
+</ul>
+<p>The exporter allows filtering of data based on, for example, species classification, manual annotations etc. allowing users to specify exactly what is exported.</p>
+</div><div class="column" style="width:40%;">
+<p><img src="./images/export_dialog.png" alt="Description of image" style="border-radius: 10px; width: 75%; height: 75%"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Thanks so much to our friends at NOAA Southwest Fisheries Science Center in San Diego , there is also an R package for opening PAMGuard binary files:</p>
+<p><code> install.packages(“PamBinaries”) </code></p>
+<p>You can find the source files on <a href="https://github.com/TaikiSan21/PamBinaries">GitHub</a>.</p>
+<p>The best way to download and stay up-to-date with this is by following the installation instructions on the GitHub page. The R functions are written to work just like the MATLAB code, and there is a short tutorial on the GitHub page.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PamBinaries)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#count the number of classified clicks in a folder of pamguard files. </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#folder to a set of binary files. </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>folder<span class="ot">=</span><span class="st">'my/folder/of/pamguard/click/files'</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># list all the file names of the</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># specified pattern</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>fnames <span class="ot">&lt;-</span> <span class="fu">list.files</span>(folder, <span class="at">pattern =</span> <span class="st">"Click_Detector_Clicks.*</span><span class="sc">\\</span><span class="st">.pgdf$"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>count <span class="ot">=</span><span class="dv">0</span>; <span class="co">#the classified click counter. </span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (val <span class="cf">in</span> fnames) {</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(val)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#load each click file.</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  clickfile <span class="ot">&lt;-</span> <span class="fu">loadPamguardBinaryFile</span>(<span class="fu">file.path</span>(folder, val))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#iterate through the click files to count the classified clicks. </span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (aclick <span class="cf">in</span> clickfile<span class="sc">$</span>data) {</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (aclick<span class="sc">$</span>type<span class="sc">==</span><span class="dv">1</span>){</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>      count<span class="ot">=</span>count<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>Users can also take more control and import PAMGuard data files directly in MATLAB using the PAMGuard-matlab library</p>
+<p>MATLAB code for opening PAMGuard binary files is now on the <a href="https://github.com/PAMGuard/PAMGuardMatlab">PAMGuard GitHub repository</a>.</p>
+<p>Clicking the green ‘Code’ button will allow you to download the code as a zip archive. Alternatively, you can clone the repository, which will make it easier to get updates if the code is updated.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode octave code-with-copy"><code class="sourceCode octave"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">% count the number of classified clicks in a binary file folder of clicks. </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">clear</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">% the path to the binary file foldeer</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>folder<span class="op">=</span><span class="st">'/my/binary/file/folder'</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>binaryFiles <span class="op">=</span> <span class="fu">dir</span>(<span class="fu">fullfile</span>(folder<span class="op">,</span> <span class="st">'Click_Detector_Clicks*.pgdf'</span>))<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span><span class="op">=</span><span class="fl">0</span><span class="op">;</span> </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="fu">i</span><span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu">length</span>(binaryFiles)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">%print progress</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">disp</span>([<span class="st">'Loading files: '</span> <span class="fu">num2str</span>(<span class="fu">i</span>) <span class="op">...</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">' of '</span> <span class="fu">num2str</span>(<span class="fu">length</span>(binaryFiles))])</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>   <span class="co">%create filepath from dir dtruct</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    filePath<span class="op">=</span><span class="fu">fullfile</span>(folder<span class="op">,</span> binaryFiles(<span class="fu">i</span>).name)<span class="op">;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">%load the clicks</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    clicks<span class="op">=</span>loadPamguardBinaryFile(filePath)<span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">%iterate through all clicks and count how many are classified </span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="fu">j</span><span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu">length</span>(clicks)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>         <span class="cf">if</span> (clicks(<span class="fu">j</span>).type<span class="op">==</span><span class="fl">1</span>) </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>            <span class="fu">count</span><span class="op">=</span><span class="fu">count</span><span class="op">+</span><span class="fl">1</span><span class="op">;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>         <span class="cf">end</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p>PyPAMGuard is a data-processing library for PAMGuard written in Python. Access the source code on <a href="https://github.com/sullivan-james/pypamguard">this</a> GitHub repository.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+WARNING: PyPAMGuard is still in active development.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The library is made available in an <strong>experimental state</strong>. The code is unstable and may not produce the results you expect. The interface and methods may change between now and the production release. To use the experimental code, you can download the source code from the GitHub repository.</p>
+</div>
+</div>
+<section id="experimental-installation" class="level3">
+<h3 class="anchored" data-anchor-id="experimental-installation">Experimental Installation</h3>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Python proficiency recommended to install and use the experimental code.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<p>To install and use PyPAMGuard, ensure you have at least got Python 3.12 installed on your MacOS, Windows or Linux system. Download or clone the source code from the <a href="https://github.com/sullivan-james/pypamguard">Git repository on GitHub</a> and extract the contents of /src into your Python project or working directory. You will need to install all the dependencies listed in requirements.txt (it is recommended you do this with a <a href="https://docs.python.org/3/library/venv.html">virtual environment</a>).</p>
+<p>You can now process PAMGuard data files by running the code below. There are a raft of customisations that are documented in the <a href="https://sullivan-james.github.io/pypamguard/pypamguard.html">API reference</a> and <a href="https://github.com/sullivan-james/pypamguard/blob/main/README.md">README</a>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pypamguard</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pypamguard.load_binary_data_file(<span class="st">'path/to/data/file.pgdf'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df) <span class="co"># will print a summary of all headers, footers and data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The code below produced a <code>PGBFile</code> object. Attributes such as the headers, footers and data can be accessed in an object-like manner. Some examples are shown below.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.file_header <span class="co"># file header</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df.module_header <span class="co"># module header</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df.module_header.version <span class="co"># module version</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>df.module_footer <span class="co"># module footer</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>df.file_footer <span class="co"># file footer</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>df.data[<span class="dv">0</span>] <span class="co"># the first module data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Coming Soon: Installation via <code>pip</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>PyPAMGuard will be available to download via the Python Package Index (PyPI) once it enters a stable production phase. Installation will as simple as running <code>pip install pypamguard</code> in your command line.</p>
+</div>
+</div>
 </section>
-<section id="set-module-data-dependencies" class="level3">
-<h3 class="anchored" data-anchor-id="set-module-data-dependencies">Set module data dependencies</h3>
-<p>It is likely that your module will be dependent on data from some other PAMGuard module. For example, the click detector requires raw data from an acquisition module, the whistle detector required raw data from a FFT module and the GPS module requires data from an NMEA data source.</p>
-<p>You can set module dependencies using</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>PamModuleInfo<span class="op">.</span><span class="fu">addDependency</span><span class="op">(</span>PamDependency dependancy<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>for example</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>myModule<span class="op">.</span><span class="fu">addDependency</span><span class="op">(</span><span class="kw">new</span> <span class="fu">PamDependency</span><span class="op">(</span>NMEADataUnit<span class="op">.</span><span class="fu">class</span><span class="op">,</span> <span class="st">"NMEA.NMEAControl"</span><span class="op">));</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>tells PAMGuard that myModule is dependent on some source of NMEADataUnit and that a possible source of this type of data is the NMEA.NMEAControl module.</p>
-<p>Note that some types of data may be produced by many different modules, so here you should specify the most common source of the data your module will use.</p>
-</section>
-<section id="setting-the-minimum-and-maximum-numbers-of-module-instances" class="level3">
-<h3 class="anchored" data-anchor-id="setting-the-minimum-and-maximum-numbers-of-module-instances">Setting the minimum and maximum numbers of module instances</h3>
-<p>You can use two functions</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>PamModuleInfo<span class="op">.</span><span class="fu">setMinNumber</span><span class="op">(</span><span class="dt">int</span> minNumber<span class="op">)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>PamModuleInfo<span class="op">.</span><span class="fu">setMaxNumber</span><span class="op">(</span><span class="dt">int</span> maxNumber<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>to set the minimum and maximum numbers of a given module type.</p>
-<p>If these are not set (which is generally the case), then the minimum number defaults to zero and there is no maximum number.</p>
-<p>If you set a minimum number, then PAMGuard will automatically create that number of modules at start up.</p>
-<p>If you set a maximum number then PAMGuard will prevent you from creating more than that number of modules.</p>
+</div>
+</div>
+</div>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

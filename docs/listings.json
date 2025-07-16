@@ -45,11 +45,27 @@
     ]
   },
   {
-    "listing": "/deep_learning_models/deeplearningmodels.html",
+    "listing": "/index.html",
     "items": [
-      "/deep_learning_models/deep_learning_models/humpback_pacific.html",
-      "/deep_learning_models/deep_learning_models/right_whale_shiu_palmer.html",
-      "/deep_learning_models/deep_learning_models/delphinID_NEAtlantic.html"
+      "/featurepanels/readyforAI.html",
+      "/featurepanels/realtime.html",
+      "/featurepanels/automatedalgorithms.html",
+      "/featurepanels/offline.html",
+      "/featurepanels/opensource.html",
+      "/featurepanels/watchdog.html",
+      "/casestudypanels/tidalturbinecasestudy.html",
+      "/news/250716_pypamguard.html",
+      "/news/250625_WindowsSound.html",
+      "/news/250605_V2_02_17.html",
+      "/news/250526_Deep learning version 2.html",
+      "/news/250401_Haggis.html",
+      "/news/250318_V2_02_16.html",
+      "/news/240108_Montabaranom.html",
+      "/news/241218_Garrobeetal.html",
+      "/news/241214_bluesky.html",
+      "/news/241209_V2_02_15.html",
+      "/news/241208_batchprocessor.html",
+      "/news/241207_newwebsite.html"
     ]
   },
   {
@@ -62,26 +78,11 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/deep_learning_models/deeplearningmodels.html",
     "items": [
-      "/featurepanels/readyforAI.html",
-      "/featurepanels/realtime.html",
-      "/featurepanels/automatedalgorithms.html",
-      "/featurepanels/offline.html",
-      "/featurepanels/opensource.html",
-      "/featurepanels/watchdog.html",
-      "/casestudypanels/tidalturbinecasestudy.html",
-      "/news/250625_WindowsSound.html",
-      "/news/250605_V2_02_17.html",
-      "/news/250526_Deep learning version 2.html",
-      "/news/250401_Haggis.html",
-      "/news/250318_V2_02_16.html",
-      "/news/240108_Montabaranom.html",
-      "/news/241218_Garrobeetal.html",
-      "/news/241214_bluesky.html",
-      "/news/241209_V2_02_15.html",
-      "/news/241208_batchprocessor.html",
-      "/news/241207_newwebsite.html"
+      "/deep_learning_models/deep_learning_models/humpback_pacific.html",
+      "/deep_learning_models/deep_learning_models/right_whale_shiu_palmer.html",
+      "/deep_learning_models/deep_learning_models/delphinID_NEAtlantic.html"
     ]
   },
   {

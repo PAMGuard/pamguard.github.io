@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MATLAB and R – PAMGuard</title>
+<title>Data Export, R, Matlab, &amp; Python – PAMGuard</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -201,7 +201,7 @@ cookieconsent.run({
   </li>  
         <li>
     <a class="dropdown-item" href="./matlabandr.html">
- <span class="dropdown-text">Export MATLAB and R</span></a>
+ <span class="dropdown-text">Data Export, R, Matlab, &amp; Python</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./contact.html">
@@ -339,7 +339,7 @@ cookieconsent.run({
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MATLAB and R</h1>
+<h1 class="title">Data Export, R, Matlab, &amp; Python</h1>
 </div>
 
 
@@ -356,11 +356,12 @@ cookieconsent.run({
 </header>
 
 
-<p>Many users find that they can only go so far when processing data with PAMGuard and there are often important steps that people need to take to go from PAMGuard to a published paper.</p>
-<p>We therefore provide export functions and software libraries written in <a href="https://uk.mathworks.com/products/matlab.html" target="matlab">MATLAB</a> and <a href="https://www.r-project.org/" target="matlab">R</a> (a Python version is on it’s way) which can access PAMGuard data files.</p>
-<p>This allows you to conduct bespoke analysis of PAMGuard output in a more flexible programming environment.</p>
+<p>PAMGuard outputs data both to a SQL relational <a href="./olhelp/utilities/generalDatabaseHelp/docs/database_database.html">database</a> and to <a href="./olhelp/utilities/BinaryStore/docs/binarystore_overview.html">binary data files</a>.</p>
+<p>Users wishing to further process PAMGuard output data in a more flexible programming environment (for example, to develop or run bespoke classifiers on PAMGuard detections, or to mike nicer plots for publication), will need to read those data into their programming language of choice.</p>
+<p>Most programming languages will be able to connect to and read the database using standard libraries. However, the binary files are in a bespoke format, which requires special software libraries to read data from those files.</p>
+<p>Libraries are provided to read data from PAMGuard binary files written in <a href="https://www.r-project.org/" target="matlab">R</a> and <a href="https://uk.mathworks.com/products/matlab.html" target="matlab">MATLAB</a>. A <a href="https://www.python.org/" target="matlab">Python</a> library is under development. Read below how to install and use these libraries.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Export</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">MATLAB</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Export</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">MATLAB</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="columns">
@@ -383,7 +384,7 @@ cookieconsent.run({
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>Thanks so much to our friends at NOAA Southwest Fisheries Science Center in San Diego , there is also an R package for opening PAMGuard binary files:</p>
+<p>Thanks to our friends at NOAA Southwest Fisheries Science Center in San Diego, there is a R package for opening PAMGuard binary files:</p>
 <p><code> install.packages(“PamBinaries”) </code></p>
 <p>You can find the source files on <a href="https://github.com/TaikiSan21/PamBinaries">GitHub</a>.</p>
 <p>The best way to download and stay up-to-date with this is by following the installation instructions on the GitHub page. The R functions are written to work just like the MATLAB code, and there is a short tutorial on the GitHub page.</p>
@@ -444,6 +445,63 @@ cookieconsent.run({
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>         <span class="cf">end</span></span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p>PyPAMGuard is a data-processing library for PAMGuard written in Python. Access the source code on <a href="https://github.com/sullivan-james/pypamguard">this</a> GitHub repository.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+WARNING: PyPAMGuard is still in active development.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The library is made available in an <strong>experimental state</strong>. The code is unstable and may not produce the results you expect. The interface and methods may change between now and the production release. To use the experimental code, you can download the source code from the GitHub repository.</p>
+</div>
+</div>
+<section id="experimental-installation" class="level3">
+<h3 class="anchored" data-anchor-id="experimental-installation">Experimental Installation</h3>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Python proficiency recommended to install and use the experimental code.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<p>To install and use PyPAMGuard, ensure you have at least got Python 3.12 installed on your MacOS, Windows or Linux system. Download or clone the source code from the <a href="https://github.com/sullivan-james/pypamguard">Git repository on GitHub</a> and extract the contents of /src into your Python project or working directory. You will need to install all the dependencies listed in requirements.txt (it is recommended you do this with a <a href="https://docs.python.org/3/library/venv.html">virtual environment</a>).</p>
+<p>You can now process PAMGuard data files by running the code below. There are a raft of customisations that are documented in the <a href="https://sullivan-james.github.io/pypamguard/pypamguard.html">API reference</a> and <a href="https://github.com/sullivan-james/pypamguard/blob/main/README.md">README</a>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pypamguard</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pypamguard.load_binary_data_file(<span class="st">'path/to/data/file.pgdf'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df) <span class="co"># will print a summary of all headers, footers and data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The code below produced a <code>PGBFile</code> object. Attributes such as the headers, footers and data can be accessed in an object-like manner. Some examples are shown below.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.file_header <span class="co"># file header</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df.module_header <span class="co"># module header</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df.module_header.version <span class="co"># module version</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>df.module_footer <span class="co"># module footer</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>df.file_footer <span class="co"># file footer</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>df.data[<span class="dv">0</span>] <span class="co"># the first module data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Coming Soon: Installation via <code>pip</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>PyPAMGuard will be available to download via the Python Package Index (PyPI) once it enters a stable production phase. Installation will as simple as running <code>pip install pypamguard</code> in your command line.</p>
+</div>
+</div>
+</section>
 </div>
 </div>
 </div>
