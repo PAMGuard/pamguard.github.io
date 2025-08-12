@@ -447,60 +447,44 @@ cookieconsent.run({
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-<p>PyPAMGuard is a data-processing library for PAMGuard written in Python. Access the source code on <a href="https://github.com/PAMGuard/pypamguard">this</a> GitHub repository.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-WARNING: PyPAMGuard is still in active development.
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The library is made available in an <strong>experimental state</strong>. The code is unstable and may not produce the results you expect. The interface and methods may change between now and the production release. To use the experimental code, you can download the source code from the GitHub repository.</p>
-</div>
-</div>
-<section id="experimental-installation" class="level3">
-<h3 class="anchored" data-anchor-id="experimental-installation">Experimental Installation</h3>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Python proficiency recommended to install and use the experimental code.
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-<p>To install and use PyPAMGuard, ensure you have at least got Python 3.12 installed on your MacOS, Windows or Linux system. Download the code from the <a href="https://github.com/PAMGuard/pypamguard/releases/download/v0.0.1-alpha/pypamguard-v0.0.1-alpha.zip">Git repository on GitHub</a> and extract the contents into your Python project or working directory. You will need to install all the dependencies listed in requirements.txt (it is recommended you do this with a <a href="https://docs.python.org/3/library/venv.html">virtual environment</a>).</p>
-<p>You can now process PAMGuard data files by running the code below. There are a raft of customisations that are documented in the <a href="https://PAMGuard.github.io/pypamguard/pypamguard.html">API reference</a> and <a href="https://github.com/PAMGuard/pypamguard/blob/main/README.md">README</a>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pypamguard</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pypamguard.load_binary_data_file(<span class="st">'path/to/data/file.pgdf'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df) <span class="co"># will print a summary of all headers, footers and data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The code below produced a <code>PGBFile</code> object. Attributes such as the headers, footers and data can be accessed in an object-like manner. Some examples are shown below.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.file_header <span class="co"># file header</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df.module_header <span class="co"># module header</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df.module_header.version <span class="co"># module version</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>df.module_footer <span class="co"># module footer</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>df.file_footer <span class="co"># file footer</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>df.data[<span class="dv">0</span>] <span class="co"># the first module data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Coming Soon: Installation via <code>pip</code>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>PyPAMGuard will be available to download via the Python Package Index (PyPI) once it enters a stable production phase. Installation will as simple as running <code>pip install pypamguard</code> in your command line.</p>
-</div>
-</div>
+<p>PAMGuard <a href="./olhelp/utilities/BinaryStore/docs/binarystore_overview.html">binary file</a> output can be read in Python using the <strong>pypamguard</strong> package.</p>
+<section id="installation" class="level3">
+<h3 class="anchored" data-anchor-id="installation">Installation</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pypamguard</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="getting-started" class="level3">
+<h3 class="anchored" data-anchor-id="getting-started">Getting Started</h3>
+<p>Example of loading in a simple PAMGuard data file into Python.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pypamguard</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pypamguard.load_pamguard_binary_file(<span class="st">'path/to/data/file.pgdf'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then, for example, you can print out the file header like so.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.file_info.file_header) <span class="co"># File header</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.file_info.file_header.version) <span class="co"># File version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Modules also have a <code>file_info.module_header</code>, <code>file_info.module_footer</code>, <code>file_info.file_footer</code>, and most importantly <code>data</code> and <code>background</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"File length"</span>, <span class="bu">len</span>(df.data)) <span class="co"># Number of module data chunks</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>first_obj <span class="op">=</span> df.data[<span class="dv">0</span>] <span class="co"># First module data chunk</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> chunk <span class="kw">in</span> df.data: <span class="co"># Looping through the data</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(chunk.identifier)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For more information, see the <a href="https://www.pamguard.org/pypamguard/">documentation</a>.</p>
+</section>
+<section id="links" class="level3">
+<h3 class="anchored" data-anchor-id="links">Links</h3>
+<ul>
+<li><a href="https://pypi.org/project/pypamguard/"><strong>PyPI</strong></a></li>
+<li><a href="https://github.com/PAMGuard/pypamguard"><strong>GitHub</strong></a></li>
+<li><a href="https://www.pamguard.org/pypamguard/"><strong>Documentation</strong></a></li>
+<li><a href="https://doi.org/10.5281/zenodo.16789563"><strong>Zenodo</strong></a></li>
+</ul>
+</section>
+<section id="bugsrequests" class="level3">
+<h3 class="anchored" data-anchor-id="bugsrequests">Bugs/Requests</h3>
+<p>Please use the <a href="https://github.com/PAMGuard/pypamguard/issues">Github issue tracker</a> to submit bugs or feature requests.</p>
+</section>
+<section id="license" class="level3">
+<h3 class="anchored" data-anchor-id="license">License</h3>
+<p>This software is distributed under the terms of the MIT license. pypamguard is free and open source.</p>
+<p>If you use this code, please cite it like so: James Sullivan. (2025). PAMGuard/pypamguard: Version 1.0.0 (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.16789564</p>
+<p>You can find citations for other referencing styles and up-to-date pypamguard versions on <a href="https://doi.org/10.5281/zenodo.16789563">Zenodo</a>.</p>
 </section>
 </div>
 </div>

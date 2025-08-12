@@ -28,23 +28,6 @@
     ]
   },
   {
-    "listing": "/plugins/plugins.html",
-    "items": [
-      "/plugins/batchprocessor.html",
-      "/plugins/contactcollator.html",
-      "/plugins/wams.html",
-      "/plugins/rioncompass.html",
-      "/plugins/resourcemon.html",
-      "/plugins/spermipi.html",
-      "/plugins/tritech.html",
-      "/plugins/videorange.html",
-      "/plugins/visangles.html",
-      "/plugins/haggis.html",
-      "/plugins/windowssound.html",
-      "/plugins/demodetector.html"
-    ]
-  },
-  {
     "listing": "/index.html",
     "items": [
       "/featurepanels/readyforAI.html",
@@ -54,6 +37,7 @@
       "/featurepanels/opensource.html",
       "/featurepanels/watchdog.html",
       "/casestudypanels/tidalturbinecasestudy.html",
+      "/news/250813_pypamguardv1.html",
       "/news/250716_pypamguard.html",
       "/news/250625_WindowsSound.html",
       "/news/250605_V2_02_17.html",
@@ -83,6 +67,23 @@
       "/deep_learning_models/deep_learning_models/humpback_pacific.html",
       "/deep_learning_models/deep_learning_models/right_whale_shiu_palmer.html",
       "/deep_learning_models/deep_learning_models/delphinID_NEAtlantic.html"
+    ]
+  },
+  {
+    "listing": "/plugins/plugins.html",
+    "items": [
+      "/plugins/batchprocessor.html",
+      "/plugins/contactcollator.html",
+      "/plugins/wams.html",
+      "/plugins/rioncompass.html",
+      "/plugins/resourcemon.html",
+      "/plugins/spermipi.html",
+      "/plugins/tritech.html",
+      "/plugins/videorange.html",
+      "/plugins/visangles.html",
+      "/plugins/haggis.html",
+      "/plugins/windowssound.html",
+      "/plugins/demodetector.html"
     ]
   },
   {
