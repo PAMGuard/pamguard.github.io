@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Adding Core Modules – PAMGuard</title>
+<title>PAMGuard and Greenpeace towed array – PAMGuard</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,62 +20,28 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./images/PAMGuardIcon2.png" rel="icon" type="image/png">
-<script src="site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d5f7992bbb7c5c1ef6617cc4063ea1db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/PAMGuardIcon2.png" rel="icon" type="image/png">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d5f7992bbb7c5c1ef6617cc4063ea1db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -132,7 +98,7 @@ cookieconsent.run({
   
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -142,10 +108,10 @@ cookieconsent.run({
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/PAMGuardIcon2.png" alt="" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/PAMGuardIcon2.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">PAMGuard</span>
     </a>
   </div>
@@ -161,23 +127,23 @@ cookieconsent.run({
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
         <li>
-    <a class="dropdown-item" href="./about.html">
+    <a class="dropdown-item" href="../about.html">
  <span class="dropdown-text">About PAMGuard</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./license.html">
+    <a class="dropdown-item" href="../license.html">
  <span class="dropdown-text">License</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./funding.html">
+    <a class="dropdown-item" href="../funding.html">
  <span class="dropdown-text">Funding</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./publications.html">
+    <a class="dropdown-item" href="../publications.html">
  <span class="dropdown-text">Publications</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./team/team.html">
+    <a class="dropdown-item" href="../team/team.html">
  <span class="dropdown-text">Meet the team</span></a>
   </li>  
     </ul>
@@ -188,27 +154,27 @@ cookieconsent.run({
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-users">    
         <li>
-    <a class="dropdown-item" href="./tutorials.html">
+    <a class="dropdown-item" href="../tutorials.html">
  <span class="dropdown-text">User Tutorials</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./coremodules.html">
+    <a class="dropdown-item" href="../coremodules.html">
  <span class="dropdown-text">Core Modules</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./pluginmodules.html">
+    <a class="dropdown-item" href="../pluginmodules.html">
  <span class="dropdown-text">Plugin Modules</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./matlabandr.html">
+    <a class="dropdown-item" href="../matlabandr.html">
  <span class="dropdown-text">Data Export, R, Matlab, &amp; Python</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./contact.html">
+    <a class="dropdown-item" href="../contact.html">
  <span class="dropdown-text">Contact and Support</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="././olhelp/index.html">
+    <a class="dropdown-item" href=".././olhelp/index.html">
  <span class="dropdown-text">Online help pages</span></a>
   </li>  
     </ul>
@@ -219,31 +185,31 @@ cookieconsent.run({
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-download">    
         <li>
-    <a class="dropdown-item" href="./systemreq.html">
+    <a class="dropdown-item" href="../systemreq.html">
  <span class="dropdown-text">System Requirements</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./downloadsurvey.html">
+    <a class="dropdown-item" href="../downloadsurvey.html">
  <span class="dropdown-text">PAMGuard Installers</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./plugins/plugins.html">
+    <a class="dropdown-item" href="../plugins/plugins.html">
  <span class="dropdown-text">Download Plugins</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./configs/configs.html">
+    <a class="dropdown-item" href="../configs/configs.html">
  <span class="dropdown-text">Configuration Files</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./rocca/rocca.html">
+    <a class="dropdown-item" href="../rocca/rocca.html">
  <span class="dropdown-text">Rocca Classifiers</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./whistleclassifier.html">
+    <a class="dropdown-item" href="../whistleclassifier.html">
  <span class="dropdown-text">Whistle Classifiers</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./deep_learning_models/deeplearningmodels.html">
+    <a class="dropdown-item" href="../deep_learning_models/deeplearningmodels.html">
  <span class="dropdown-text">Deep Learning Classifiers</span></a>
   </li>  
     </ul>
@@ -254,23 +220,23 @@ cookieconsent.run({
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-developers">    
         <li>
-    <a class="dropdown-item" href="./sourcecode.html">
+    <a class="dropdown-item" href="../sourcecode.html">
  <span class="dropdown-text">Source Code</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./devmodules.html">
+    <a class="dropdown-item" href="../devmodules.html">
  <span class="dropdown-text">Develop PAMGuard Modules</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./addmodules.html">
+    <a class="dropdown-item" href="../addmodules.html">
  <span class="dropdown-text">Adding Core Modules</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./devplugins.html">
+    <a class="dropdown-item" href="../devplugins.html">
  <span class="dropdown-text">Creating Plugin Modules</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="././api/index.html" target="pamguardapi">
+    <a class="dropdown-item" href=".././api/index.html" target="pamguardapi">
  <span class="dropdown-text">PAMGuard API</span></a>
   </li>  
     </ul>
@@ -281,11 +247,11 @@ cookieconsent.run({
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-links">    
         <li>
-    <a class="dropdown-item" href="./links/mmo.html">
+    <a class="dropdown-item" href="../links/mmo.html">
  <span class="dropdown-text">MMO Service Providers</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./links/ngos.html">
+    <a class="dropdown-item" href="../links/ngos.html">
  <span class="dropdown-text">Non Governmental Organisations (NGO’s)</span></a>
   </li>  
     </ul>
@@ -336,12 +302,9 @@ cookieconsent.run({
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#writing-pamguard-plug-ins" id="toc-writing-pamguard-plug-ins" class="nav-link active" data-scroll-target="#writing-pamguard-plug-ins">Writing PAMGuard Plug-ins</a>
-  <ul class="collapse">
-  <li><a href="#adding-plug-ins-to-the-core-pamguard-model" id="toc-adding-plug-ins-to-the-core-pamguard-model" class="nav-link" data-scroll-target="#adding-plug-ins-to-the-core-pamguard-model">Adding plug-ins to the Core PAMGuard model</a></li>
-  <li><a href="#set-module-data-dependencies" id="toc-set-module-data-dependencies" class="nav-link" data-scroll-target="#set-module-data-dependencies">Set module data dependencies</a></li>
-  <li><a href="#setting-the-minimum-and-maximum-numbers-of-module-instances" id="toc-setting-the-minimum-and-maximum-numbers-of-module-instances" class="nav-link" data-scroll-target="#setting-the-minimum-and-maximum-numbers-of-module-instances">Setting the minimum and maximum numbers of module instances</a></li>
-  </ul></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#pamguard-in-the-field" id="toc-pamguard-in-the-field" class="nav-link" data-scroll-target="#pamguard-in-the-field">PAMGuard in the field</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -350,7 +313,7 @@ cookieconsent.run({
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Adding Core Modules</h1>
+<h1 class="title">PAMGuard and Greenpeace towed array</h1>
 </div>
 
 
@@ -367,46 +330,53 @@ cookieconsent.run({
 </header>
 
 
-<p>There are two types of PAMGuard module. <a href="coremodules.html">Core modules</a> which are built into the main PAMGuard code and <a href="pluginmodules.html">Plugin modules</a> which are distributed sparately. This page tells you how to add a <a href="coremodules.html">core module</a> to PAMGuard.</p>
-<p>Before reading this page, make sure you’ve read up on how to <a href="devmodules.html">develop a core module</a></p>
-<section id="writing-pamguard-plug-ins" class="level2">
-<h2 class="anchored" data-anchor-id="writing-pamguard-plug-ins">Writing PAMGuard Plug-ins</h2>
-<section id="adding-plug-ins-to-the-core-pamguard-model" class="level3">
-<h3 class="anchored" data-anchor-id="adding-plug-ins-to-the-core-pamguard-model">Adding plug-ins to the Core PAMGuard model</h3>
-<p>To make a PAMGuard plug-in available to PAMGuard users it is necessary to edit the java file PamModel/PamModel.java.</p>
-<p>First you register the module with PAMGuard using</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>PamModuleInfo myModule <span class="op">=</span> PamModuleInfo<span class="op">.</span><span class="fu">registerControlledUnit</span> <span class="op">(</span><span class="bu">String</span> className<span class="op">,</span> <span class="bu">String</span> description<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>where className is the class name of the class PamControlledUnit and description is the descriptive name of the module.</p>
-<p>For example</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>PamModuleInfo myModule <span class="op">=</span> PamModuleInfo<span class="op">.</span><span class="fu">registerControlledUnit</span> <span class="op">(</span><span class="st">"GPS.GPSControl"</span><span class="op">,</span> <span class="st">"GPS Processing"</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>adds the GPS module.</p>
-<p>The module will now be listed in the PAMGuard File/Add Modules menu from where the user can create instances of the module.</p>
-<p>The PAMGuard settings manager will be aware of the new module and will automatically create the module the next time PAMGuard is run. ### Add the module to a menu group</p>
-<p>Due to the large number of PAMGuard modules now in existence, you will want to have your module listed in one of the sub menus of the File/Add Modules menu. You can add your module to one of the existing groups or you can create a new group of your own. For example, the following code adds the GPS module to the Map menu group</p>
-<p>myModule.setModulesMenuGroup(mapsGroup);</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In 2019, Greenpeace deployed their first towed hydrophone from the stern of <em>MY Arctic Sunrise</em> as part of the pole to pole campaign for ocean protection, working with researchers from the University of Exeter, UK (<a href="https://www.greenpeace.org/international/story/23898/protect-the-oceans-pole-to-pole/" class="uri">https://www.greenpeace.org/international/story/23898/protect-the-oceans-pole-to-pole/</a>). The pole-to-pole campaign collected over 1,696 hours of acoustic recordings from the Arctic down the Atlantic, and then along to the Westen Antarctic Peninsula.</p>
+<p>Since then, ten further surveys have taken place across the globe, across three different Greenpeace vessels (<em>My Arctic Sunrise, SY Rainbow Warrior,</em> and <em>SY Witness</em>) helping to document cetacean diversity, often in poorly studied regions or areas marked for anthropogenic exploitation.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="gptowedimages/towed_map.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Towed passive acoustic surveys running PAMGuard deployed on Greenpeace ships, including systematic surveys in the Carion-Clipperton zone and Hellenic trench, as well as opportunistic surveys for cetacean diversity assessment around the Saya de Malha bank and Vema Seamount</figcaption>
+</figure>
+</div>
 </section>
-<section id="set-module-data-dependencies" class="level3">
-<h3 class="anchored" data-anchor-id="set-module-data-dependencies">Set module data dependencies</h3>
-<p>It is likely that your module will be dependent on data from some other PAMGuard module. For example, the click detector requires raw data from an acquisition module, the whistle detector required raw data from a FFT module and the GPS module requires data from an NMEA data source.</p>
-<p>You can set module dependencies using</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>PamModuleInfo<span class="op">.</span><span class="fu">addDependency</span><span class="op">(</span>PamDependency dependancy<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>for example</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>myModule<span class="op">.</span><span class="fu">addDependency</span><span class="op">(</span><span class="kw">new</span> <span class="fu">PamDependency</span><span class="op">(</span>NMEADataUnit<span class="op">.</span><span class="fu">class</span><span class="op">,</span> <span class="st">"NMEA.NMEAControl"</span><span class="op">));</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>tells PAMGuard that myModule is dependent on some source of NMEADataUnit and that a possible source of this type of data is the NMEA.NMEAControl module.</p>
-<p>Note that some types of data may be produced by many different modules, so here you should specify the most common source of the data your module will use.</p>
+<section id="pamguard-in-the-field" class="level2">
+<h2 class="anchored" data-anchor-id="pamguard-in-the-field">PAMGuard in the field</h2>
+<p>PAMGuard, running on a standard consumer laptop PC, processed four-channels of data from a towed hydrophone array deployed of the stern of the vessel. Researchers onboard the ships could monitor the incoming sounds for various cetacean species. Monitoring data in real-time with PAMGuard meant some species such as sperm whales could be tracked acoustically during their foraging dives, or by listening out for codas produced at the surface, helping teams onboard find the sperm whales at the surface and take ID photos. Sharing these ID photos with local researchers helps to gain further insights into animal movements (Thompson et al., 2024). All the incoming acoustic data was recorded using PAMGuard so that the data could be reanalysed onshore for cetacean presence.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="gptowedimages/kirsten_towed.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Dr.&nbsp;Kirsten Young deploying the towed hydrophone array from the stern of the <em>MY Arctic Sunrise.</em> Credit: Greenpeace International / D. Zalcman</figcaption>
+</figure>
+</div>
+<p>With over 25 TB of acoustic data collected during the first pole to pole survey, researchers developed a streamlined workflow using PAMGuard to efficiently process large quantities of data collected with a towed hydrophone array (Webber et al., 2022). Since then, this workflow, with some tweaking here and there, has been applied to all the acoustic surveys conducted onboard Greenpeace ships.</p>
+<p>Acoustic recordings which could be linked to visually verified single species sighting have been made available online to aid in the development of automated classification algorithms. For example, a Risso’s dolphin click classifier. Resulting data on cetacean occurrence and diversity from these surveys, have been and will continue to be published (e.g.&nbsp; Thompson et al., 2023, Webber et al., 2023, Webber et al., 2025, Young et al., 2025), increasing the pool of knowledge which can be drawn upon to implement conservation measures, or push for further systematic survey effort in poorly studied regions.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="gptowedimages/acoustic_setup.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Acoustic monitoring station running PAMGuard, set up on the <em>SY Rainbow Warrior.</em></figcaption>
+</figure>
+</div>
+<p>Greenpeace is now also trialing the use of drifting vertical hydrophone arrays to better detect more cryptic species such as beaked whales. Beaked whale are known to be particularly sensitive to disturbance from anthropogenic activities. PAMGuard is currently being used to process the data from these drifters while they are being tested.</p>
+<p>The ability of PAMGuard to collect and process data in real-time, and it’s efficient post-processing has been crucial to aid researchers during these surveys, facilitating more complete cetacean diversity assessments to be conducted.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="gptowedimages/towed_array.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>The MY Arctic Sunrise towing the hydrophone array in Antarctic waters. Credit: Greenpeace International / A. Trayler-Smith.</figcaption>
+</figure>
+</div>
 </section>
-<section id="setting-the-minimum-and-maximum-numbers-of-module-instances" class="level3">
-<h3 class="anchored" data-anchor-id="setting-the-minimum-and-maximum-numbers-of-module-instances">Setting the minimum and maximum numbers of module instances</h3>
-<p>You can use two functions</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>PamModuleInfo<span class="op">.</span><span class="fu">setMinNumber</span><span class="op">(</span><span class="dt">int</span> minNumber<span class="op">)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>PamModuleInfo<span class="op">.</span><span class="fu">setMaxNumber</span><span class="op">(</span><span class="dt">int</span> maxNumber<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>to set the minimum and maximum numbers of a given module type.</p>
-<p>If these are not set (which is generally the case), then the minimum number defaults to zero and there is no maximum number.</p>
-<p>If you set a minimum number, then PAMGuard will automatically create that number of modules at start up.</p>
-<p>If you set a maximum number then PAMGuard will prevent you from creating more than that number of modules.</p>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>Thompson, KF., Webber, T., Karantzas, L., Gordon, J., Frantzis, A. (2023). Summer and winter surveys of deep waters of the Hellenic Trench, Greece, provide insights into the spatial and temporal distribution of odontocetes. Endang Species Res 52:163-176 <a href="https://doi.org/10.3354/esr01265" class="uri">https://doi.org/10.3354/esr01265</a></p>
+<p>Thompson, K.F., Gordon, J., Webber, T., Zuriel, Y., Kobo, K., Tchernov, D. et al.&nbsp;(2024). Threatened cetaceans off the coast of Israel and long-range movement of a sperm whale. <em>Aquatic Conservation: Marine and Freshwater Ecosystems</em>, 34(5), e4155. <a href="https://doi.org/10.1002/aqc.4155" class="uri">https://doi.org/10.1002/aqc.4155</a></p>
+<p>Webber, T., Gillespie, D., Lewis, T., Gordon, J., Ruchirabha, T., &amp; Thompson, K. F. (2022). Streamlining analysis methods for large acoustic surveys using automatic detectors with operator validation. <em>Methods in Ecology and Evolution</em>, 13, 1765–1777. <a href="https://doi.org/10.1111/2041-210X.13907" class="uri">https://doi.org/10.1111/2041-210X.13907</a>.</p>
+<p>Webber, T., Boisseau, O., Young, K.F., Provost, F., de Vos, A. (2025). Cetaceans and threats of the Ninety East Ridge and high seas of the Indian Ocean. <em>Marine Environmental Research.</em> 107290. <a href="https://doi.org/10.1016/j.marenvres.2025.107290" class="uri">https://doi.org/10.1016/j.marenvres.2025.107290</a>.</p>
+<p>Webber, T., Lewis, T., Talma, S., et al.&nbsp;(2023). Cetaceans of the Saya de Malha bank region, Indian Ocean: A candidate important marine mammal area. <em>Regional Studies in Marine Science,</em> <em>66</em>, 103164. <a href="https://doi.org/10.1016/j.rsma.2023.103164" class="uri">https://doi.org/10.1016/j.rsma.2023.103164</a></p>
+<p>Young, K.F., Webber, T., Karantzas, L., Miteva, S., Oakes, G., Santillo, D., Johnston, P. (2025). Threatened cetaceans in a potential deep seabed mining region, Clarion Clipperton Zone, Eastern Pacific, August 2023. <em>Front. Mar.&nbsp;Sci.</em> 12. <a href="https://doi" class="uri">https://doi</a>: 10.3389/fmars.2025.1511075.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
