@@ -220,6 +220,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#select-operation-mode" id="toc-select-operation-mode" class="nav-link active" data-scroll-target="#select-operation-mode">Select Operation Mode</a></li>
   <li><a href="#viewer-task-configuration" id="toc-viewer-task-configuration" class="nav-link" data-scroll-target="#viewer-task-configuration">Viewer Task Configuration</a></li>
+  <li><a href="#project-information-project-metadata" id="toc-project-information-project-metadata" class="nav-link" data-scroll-target="#project-information-project-metadata">Project Information (Project Metadata)</a></li>
   </ul>
 </nav>
     </div>
@@ -294,11 +295,17 @@ ul.task-list li input[type="checkbox"] {
 <li>Open the psfx file from the Configuration panel and change the settings there. Again <strong>remember to save the configuration or the changes will not get used.</strong></li>
 <li>On the Offline tasks table, click on the button to the right of each task “Configure Task” and the settings for that task should show in a popup dialog. Once the dialog is closed, the settings will be applied to all jobs (apart from any already running).</li>
 </ol>
+</section>
+</section>
+<section id="project-information-project-metadata" class="level3">
+<h3 class="anchored" data-anchor-id="project-information-project-metadata">Project Information (Project Metadata)</h3>
+<p>It is assumed that all jobs in a set will want to share the same project information (metadata). This is particularly important if you’re exporting data to a Tethys database.</p>
+<p>As each job starts, the project information will be copied from the batch configuration to each job. It is therefore important that the information in the batch configuration is up to date. If, at any point, you edit this information in the external configuration, then you will be asked if you want to copy it to the batch configuration.</p>
+<p><img src="images/copymetadata.png" class="img-fluid"></p>
 <p><a href="batchconfiguration.html">Previous: Normal mode configuration..</a></p>
 <p><a href="batchjobs.html">Next: Creating Batch Jobs.</a></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

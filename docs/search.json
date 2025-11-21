@@ -1124,14 +1124,14 @@
     "href": "plugins/tritech.html",
     "title": "Tritech Sonar Processing",
     "section": "",
-    "text": "Acquires and processed data in real time or from files from Tritech Gemini Multibeam Sonars 1. Acquire data directly from Tritech Gemini sonars 2. Run track detectors in real time on the sonar data 3. process data from Tritech GLF data files offline 4. view and annotate detection data using the PAMGuard viewer.\n\n\nDouglas Gillespie, Gordon Hastie, Jessica Montabaranom, Emma Longden, Katie Rapson, Anhelina Holoborodko, and Carol Sparling. “Automated detection and tracking of marine mammals in the vicinity of tidal turbines using multibeam sonar.” Journal of Marine Science and Engineering 11, no. 11 (2023): 2095.\n\n\n\nFor further information see the release notes on GitHub\nSource Code\nBuilt Module"
+    "text": "Acquires and processed data in real time or from files from Tritech Gemini Multibeam Sonars 1. Acquire data directly from Tritech Gemini sonars 2. Run track detectors in real time on the sonar data 3. process data from Tritech GLF data files offline 4. view and annotate detection data using the PAMGuard viewer.\n\n\nDouglas Gillespie, Gordon Hastie, Jessica Montabaranom, Emma Longden, Katie Rapson, Anhelina Holoborodko, and Carol Sparling. “Automated detection and tracking of marine mammals in the vicinity of tidal turbines using multibeam sonar.” Journal of Marine Science and Engineering 11, no. 11 (2023): 2095.\n\n\n\nFor further information see the release notes on GitHub\nSource Code\nBuilt Module\nOnline Help"
   },
   {
     "objectID": "plugins/tritech.html#tritech-sonar-processing",
     "href": "plugins/tritech.html#tritech-sonar-processing",
     "title": "Tritech Sonar Processing",
     "section": "",
-    "text": "Acquires and processed data in real time or from files from Tritech Gemini Multibeam Sonars 1. Acquire data directly from Tritech Gemini sonars 2. Run track detectors in real time on the sonar data 3. process data from Tritech GLF data files offline 4. view and annotate detection data using the PAMGuard viewer.\n\n\nDouglas Gillespie, Gordon Hastie, Jessica Montabaranom, Emma Longden, Katie Rapson, Anhelina Holoborodko, and Carol Sparling. “Automated detection and tracking of marine mammals in the vicinity of tidal turbines using multibeam sonar.” Journal of Marine Science and Engineering 11, no. 11 (2023): 2095.\n\n\n\nFor further information see the release notes on GitHub\nSource Code\nBuilt Module"
+    "text": "Acquires and processed data in real time or from files from Tritech Gemini Multibeam Sonars 1. Acquire data directly from Tritech Gemini sonars 2. Run track detectors in real time on the sonar data 3. process data from Tritech GLF data files offline 4. view and annotate detection data using the PAMGuard viewer.\n\n\nDouglas Gillespie, Gordon Hastie, Jessica Montabaranom, Emma Longden, Katie Rapson, Anhelina Holoborodko, and Carol Sparling. “Automated detection and tracking of marine mammals in the vicinity of tidal turbines using multibeam sonar.” Journal of Marine Science and Engineering 11, no. 11 (2023): 2095.\n\n\n\nFor further information see the release notes on GitHub\nSource Code\nBuilt Module\nOnline Help"
   },
   {
     "objectID": "plugins/visangles.html",
