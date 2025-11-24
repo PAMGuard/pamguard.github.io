@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Processing PAMGuard Data Files – PAMGuard</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/PAMGuardIcon2.png" rel="icon" type="image/png">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d5f7992bbb7c5c1ef6617cc4063ea1db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-0N9ELT30EX"></script>
+
+<script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-0N9ELT30EX', { 'anonymize_ip': true});
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"implied",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
+</script> 
+  
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/PAMGuardIcon2.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">PAMGuard</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../about.html">
+ <span class="dropdown-text">About PAMGuard</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../license.html">
+ <span class="dropdown-text">License</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../funding.html">
+ <span class="dropdown-text">Funding</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../publications.html">
+ <span class="dropdown-text">Publications</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../team/team.html">
+ <span class="dropdown-text">Meet the team</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-users" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Users</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-users">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorials.html">
+ <span class="dropdown-text">User Tutorials</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../coremodules.html">
+ <span class="dropdown-text">Core Modules</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../pluginmodules.html">
+ <span class="dropdown-text">Plugin Modules</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../matlabandr.html">
+ <span class="dropdown-text">Data Export, R, Matlab, &amp; Python</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../contact.html">
+ <span class="dropdown-text">Contact and Support</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href=".././olhelp/index.html">
+ <span class="dropdown-text">Online help pages</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-download" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Download</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-download">    
+        <li>
+    <a class="dropdown-item" href="../systemreq.html">
+ <span class="dropdown-text">System Requirements</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../downloadsurvey.html">
+ <span class="dropdown-text">PAMGuard Installers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../plugins/plugins.html">
+ <span class="dropdown-text">Download Plugins</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../configs/configs.html">
+ <span class="dropdown-text">Configuration Files</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../rocca/rocca.html">
+ <span class="dropdown-text">Rocca Classifiers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../whistleclassifier.html">
+ <span class="dropdown-text">Whistle Classifiers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../deep_learning_models/deeplearningmodels.html">
+ <span class="dropdown-text">Deep Learning Classifiers</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-developers" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Developers</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-developers">    
+        <li>
+    <a class="dropdown-item" href="../sourcecode.html">
+ <span class="dropdown-text">Source Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../devmodules.html">
+ <span class="dropdown-text">Develop PAMGuard Modules</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../addmodules.html">
+ <span class="dropdown-text">Adding Core Modules</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../devplugins.html">
+ <span class="dropdown-text">Creating Plugin Modules</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href=".././api/index.html" target="pamguardapi">
+ <span class="dropdown-text">PAMGuard API</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-links" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Links</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-links">    
+        <li>
+    <a class="dropdown-item" href="../links/mmo.html">
+ <span class="dropdown-text">MMO Service Providers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../links/ngos.html">
+ <span class="dropdown-text">Non Governmental Organisations (NGO’s)</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/PAMGuard/PAMGuard" target="pggitpage">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/PAMGuard/PAMGuard/issues" target="pggitpage">
+            Report an Issue
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-facebook"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://www.facebook.com/pamguard" target="pgfbpage">
+            Facebook
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://bsky.app/profile/pamguard.org" target="pgbspage">
+            BlueSky
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#instructions-for-installing-software" id="toc-instructions-for-installing-software" class="nav-link" data-scroll-target="#instructions-for-installing-software">Instructions for installing software</a></li>
+  <li><a href="#data-to-use-with-this-tutorial" id="toc-data-to-use-with-this-tutorial" class="nav-link" data-scroll-target="#data-to-use-with-this-tutorial">Data to use with this tutorial</a></li>
+  <li><a href="#exercise-1-open-a-click-detector-binary-file" id="toc-exercise-1-open-a-click-detector-binary-file" class="nav-link" data-scroll-target="#exercise-1-open-a-click-detector-binary-file">Exercise 1: Open a Click Detector Binary File</a></li>
+  </ul></li>
+  <li><a href="#exercise-2-plotting-waveform-data" id="toc-exercise-2-plotting-waveform-data" class="nav-link" data-scroll-target="#exercise-2-plotting-waveform-data">Exercise 2: Plotting Waveform Data</a></li>
+  <li><a href="#exercise-3-load-a-folder-of-click-files-and-count-the-classified-clicks" id="toc-exercise-3-load-a-folder-of-click-files-and-count-the-classified-clicks" class="nav-link" data-scroll-target="#exercise-3-load-a-folder-of-click-files-and-count-the-classified-clicks">Exercise 3: Load a Folder of Click Files and Count the Classified Clicks</a>
+  <ul class="collapse">
+  <li><a href="#method-1-loading-files-individually-into-memory-recommended" id="toc-method-1-loading-files-individually-into-memory-recommended" class="nav-link" data-scroll-target="#method-1-loading-files-individually-into-memory-recommended">Method 1: loading files individually into memory (recommended)</a></li>
+  <li><a href="#method-2-loading-all-data-into-memory-at-once-memory-intensive" id="toc-method-2-loading-all-data-into-memory-at-once-memory-intensive" class="nav-link" data-scroll-target="#method-2-loading-all-data-into-memory-at-once-memory-intensive">Method 2: loading all data into memory at once (memory intensive)</a></li>
+  </ul></li>
+  <li><a href="#exercise-4-loading-whistle-files" id="toc-exercise-4-loading-whistle-files" class="nav-link" data-scroll-target="#exercise-4-loading-whistle-files">Exercise 4: Loading Whistle Files</a></li>
+  <li><a href="#exercise-5-plotting-whistle-contours" id="toc-exercise-5-plotting-whistle-contours" class="nav-link" data-scroll-target="#exercise-5-plotting-whistle-contours">Exercise 5: Plotting Whistle Contours</a></li>
+  <li><a href="#exercise-6-creating-a-long-term-spectral-average" id="toc-exercise-6-creating-a-long-term-spectral-average" class="nav-link" data-scroll-target="#exercise-6-creating-a-long-term-spectral-average">Exercise 6: Creating a Long Term Spectral Average</a></li>
+  <li><a href="#youre-done" id="toc-youre-done" class="nav-link" data-scroll-target="#youre-done">You’re Done</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Processing PAMGuard Data Files</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Various <a href="https://www.pamguard.org/coremodules.html">modules in PAMGuard</a> produce <a href="https://www.pamguard.org/olhelp/utilities/BinaryStore/docs/binarystore_overview.html">binary files</a>. Custom libraries written in MATLAB, R and Python exist to help you further process these files. In this tutorial, we will process a folder of <a href="https://www.pamguard.org/olhelp/detectors/clickDetectorHelp/docs/ClickDetector_clickDetector.html">Click Detector</a> binary files, count clicks per minute and create a concatenated string of porpoise detections.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Version
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These tutorials were tested with the latest version of PAMGuard, V2.2.17, and the latest versions of the MATLAB, R and Python interfaces We offer no guarantee that they will work with earlier versions.</p>
+<p>If you have older binary files, the latest PAMGuard release can <a href="https://www.pamguard.org/olhelp/utilities/BinaryStore/docs/binarystore_update.html">update them to the latest version</a>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This tutorial uses example path names from both Windows and macOS/Linux. Make sure you alter path names accordingly for all exercises</p>
+</div>
+</div>
+<section id="instructions-for-installing-software" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-for-installing-software">Instructions for installing software</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">MATLAB</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<ol type="1">
+<li>Go to <a href="https://github.com/PAMGuard/PAMGuardMatlab/releases">GitHub Releases</a></li>
+<li>Download the latest <code>pgmatlab-{version}.zip</code> file</li>
+<li>Extract the ZIP file to your desired location</li>
+<li>Add the extracted <code>pgmatlab</code> folder to your MATLAB path:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">addpath</span>(<span class="ss">'path/to/extracted/pgmatlab'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You only need to add the one pgmatlab folder to your path to use the main PAMGuard binary file functions. However, if you’re using any of the utility and database functions directly within your own code, you’ll need to either import the namespaces, import individual functions from within the namespaces, or put the full namespace path in every function call:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">import</span> <span class="va">pgmatlab</span>.<span class="va">utils</span><span class="op">.*;</span> <span class="co">% import PAMGuard utils functions </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">import</span> <span class="va">pgmatlab</span>.<span class="va">db</span><span class="op">.*;</span> <span class="co">% import PAMGuard database functions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>To get started with R and PAMGuard you must first install the PAMBinaries package. Start RStudio and go to <em>Tools -&gt; Install Packages</em>. In the dialog that appears type PamBinaries and click Install. R is now setup to read PAMGuard binary files!</p>
+<p><img src="public/R_install.png" class="img-fluid" alt="Importing the PAMGuard R PAMBinaries library is very straightforward using the Install packages feature in RStudio">.</p>
+<p>The R library is near enough a carbon copy of the MATLAB library so the functions are all the same but the basic “syntax” is different but remember to import the library at the start of your script.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PamBinaries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>To install the Python library simply install pypamguard via pip in your Python IDE.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pip install pypamguard</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then make sure to import the library at the top of your script.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pypamguard</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-to-use-with-this-tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="data-to-use-with-this-tutorial">Data to use with this tutorial</h3>
+<p>All data used in this tutorial can be downloaded from Zenodo at <a href="https://doi.org/10.5281/zenodo.17697843" class="uri">https://doi.org/10.5281/zenodo.17697843</a>. Once you’ve downloaded the zip file, unzip it and put the files somewhere convenient on your computer. In each tutorial, we reference the files and folders you’ve downloaded as /enter/your/path/…, which you should of course replace with the path to the files on your computer.</p>
+<p>As always, we encourage you to also take a look at your own data files.</p>
+</section>
+<section id="exercise-1-open-a-click-detector-binary-file" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-open-a-click-detector-binary-file">Exercise 1: Open a Click Detector Binary File</h3>
+<p>For the first exercise of this tutorial, you will open a click detector binary file from the folder Data/porpoise_data/Binary/20130710/. This contains 24 files: twelve data files (.pgdf) and twelve index files (.pgdx). You will concern yourself solely with the twelve data files (.pgdf). Select one of these files which you will open and process; then follow the instructions for your preferred programming language below.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">MATLAB</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>Below, we use <code>loadPamguardBinaryFile()</code> to load the click file into a data array <code>clicks</code> and metadata object <code>fileInfo</code>. The <code>clicks</code> variable is an array of data elements (clicks) in the binary file.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Accessing array elements in MATLAB
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To access elements from an array in MATLAB you must use curved brackets starting at index one <code>(1)</code>, unlike most languages which use square brackets from index zero <code>[0]</code>.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">import</span> <span class="va">pgmatlab</span><span class="op">.*;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>[<span class="va">clicks</span><span class="op">,</span> <span class="va">fileInfo</span>] <span class="op">=</span> <span class="va">pgmatlab</span>.<span class="va">loadPamguardBinaryFile</span>(<span class="st">"\enter\your\path\porpoise_data\PAMBinary\20130710\Click_Detector_Click_Detector_Clicks_20130710_142512.pgdf"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">% get and print the first click</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="va">firstClick</span> <span class="op">=</span> <span class="va">clicks</span>(<span class="fl">1</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="va">disp</span>(<span class="va">firstClick</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">% get and print startSample of the first click</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="va">firstClickStartSample</span> <span class="op">=</span> <span class="va">clicks</span>(<span class="fl">1</span>).<span class="va">startSample</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="va">disp</span>(<span class="va">firstClickStartSample</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To check that the file you have loaded is correctly a click detector you can access the file</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>In R, we use <code>loadPamguardBinaryFile()</code> to load all contents of the processed data file into a single <code>clickFile</code> object. The <code>clickFile$data</code> attribute produces an array of data elements (clicks) in the binary file.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PamBinaries)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>clickFile <span class="ot">&lt;-</span> <span class="fu">loadPamguardBinaryFile</span>(<span class="st">"</span><span class="sc">\e</span><span class="st">nter\your\path\porpoise_data\PAMBinary\20130710\Click_Detector_Click_Detector_Clicks_20130710_142512.pgdf"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>clicks <span class="ot">=</span> clickFile<span class="sc">$</span>data</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># get the first click</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>firstClick <span class="ot">&lt;-</span> clicks[[<span class="dv">28</span>]]</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(firstClick)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># get startSample of the first click</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>firstClickStartSample <span class="ot">&lt;-</span> clicks[[<span class="dv">1</span>]]<span class="sc">$</span>startSample</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(firstClickStartSample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p>In Python we use <code>load_pamguard_binary_file()</code> to load all contents of the processed data file into a single <code>click_file</code> object. The <code>click_file.data</code> attribute produces an array of all data elements (clicks) in the binary file.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Python notation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In Python we use <code>snake_case</code> rather than <code>camelCase</code> (as used in MATLAB and R) to write out phrases such as variable and method names.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pypamguard <span class="im">import</span> load_pamguard_binary_file</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>click_file <span class="op">=</span> load_pamguard_binary_file(<span class="st">"\enter\your\path\porpoise_data\PAMBinary</span><span class="ch">\201</span><span class="st">30710\Click_Detector_Click_Detector_Clicks_20130710_142512.pgdf"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>clicks <span class="op">=</span> click__file.data</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="op">//</span> get the first click</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>first_click <span class="op">=</span> clicks[<span class="dv">0</span>]</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(first_click)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="op">//</span> get startSample of the first click</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>first_click_start_sample <span class="op">=</span> clicks[<span class="dv">0</span>].start_sample</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(first_click_start_sample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exercise-2-plotting-waveform-data" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-plotting-waveform-data">Exercise 2: Plotting Waveform Data</h2>
+<p>Now that we have loaded in the data files into a more workable data structure, we will plot the the waveform data of the first click. You can build off of the code from exercise 1.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Depending on how you set-up PAMGuard, the exact plots shown in this tutorial may not match those that you produce yourself. So long as you understand what the code is doing, this is not a problem.</p>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">MATLAB</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>MATLAB has an in-built method <code>plot()</code> that simplifies plotting the waveform data.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">%Get the 28th click - note that MATLAB counts from one</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">waveFormData</span><span class="op">=</span><span class="va">clicks</span>(<span class="fl">28</span>).<span class="va">wave</span><span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="va">plot</span>(<span class="va">waveFormData</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="va">xlabel</span>(<span class="ss">'Samples'</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="va">ylabel</span>(<span class="ss">'Linear amplitude'</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="va">set</span>(<span class="va">gca</span><span class="op">,</span> <span class="ss">'FontSize'</span><span class="op">,</span> <span class="fl">14</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that there may be more than one waveform in single click detection. This is because channels within the click detector can be grouped together. e.g.&nbsp;for a typical towed array survey where the two hydrophone elements within the towed array are close together, those two channels will be grouped- hence a single click detection would have two sets of waveform information, one for channel 0 and one for channel 1.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="public/waveform-matlab.png" class="img-fluid figure-img"></p>
+<figcaption>MATLAB waveform plot</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>R has an in-built method <code>plot()</code> that simplifies plotting the waveform data. We need to create the x-axis manually by creating an array of integers <code>x</code> from 1 to the length of the waveform data. The use of the index <code>[,1]</code> cuts down a potential multi-channel waveform into a single-channel waveform of the lowest channel number.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Get the 28th click - note that R counts from one</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>wave <span class="ot">=</span> clicks[<span class="dv">28</span>]<span class="sc">$</span>wave[,<span class="dv">1</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(aclick<span class="sc">$</span>wave[,<span class="dv">1</span>])</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, aclick<span class="sc">$</span>wave[,<span class="dv">1</span>], <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="public/waveform-R.png" class="img-fluid figure-img"></p>
+<figcaption>R waveform plot</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<p>In Python the <code>matplotlib</code> library is required to plot data. The code below will plot all the waveform data from the first channel.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Import matplotlib using <code>pip install matplotlib</code> in the command line / terminal. If you do not have matplotlib installed the following code will not work for you.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># code from previous exercise goes here</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Get the 28th click - note that Python counts from zero so the index is 27</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>plt.plot(clicks[<span class="dv">27</span>].wave[<span class="dv">0</span>])</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'plot.png'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The code above will have saved the plot in a PNG file <code>plot.png</code> within your current working directory.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="public/waveform-python.png" class="img-fluid figure-img"></p>
+<figcaption>Python waveform plot</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Plotting multiple channels
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The code above plots the first channel from the waveform data of the click. A click may have one or more channels (<code>clicks[0].wave</code> is a 2-dimensional array, as such). You can write a for-loop, as shown below, to plot all the separate channels together. In the event that the click only has one channel, both code snippets shown in this exercise achieve the exact same thing.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># code from previous exercise goes here</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> chan <span class="kw">in</span> clicks[<span class="dv">28</span>].wave:</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    plt.plot(chan)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'plot.png'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3-load-a-folder-of-click-files-and-count-the-classified-clicks" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-load-a-folder-of-click-files-and-count-the-classified-clicks">Exercise 3: Load a Folder of Click Files and Count the Classified Clicks</h2>
+<p>So far, we have opened one of the twelve click files. In reality we want to deal with any number of files in a folder. In this exercise, we will read all twelve binary files at once and count the number of classified clicks.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Classified click definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>clicks[0]</code> is considered a classified click when <code>clicks[0].type == 1</code>.</p>
+</div>
+</div>
+<section id="method-1-loading-files-individually-into-memory-recommended" class="level3">
+<h3 class="anchored" data-anchor-id="method-1-loading-files-individually-into-memory-recommended">Method 1: loading files individually into memory (recommended)</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">MATLAB</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<p>First, create an array of the files within your desired folder. The folder that you should load is the same of that which contained the click file in exercise 1. When we use the <code>fullfile()</code> method we pass in a file name mask <code>*.pgdf</code> to filter the files to only those with a .pgdf extension.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="va">folderName</span> <span class="op">=</span> <span class="ss">'\enter\your\path\porpoise_data\PAMBinary\20130710\'</span><span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="va">binaryFiles</span> <span class="op">=</span> <span class="va">dir</span>(<span class="va">fullfile</span>(<span class="va">folderName</span><span class="op">,</span> <span class="ss">'*.pgdf'</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The variable <code>binaryFiles</code> is an array of MATLAB structures, each of which contains information about a file in the folder. This allows us to open up the files one-at-a-time to prevent excessive memory usage.</p>
+</div>
+</div>
+<p>Now we must create a for loop to go through each of the files in <code>binaryFiles</code>, and load them in using <code>loadPamguardBinaryFile()</code> (as in exercises 1 and 2).</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">for</span> <span class="va">i</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">length</span>(<span class="va">binaryFiles</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">filePath</span> <span class="op">=</span> <span class="va">fullfile</span>(<span class="va">folderName</span><span class="op">,</span> <span class="va">binaryFiles</span>(<span class="va">i</span>).<span class="va">name</span>)<span class="op">;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">clicks</span> <span class="op">=</span> <span class="va">pgmatlab</span>.<span class="va">loadPamguardBinaryFile</span>(<span class="va">filePath</span>)<span class="op">;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This code achieves very little. Each time we load one of the files, it is almost immediately dumped from memory as the loop enters its next iteration - no useful information is produced.</p>
+<p>Now we will use a nested loop to count the number of porpoise clicks there exist in all twelve data files in the folder. We use a technique called nested looping here to increment a global counter. The outer loop (where <code>i</code> is incremented) goes through all the files, and the inner loop (where <code>j</code> is incremented) goes through all the clicks in each file to check whether they are classified or not.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="va">count</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">for</span> <span class="va">i</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">length</span>(<span class="va">binaryFiles</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">filePath</span> <span class="op">=</span> <span class="va">fullfile</span>(<span class="va">folderName</span><span class="op">,</span> <span class="va">binaryFiles</span>(<span class="va">i</span>).<span class="va">name</span>)<span class="op">;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">clicks</span> <span class="op">=</span> <span class="va">pgmatlab</span>.<span class="va">loadPamguardBinaryFile</span>(<span class="va">filePath</span>)<span class="op">;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">for</span> <span class="va">j</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">length</span>(<span class="va">clicks</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">if</span> (<span class="va">clicks</span>(<span class="va">j</span>).<span class="va">type</span> <span class="op">==</span> <span class="fl">1</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>            <span class="va">count</span> <span class="op">=</span> <span class="va">count</span> <span class="op">+</span> <span class="fl">1</span><span class="op">;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">fprintf</span>(<span class="ss">'Porpoise click count after %d files is %d\n'</span><span class="op">,</span> <span class="va">i</span><span class="op">,</span> <span class="va">count</span>)<span class="op">;</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<p>First, create an array of the files within your desired folder. The folder that you should load is the same of that which contained the click file in exercise 1. We use the in-built method <code>list.files()</code> with a pattern <code>\\.pgdf$</code> to mask the files.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>folderName <span class="ot">=</span> <span class="st">'</span><span class="sc">\e</span><span class="st">nter\your\path\porpoise_data\PAMBinary\20130710</span><span class="sc">\'</span><span class="st">;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">fileNames &lt;- list.files(folderName, pattern = "</span><span class="sc">\\</span><span class="st">.pgdf$")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The variable <code>fileNames</code> is an array of file names (as strings). This allows us to open up the files one-at-a-time to prevent excessive memory usage. Note that you can use</p>
+<pre><code>for (val in fnames) {
+  print(val)
+}</code></pre>
+<p>to print all the file names</p>
+</div>
+</div>
+<p>Now we must create a for-loop to go through each of the files represented by file names in <code>fileNames</code>, and load them in using <code>loadPamguardBinaryFile()</code> (as in exercises 1 and 2).</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (filename <span class="cf">in</span> fnames) {</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load each click file.</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    clicks <span class="ot">&lt;-</span> <span class="fu">loadPamguardBinaryFile</span>(<span class="fu">file.path</span>(folder, filename));  </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This code achieves very little. Each time we load one of the files, it is almost immediately dumped from memory as the loop enters its next iteration - no useful information is produced.</p>
+<p>Now we will use a nested loop to count the number of porpoise clicks there exist in all twelve data files in the folder. We use a technique called nested looping here to increment a global counter. The outer loop goes through all the files, and the inner loop goes through all the clicks in each file to check whether they are classified or not.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>count <span class="ot">=</span> <span class="dv">0</span>;</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (filename <span class="cf">in</span> fnames) {</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># load each click file.</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  clicks <span class="ot">&lt;-</span> <span class="fu">loadPamguardBinaryFile</span>(<span class="fu">file.path</span>(folder, filename));</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># iterate through the click files to count the classified clicks.</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (click <span class="cf">in</span> clicks<span class="sc">$</span>data) {</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (click<span class="sc">$</span>type <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>      count <span class="ot">=</span> count <span class="sc">+</span> <span class="dv">1</span>;</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<p>First, create an array of the files within your desired folder. The folder that you should load is the same of that which contained the click file in exercise 1. We use the native Python library <code>pathlib</code> to list all files within a folder (using the <code>Path</code> class), and mark them using the mask <code>*.pgdf</code>.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pathlib, pypamguard</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>folder_name <span class="op">=</span> <span class="st">'\enter\your\path\porpoise_data\PAMBinary</span><span class="ch">\201</span><span class="st">30710</span><span class="ch">\'</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="er">file_names = pathlib.Path</span>(folder_name).glob(<span class="st">'*.pgdf'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The variable <code>file_names</code> is an array of file names (as strings). This allows us to open up the files one-at-a-time to prevent excessive memory usage.</p>
+</div>
+</div>
+<p>Now we must create a for-loop to go through each of the files in <code>file_names</code>, and load them in using <code>load_pamguard_binary_file()</code> (as in exercises 1 and 2).</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code to create file_names variable goes here</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file_name <span class="kw">in</span> file_names:</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    clicks <span class="op">=</span> pypamguard.load_pamguard_binary_file(pathlib.Path(file_name))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This code achieves very little. Each time we load one of the files, it is almost immediately dumped from memory as the loop enters its next iteration - no useful information is produced.</p>
+<p>Now we will use a nested loop to count the number of porpoise clicks there exist in all twelve data files in the folder. We use a technique called nested looping here to increment a global counter. The outer loop goes through all the files, and the inner loop goes through all the clicks in each file to check whether they are classified or not.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code to create file_names variable goes here</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file_name <span class="kw">in</span> file_names:</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    clicks <span class="op">=</span> pypamguard.load_pamguard_binary_file(pathlib.Path(file_name))</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> click <span class="kw">in</span> clicks.data:</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> click.<span class="bu">type</span> <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>            count <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="method-2-loading-all-data-into-memory-at-once-memory-intensive" class="level3">
+<h3 class="anchored" data-anchor-id="method-2-loading-all-data-into-memory-at-once-memory-intensive">Method 2: loading all data into memory at once (memory intensive)</h3>
+<p>Each library has a function you can use to load all the files in a folder into memory at once. This can offer simplicity with respect to the nested loops you wrote above as you would no longer be responsible for looping through the individual files in the folder you wish to read.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Use at own risk
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The method to load all files in the folder into memory at once places a heavy burden on your computer’s memory. Only use this function if you are processing a small number of files, or are pre-filtering them significantly (we do not cover that in this tutorial).</p>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">MATLAB</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="sourceCode" id="cb23"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="va">folderName</span> <span class="op">=</span> <span class="ss">'/enter/your/path/porpoise_data/PAMBinary/20130710'</span><span class="op">;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="va">clicksAll</span> <span class="op">=</span> <span class="va">pgmatlab</span>.<span class="va">loadPamguardBinaryFolder</span>(<span class="va">folderName</span><span class="op">,</span> <span class="st">"Click_Detector_Click_Detector_Clicks_*.pgdf"</span>)<span class="op">;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="va">count</span> <span class="op">=</span> <span class="fl">0</span><span class="op">;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="kw">for</span> <span class="va">i</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">length</span>(<span class="va">clicksAll</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> (<span class="va">clicksAll</span>(<span class="va">i</span>).<span class="va">type</span> <span class="op">==</span> <span class="fl">1</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">count</span> <span class="op">=</span> <span class="va">count</span> <span class="op">+</span> <span class="fl">1</span><span class="op">;</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>R has no function to load all files in a folder at once. You should use for loops as described above.</p>
+</div>
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pypamguard</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>folder_name <span class="op">=</span> <span class="st">'/enter/your/path/porpoise_data/Binary/20130710'</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>clicks_all <span class="op">=</span> pypamguard.load_pamguard_binary_folder(folder_name)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> click <span class="kw">in</span> clicks_all.data:</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> click.<span class="bu">type</span> <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        count <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exercise-4-loading-whistle-files" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4-loading-whistle-files">Exercise 4: Loading Whistle Files</h2>
+<p>In this exercise we will open another type of file: the whistle file. This differs from click data as it is produced by the <a href="https://www.pamguard.org/olhelp/detectors/whistleMoanHelp/docs/whistleMoan_Overview.html">PAMGuard Whistle and Moan Detector</a>. It will become quite obvious the similarities and differences between the click detector and whistle files.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fun fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>PAMGuard has a large number of <a href="https://www.pamguard.org/coremodules.html">modules</a>. Each module produces different kinds of data, each of which can be read into the R, MATLAB or Python libraries for reading PAMGuard data files. This tutorial, which concerns the Click Detector and Whistle and Moan Detector, only scratches the surface of what PAMGuard, and these data file readers are capable of.</p>
+</div>
+</div>
+<p>You will open the file stored at /enter/your/path/whistle_data/PAMBinary/20190403/WhistlesMoans_Whistle_and_Moan_Detector_Contours_20190403_133052.pgdf in your preferred programming language. Depending on the working directory of your terminal or editor, you may need to adjust the relative path of the data file.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">MATLAB</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="sourceCode" id="cb25"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="va">import</span> <span class="va">pgmatlab</span><span class="op">.*;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="va">fileName</span> <span class="op">=</span> <span class="op">/</span><span class="va">enter</span><span class="op">/</span><span class="va">your</span><span class="op">/</span><span class="va">path</span><span class="op">/</span><span class="va">whistle_data</span><span class="op">/</span><span class="va">PAMBinary</span><span class="op">/</span><span class="fl">20190403</span><span class="op">/</span><span class="va">WhistlesMoans_Whistle_and_Moan_Detector_Contours_20190403_133052</span>.<span class="va">pgdf</span><span class="op">;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>[<span class="va">data</span><span class="op">,</span> <span class="va">fileInfo</span>] <span class="op">=</span> <span class="va">pgmatlab</span>.<span class="va">loadPamguardBinaryFile</span>(<span class="va">fileName</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>data</code> struct produced by the code above will contain at least the following attributes. Please familiarise yourself with them, before continuing on to the next section.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 92%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>MATLAB</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>millis</code></td>
+<td>The start time of the whistle in milliseconds.</td>
+</tr>
+<tr class="even">
+<td><code>startSample</code></td>
+<td>The first sample of the whistle often used for finer-scale time delay measurements.</td>
+</tr>
+<tr class="odd">
+<td><code>uid</code></td>
+<td>A unique identifier for the whistle.</td>
+</tr>
+<tr class="even">
+<td><code>channelMap</code></td>
+<td>The channel map for this whistle (one integer, made up of 32 bits, where each bit has a value 0 or 1 specifying the existence of that channel in the <code>contour</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>nSlices</code></td>
+<td>The number of slices the whistle’s <code>contour</code> is created from.</td>
+</tr>
+<tr class="even">
+<td><code>amplitude</code></td>
+<td>The amplitude of the whistle.</td>
+</tr>
+<tr class="odd">
+<td><code>sliceData</code></td>
+<td><p>An array of contour slices, with each slice <code>x</code> containing:</p>
+<ul>
+<li><p><code>sliceData(x).sliceNumber</code>: book-keeping;</p></li>
+<li><p><code>sliceData(x).nPeaks</code>: number of peaks;</p></li>
+<li><p><code>sliceData(x).peakData</code>: peak data;</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>contour</code></td>
+<td>An array of the same length as <code>sliceData</code> where each element <code>contour(x)</code> is the first frequency peak which defines the contour (<code>sliceData(x).peakData(2,1)</code>).</td>
+</tr>
+<tr class="odd">
+<td><code>contWidth</code></td>
+<td>An array of the same length as <code>sliceData</code> where each element <code>contWidth(x)</code> is the width of the first frequency peak in that contour slice (<code>sliceData(x).peakData(3,1)-sliceData(x).peakData(1,1)</code>).</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PamBinaries)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>binaryFile <span class="ot">&lt;-</span> <span class="fu">loadPamguardBinaryFile</span>(<span class="st">"/enter/your/path/whistle_data/PAMBinary/20190403/WhistlesMoans_Whistle_and_Moan_Detector_Contours_20190403_133052.pgdf"</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> binaryFile<span class="sc">$</span>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>data</code> variable produced by the code above will contain at least the following attributes. Please familiarise yourself with them, before continuing on to the next section.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 90%">
+<col style="width: 1%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><h1 id="r-6">R</h1>
+<p><code>millis</code></p></td>
+<td><h1 id="meaning">Meaning</h1>
+<p>The start time of the whistle in milliseconds.</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>startSample</code></td>
+<td>The first sample of the whistle often used for finer-scale time delay measurements.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>uid</code></td>
+<td>A unique identifier for the whistle.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>channelMap</code></td>
+<td>The channel map for this whistle (one integer, made up of 32 bits, where each bit has a value 0 or 1 specifying the existence of that channel in the <code>contour</code>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>nSlices</code></td>
+<td>The number of slices the whistle’s <code>contour</code> is created from.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>amplitude</code></td>
+<td>The amplitude of the whistle.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>minFreq</code></td>
+<td>The minimum frequency of the contour in Hz</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>maxFreq</code></td>
+<td>The maximum frequency of the contour in Hz</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>sliceData</code></td>
+<td>An array of contour slices, with each slice <code>x</code> containing: | | - <code>sliceData[x]$sliceNumber</code>: book-keeping; | | - <code>sliceData[x]$nPeaks</code>: number of peaks; | | - <code>sliceData[x]$peakData</code>: peak data; |</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>contour</code></td>
+<td>An array of the same length as <code>sliceData</code> where each element <code>contour(x)</code> is the first frequency peak which defines the contour (<code>sliceData[x]$peakData[0][1]</code>). |</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>contWidth</code></td>
+<td>An array of the same length as <code>sliceData</code> where each element <code>contWidth(x)</code> is the width of the first frequency peak in that contour slice (<code>sliceData(x)$peakData[0][2]-sliceData(x)$peakData[0][0]</code>). |</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pypamguard</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>binaryFile <span class="op">=</span> pypamguard.load_pamguard_binary_file(<span class="st">"/enter/your/path/whistle_data/PAMBinary/20190403/WhistlesMoans_Whistle_and_Moan_Detector_Contours_20190403_133052.pgdf"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> binaryFile.data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>data</code> variable produced by the code above will contain at least the following attributes. Please familiarise yourself with them, before continuing on to the next section.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Python</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>millis</code></td>
+<td>The start time of the whistle in milliseconds.</td>
+</tr>
+<tr class="even">
+<td><code>start_sample</code></td>
+<td>The first sample of the whistle often used for finer-scale time delay measurements.</td>
+</tr>
+<tr class="odd">
+<td><code>uid</code></td>
+<td>A unique identifier for the whistle.</td>
+</tr>
+<tr class="even">
+<td><code>channel_map</code></td>
+<td>The channel map for this whistle (one integer, made up of 32 bits, where each bit has a value 0 or 1 specifying the existence of that channel in the <code>contour</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>n_slices</code></td>
+<td>The number of slices the whistle’s <code>contour</code> is created from.</td>
+</tr>
+<tr class="even">
+<td><code>amplitude</code></td>
+<td>The amplitude of the whistle.</td>
+</tr>
+<tr class="odd">
+<td><code>slice_numbers</code></td>
+<td>An array of numbers: each element <code>slice_numbers[x]</code> containing a book-keeping number for a slice.</td>
+</tr>
+<tr class="even">
+<td><code>n_peaks</code></td>
+<td>A parallel array to <code>slice_numbers</code>, each element <code>n_peaks[x]</code> containing the number of peaks in that slice.</td>
+</tr>
+<tr class="odd">
+<td><code>peak_data</code></td>
+<td>A parallel array to <code>slice_numbers</code>, each element <code>peak_data[x]</code> containing a sub-array of peak frequency-related data for that slice.</td>
+</tr>
+<tr class="even">
+<td><code>contour</code></td>
+<td>A parallel array to <code>slice_numbers</code>, each element <code>contour[x]</code> containing the peak frequency of that slice (<code>peak_data[x][1]</code>).</td>
+</tr>
+<tr class="odd">
+<td><code>cont_width</code></td>
+<td>A parallel array to <code>slice_numbers</code>, each element <code>slice_numbers[x]</code> containing the frequency width of that slice (<code>peak_data[x][2] - peak_data[x][0]</code>).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-5-plotting-whistle-contours" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5-plotting-whistle-contours">Exercise 5: Plotting Whistle Contours</h2>
+<p>We will now plot all the whistle contours on a graph with each contour starting at <code>x = 0</code>. This is a neat way to visualise whistle detections and shows a snapshot of the whistle distribution with frequency.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">MATLAB</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<p>To do this, we loop through each of the whistles in <code>data</code>, plotting the peak frequencies from the <code>contour</code> attribute of each struct.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Calculating the true frequency of each contour
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We use user-defined <code>sampleRate</code> and <code>fftLength</code> variables to calculate the true frequency of each peak frequency data point in the contour.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Plotting more than one line on the same graph
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>hold on;</code> and <code>hold off;</code> statements provide a way to plot a lot of data on the same plot.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">%% Exercise 5</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">% Code from the previous exercise goes here</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="va">sampleRate</span> <span class="op">=</span> <span class="fl">96000</span><span class="op">;</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="va">fftLength</span> <span class="op">=</span> <span class="fl">1024</span><span class="op">;</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="va">hold</span> <span class="va">on</span><span class="op">;</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="kw">for</span> <span class="va">i</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">min</span>([<span class="va">length</span>(<span class="va">data</span>) <span class="fl">1000</span>])</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">contour</span> <span class="op">=</span> <span class="va">data</span>(<span class="va">i</span>).<span class="va">contour</span> <span class="op">*</span> <span class="va">sampleRate</span> <span class="op">/</span> <span class="va">fftLength</span><span class="op">;</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">myplot</span>(<span class="va">i</span>) <span class="op">=</span> <span class="va">plot</span>(<span class="va">contour</span><span class="op">,</span> <span class="ss">'g'</span><span class="op">,</span> <span class="ss">'LineWidth'</span><span class="op">,</span> <span class="fl">0.5</span>)<span class="op">;</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">disp</span>([<span class="ss">'Plotting whislte '</span> <span class="va">num2str</span>(<span class="va">i</span>) <span class="ss">' of '</span> <span class="va">num2str</span>(<span class="va">length</span>(<span class="va">data</span>))])</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="va">ylim</span>([<span class="fl">0</span><span class="op">,</span><span class="fl">48000</span>])<span class="op">;</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="va">hold</span> <span class="va">off</span><span class="op">;</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="va">xlabel</span>(<span class="ss">'Time (slices)'</span>)</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="va">ylabel</span>(<span class="ss">'Frequency (Hz)'</span>)</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="va">set</span>(<span class="va">gca</span><span class="op">,</span> <span class="ss">'FontSize'</span><span class="op">,</span> <span class="fl">14</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Execution of this code should produce a graph that looks something like this.</p>
+<p><img src="./public/whistle-contour-plot-matlab.png" class="img-fluid"></p>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<p>To do this, we loop through each of the whistles in the <code>data</code> variable, plotting the peak frequencies from the <code>contour</code> attribute of each object.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Calculating the true frequency of each contour
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We use user-defined <code>samplerate</code> and <code>fftlength</code> variables to calculate the true frequency of each peak frequency data point in the contour.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>samplerate<span class="ot">=</span><span class="dv">96000</span>;</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>fftlength<span class="ot">=</span><span class="dv">1024</span>;</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co">#library for line transparency</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co">#define sample rate and fft length in samples</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>samplerate<span class="ot">=</span><span class="dv">96000</span>;</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>fftlength<span class="ot">=</span><span class="dv">1024</span>;</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co"># create an empty plot with correct frequency limits</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span>,<span class="at">type =</span> <span class="st">"l"</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">120</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">48000</span>), <span class="at">xlab=</span><span class="st">'Slice no.'</span>,</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">'Frequency (Hz)'</span>)</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="co">#iterate through all the contours and plot them</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (awhistle <span class="cf">in</span> data) {</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">#create an aray of slices</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(awhistle<span class="sc">$</span>contour)</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">#extract contour and convert to units of Hz.</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>  contour <span class="ot">&lt;-</span> awhistle<span class="sc">$</span>contour<span class="sc">*</span>samplerate<span class="sc">/</span>fftlength;</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">#plot the line and make them transparent</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(x, contour, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">col=</span><span class="fu">alpha</span>(<span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="fl">0.1</span>))</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Execution of this code should produce a graph that looks something like this.</p>
+<p><img src="./public/whistle-contour-plot-R.png" class="img-fluid"></p>
+</div>
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+<p>To do this, we loop through each of the whistles in the <code>data</code></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Calculating the true frequency of each contour
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We use user-defined <code>sample_rate</code> and <code>fft_length</code> variables to calculate the true frequency of each peak frequency data point in the contour.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Code from the previous exercise goes here</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>sample_rate <span class="op">=</span> <span class="dv">96000</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>fft_length <span class="op">=</span> <span class="dv">1024</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>))</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>num_contours <span class="op">=</span> <span class="bu">min</span>(<span class="bu">len</span>(binaryFile.data), <span class="dv">1000</span>)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> whistle <span class="kw">in</span> binaryFile.data[:num_contours]:</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    contour <span class="op">=</span> whistle.contour <span class="op">*</span> (sample_rate <span class="op">/</span> fft_length)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    plt.plot(contour, color<span class="op">=</span><span class="st">'lawngreen'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time (slices)'</span>)         <span class="co"># Set your desired x-axis label</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Frequency (Hz)'</span>)        <span class="co"># Set your desired y-axis label</span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>, <span class="dv">100</span>)    <span class="co"># Set x-axis limits from 0 to 100 (change as needed)</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">50000</span>)   <span class="co"># Set y-axis limits from 0 to 50000 Hz (change as needed)</span></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Execution of this code should produce a graph that looks something like this.</p>
+<p><img src="./public/whistle-contour-plot-python.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-6-creating-a-long-term-spectral-average" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-6-creating-a-long-term-spectral-average">Exercise 6: Creating a Long Term Spectral Average</h2>
+<p>A long term spectral average (LTSA) can be very useful for getting a quick overview of long time periods of acoustic data. PAMGuard can produce an LTSA analysis, and output such data to a PAMGuard binary file.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Other <a href="https://www.pamguard.org/tutorials.html">tutorials</a> on the PAMGuard website have step by step guides on how to use PAMGuard to generate <a href="https://www.pamguard.org/olhelp/sound_processing/LTSA/Docs/LTSA.html">long term spectral averages</a>.</p>
+</div>
+</div>
+<p>We will be working with LTSA data found in the Data/LTSA/ folder. There are multiple data files in this folder, because PAMGuard has purposely split-up data to ensure small manageable files. We will load the entire folder at once, allowing all the requested LTSA data to be plotted at once.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">MATLAB</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-3" role="tab" aria-controls="tabset-8-3" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div class="sourceCode" id="cb31"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="va">import</span> <span class="va">pgmatlab</span><span class="op">;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">%load the data with the verbose flag set</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="va">ltsa</span> <span class="op">=</span> <span class="va">pgmatlab</span>.<span class="va">loadPamguardBinaryFolder</span>(<span class="st">"enter/your/path/LTSA_2/PAMBinary"</span><span class="op">,</span> <span class="st">"LTSA_*.pgdf"</span><span class="op">,</span> <span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="va">sr</span> <span class="op">=</span> <span class="fl">384000</span><span class="op">;</span> <span class="co">%samplerate in Hz</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="va">n</span> <span class="op">=</span> <span class="fl">1</span><span class="op">;</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="va">ltsa_spectrum</span><span class="op">=</span>[]<span class="op">;</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="va">times</span><span class="op">=</span>[]<span class="op">;</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co">% Run through the ltsa data and extract the data into a 2D array to plot as</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="co">% surface. Here we select every second LTSA data point as there are ~12,000</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co">% measurements and that can be hard to plot as a surface on some computers</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="kw">for</span> <span class="va">i</span> <span class="op">=</span> <span class="fl">1</span> <span class="op">:</span> <span class="fl">2</span> <span class="op">:</span> (<span class="va">length</span>(<span class="va">ltsa</span>) <span class="op">-</span> <span class="fl">1</span>)</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> (<span class="op">~</span><span class="va">isempty</span>(<span class="va">ltsa</span>(<span class="va">i</span>).<span class="va">data</span>))</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    <span class="va">ltsa_spectrum</span>(<span class="op">:,</span> <span class="va">n</span>) <span class="op">=</span> <span class="va">ltsa</span>(<span class="va">i</span>).<span class="va">data</span>(<span class="op">:,</span><span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    <span class="va">times</span>(<span class="va">n</span>) <span class="op">=</span> <span class="va">ltsa</span>(<span class="va">i</span>).<span class="va">date</span><span class="op">;</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">n</span><span class="op">=</span><span class="va">n</span><span class="op">+</span><span class="fl">1</span><span class="op">;</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="co">% Create a surface with the correct frequency and times - plot in kHz as a</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a><span class="co">% lot easier to see. </span></span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a><span class="va">freqbins</span> <span class="op">=</span> <span class="va">linspace</span>(<span class="fl">0</span><span class="op">,</span> <span class="va">sr</span><span class="op">/</span><span class="fl">1000</span><span class="op">/</span><span class="fl">2</span><span class="op">,</span> <span class="va">length</span>( <span class="va">ltsa_spectrum</span>(<span class="op">:,</span><span class="fl">1</span>)))<span class="op">;</span></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a><span class="co">%Create a grid of times and frequencies.</span></span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>[<span class="va">X</span><span class="op">,</span> <span class="va">Y</span>] <span class="op">=</span> <span class="va">meshgrid</span>(<span class="op">...</span></span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>    <span class="va">times</span><span class="op">,...</span></span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>    <span class="va">freqbins</span>)<span class="op">;</span></span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span></span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a><span class="co">% plot the surface</span></span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a><span class="va">surf</span>(<span class="va">X</span><span class="op">,</span> <span class="va">Y</span><span class="op">,</span> <span class="fl">20</span><span class="op">*</span><span class="va">log10</span>(<span class="va">ltsa_spectrum</span>)<span class="op">,</span> <span class="ss">'LineStyle'</span><span class="op">,</span> <span class="ss">'none'</span>)</span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a><span class="va">view</span>(<span class="fl">0</span><span class="op">,</span><span class="fl">90</span>)</span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a><span class="co">%set the colour limits to make the plot have correct contrast - this can be</span></span>
+<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a><span class="co">%a bit of trial and error</span></span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a><span class="va">clim</span>([<span class="op">-</span><span class="fl">55</span><span class="op">,</span> <span class="op">-</span><span class="fl">25</span>])<span class="op">;</span></span>
+<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a><span class="va">set</span>(<span class="va">gca</span><span class="op">,</span> <span class="ss">'FontSize'</span><span class="op">,</span> <span class="fl">14</span>)</span>
+<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a><span class="co">%show times instead of date numbers on the x axis</span></span>
+<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a><span class="va">datetick</span> <span class="ss">'x'</span></span>
+<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a><span class="co">%add labels to axis</span></span>
+<span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a><span class="va">xlabel</span>(<span class="ss">'Time'</span>)</span>
+<span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a><span class="va">ylabel</span>(<span class="ss">'Frequency (kHz)'</span>)</span>
+<span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a><span class="co">%make sure limits in time are correct to remove blank space</span></span>
+<span id="cb31-46"><a href="#cb31-46" aria-hidden="true" tabindex="-1"></a><span class="va">xlim</span>([<span class="va">min</span>(<span class="va">times</span>)<span class="op">,</span> <span class="va">max</span>(<span class="va">times</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Execution of this code should produce an LTSA plot that looks something like this.</p>
+<p><img src="./public/LTSA_matlab.png" class="img-fluid"></p>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If you don't have these installed, run:</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("tidyverse", "lubridate"))</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 1. DATA LOADING  ---</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the sample rate (sr) based on your PAMGuard setup</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>sr <span class="ot">&lt;-</span> <span class="dv">384000</span> <span class="co"># Sample rate in Hz</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="co">#folder to a set of binary files. </span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"enter/your/path/LTSA_2/PAMBinary"</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="co">#R has a handy function for listing all files with a specified extension (.pgdf). </span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>fnames <span class="ot">&lt;-</span> <span class="fu">list.files</span>(</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> folder,              <span class="co"># The directory to start searching from (use "." for the current directory)</span></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">pattern =</span> <span class="st">".*LTSA.*</span><span class="sc">\\</span><span class="st">.pgdf$"</span>,     <span class="co"># Regular expression to match files ending in this case ".pgdf" for pAMGuard binary files</span></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">full.names =</span> <span class="cn">FALSE</span>,       <span class="co"># Ensures the full file path is returned</span></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">recursive =</span> <span class="cn">TRUE</span>         <span class="co"># Essential: tells R to search in subdirectories</span></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize an empty list to store the rows</span></span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>ltsa <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1</span>;</span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (filename <span class="cf">in</span> fnames) {</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(filename)</span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># load each LTSA file.</span></span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>  ltsafile <span class="ot">&lt;-</span> <span class="fu">loadPamguardBinaryFile</span>(<span class="fu">file.path</span>(folder,filename));</span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>  len <span class="ot">&lt;-</span> <span class="fu">length</span>(ltsafile<span class="sc">$</span>data)</span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a sequence of indices: 1, 3, 5, 7 so we access every second data point</span></span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>  indices <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> len, <span class="at">by =</span> <span class="dv">2</span>)</span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> indices) {</span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (ltsafile<span class="sc">$</span>data[[i]]<span class="sc">$</span>channelMap<span class="sc">==</span><span class="dv">1</span>){</span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a>      ltsa[n] <span class="ot">&lt;-</span> ltsafile<span class="sc">$</span>data[i]</span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>      n <span class="ot">&lt;-</span> n<span class="sc">+</span><span class="dv">1</span>;</span>
+<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb32-41"><a href="#cb32-41" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb32-42"><a href="#cb32-42" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-43"><a href="#cb32-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-44"><a href="#cb32-44" aria-hidden="true" tabindex="-1"></a><span class="co"># --- DATA EXTRACTION AND RESHAPING ---</span></span>
+<span id="cb32-45"><a href="#cb32-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-46"><a href="#cb32-46" aria-hidden="true" tabindex="-1"></a><span class="co">#Use sapply to extract the desired numeric vector ('Data' field) from every list element</span></span>
+<span id="cb32-47"><a href="#cb32-47" aria-hidden="true" tabindex="-1"></a>data_vectors_only <span class="ot">&lt;-</span> <span class="fu">lapply</span>(ltsa, <span class="cf">function</span>(row) {</span>
+<span id="cb32-48"><a href="#cb32-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(row<span class="sc">$</span>data)</span>
+<span id="cb32-49"><a href="#cb32-49" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb32-50"><a href="#cb32-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-51"><a href="#cb32-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract spectra into a list of vectors, then combine into a matrix (columns = time steps)</span></span>
+<span id="cb32-52"><a href="#cb32-52" aria-hidden="true" tabindex="-1"></a>ltsa_spectrum_mat <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, data_vectors_only)</span>
+<span id="cb32-53"><a href="#cb32-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-54"><a href="#cb32-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Use sapply to extract and automatically simplify to a time vector</span></span>
+<span id="cb32-55"><a href="#cb32-55" aria-hidden="true" tabindex="-1"></a>time_only <span class="ot">&lt;-</span> <span class="fu">sapply</span>(ltsa, <span class="cf">function</span>(row) {</span>
+<span id="cb32-56"><a href="#cb32-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(row<span class="sc">$</span>date)</span>
+<span id="cb32-57"><a href="#cb32-57" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb32-58"><a href="#cb32-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-59"><a href="#cb32-59" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract times (in numeric format)</span></span>
+<span id="cb32-60"><a href="#cb32-60" aria-hidden="true" tabindex="-1"></a>times_num <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(time_only)</span>
+<span id="cb32-61"><a href="#cb32-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-62"><a href="#cb32-62" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove any duplicates</span></span>
+<span id="cb32-63"><a href="#cb32-63" aria-hidden="true" tabindex="-1"></a>is_duplicate <span class="ot">&lt;-</span> <span class="fu">duplicated</span>(times_num)</span>
+<span id="cb32-64"><a href="#cb32-64" aria-hidden="true" tabindex="-1"></a>times_num <span class="ot">&lt;-</span> times_num[<span class="sc">!</span>is_duplicate]</span>
+<span id="cb32-65"><a href="#cb32-65" aria-hidden="true" tabindex="-1"></a>ltsa_spectrum_mat <span class="ot">&lt;-</span> ltsa_spectrum_mat[<span class="sc">!</span>is_duplicate, ]</span>
+<span id="cb32-66"><a href="#cb32-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-67"><a href="#cb32-67" aria-hidden="true" tabindex="-1"></a>ltsa_spectrum_mat  <span class="ot">=</span> <span class="fu">t</span>(ltsa_spectrum_mat)</span>
+<span id="cb32-68"><a href="#cb32-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Frequency Bins</span></span>
+<span id="cb32-69"><a href="#cb32-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Frequencies in kHz, calculated from the sample rate and number of frequency bins.</span></span>
+<span id="cb32-70"><a href="#cb32-70" aria-hidden="true" tabindex="-1"></a>max_freq_khz <span class="ot">&lt;-</span> sr <span class="sc">/</span> <span class="dv">1000</span> <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb32-71"><a href="#cb32-71" aria-hidden="true" tabindex="-1"></a>freq_bins_khz <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, max_freq_khz, <span class="at">length.out =</span> <span class="fu">nrow</span>(ltsa_spectrum_mat))</span>
+<span id="cb32-72"><a href="#cb32-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-73"><a href="#cb32-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to dB (20*log10)</span></span>
+<span id="cb32-74"><a href="#cb32-74" aria-hidden="true" tabindex="-1"></a>ltsa_dB <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="sc">*</span> <span class="fu">log10</span>(ltsa_spectrum_mat)</span>
+<span id="cb32-75"><a href="#cb32-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform to Tidy (Long) Format for ggplot2</span></span>
+<span id="cb32-76"><a href="#cb32-76" aria-hidden="true" tabindex="-1"></a>spectrogram_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(ltsa_dB) <span class="sc">%&gt;%</span></span>
+<span id="cb32-77"><a href="#cb32-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(times_num) <span class="sc">%&gt;%</span>                 <span class="co"># Name columns by the time number</span></span>
+<span id="cb32-78"><a href="#cb32-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Frequency =</span> freq_bins_khz) <span class="sc">%&gt;%</span>   <span class="co"># Add frequency as a variable</span></span>
+<span id="cb32-79"><a href="#cb32-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb32-80"><a href="#cb32-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span>Frequency,</span>
+<span id="cb32-81"><a href="#cb32-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"Time_Num"</span>,</span>
+<span id="cb32-82"><a href="#cb32-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"dB_Level"</span></span>
+<span id="cb32-83"><a href="#cb32-83" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb32-84"><a href="#cb32-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb32-85"><a href="#cb32-85" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert the numeric time stamp (UNIX epoch) back to a POSIXct object for plotting</span></span>
+<span id="cb32-86"><a href="#cb32-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">Time_Num =</span> <span class="fu">as.numeric</span>(Time_Num),</span>
+<span id="cb32-87"><a href="#cb32-87" aria-hidden="true" tabindex="-1"></a>    <span class="at">Time_POSIX =</span> <span class="fu">as_datetime</span>(Time_Num)</span>
+<span id="cb32-88"><a href="#cb32-88" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-89"><a href="#cb32-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-90"><a href="#cb32-90" aria-hidden="true" tabindex="-1"></a><span class="co"># --- PLOTTING WITH GGPLOT2 ---</span></span>
+<span id="cb32-91"><a href="#cb32-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-92"><a href="#cb32-92" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(spectrogram_df, <span class="fu">aes</span>(<span class="at">x =</span> Time_POSIX, <span class="at">y =</span> Frequency, <span class="at">fill =</span> dB_Level)) <span class="sc">+</span></span>
+<span id="cb32-93"><a href="#cb32-93" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_raster creates the spectrogram (heat map).</span></span>
+<span id="cb32-94"><a href="#cb32-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>() <span class="sc">+</span></span>
+<span id="cb32-95"><a href="#cb32-95" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set color scale (adjust limits for visual contrast)</span></span>
+<span id="cb32-96"><a href="#cb32-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(</span>
+<span id="cb32-97"><a href="#cb32-97" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"dB Level"</span>,</span>
+<span id="cb32-98"><a href="#cb32-98" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">55</span>, <span class="sc">-</span><span class="dv">25</span>),</span>
+<span id="cb32-99"><a href="#cb32-99" aria-hidden="true" tabindex="-1"></a>    <span class="at">oob =</span> scales<span class="sc">::</span>squish <span class="co"># Squish values outside the limit to the limits</span></span>
+<span id="cb32-100"><a href="#cb32-100" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb32-101"><a href="#cb32-101" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply labels and titles</span></span>
+<span id="cb32-102"><a href="#cb32-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb32-103"><a href="#cb32-103" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Time"</span>,</span>
+<span id="cb32-104"><a href="#cb32-104" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency (kHz)"</span>,</span>
+<span id="cb32-105"><a href="#cb32-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"PAMGuard LTSA Spectrogram"</span></span>
+<span id="cb32-106"><a href="#cb32-106" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb32-107"><a href="#cb32-107" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply theme and customization for readability</span></span>
+<span id="cb32-108"><a href="#cb32-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb32-109"><a href="#cb32-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb32-110"><a href="#cb32-110" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ensure title is centered and visible</span></span>
+<span id="cb32-111"><a href="#cb32-111" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb32-112"><a href="#cb32-112" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove margin space around the plot</span></span>
+<span id="cb32-113"><a href="#cb32-113" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb32-114"><a href="#cb32-114" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb32-115"><a href="#cb32-115" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ensure the time axis is formatted nicely</span></span>
+<span id="cb32-116"><a href="#cb32-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_datetime</span>(<span class="at">date_breaks =</span> <span class="st">"4 hours"</span>, <span class="at">date_labels =</span> <span class="st">"%H:%M</span><span class="sc">\n</span><span class="st">%b %d"</span>) <span class="sc">+</span></span>
+<span id="cb32-117"><a href="#cb32-117" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Expand the plot limits to match the data exactly</span></span>
+<span id="cb32-118"><a href="#cb32-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb32-119"><a href="#cb32-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_datetime</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb32-120"><a href="#cb32-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-121"><a href="#cb32-121" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the plot</span></span>
+<span id="cb32-122"><a href="#cb32-122" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span>
+<span id="cb32-123"><a href="#cb32-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-124"><a href="#cb32-124" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean up temporary data</span></span>
+<span id="cb32-125"><a href="#cb32-125" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(ltsa_spectrum_list, ltsa_spectrum_mat, ltsa_dB, times_num)</span>
+<span id="cb32-126"><a href="#cb32-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-127"><a href="#cb32-127" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co"> ON REAL-WORLD USE:</span></span>
+<span id="cb32-128"><a href="#cb32-128" aria-hidden="true" tabindex="-1"></a><span class="co"># For real-world PAMGuard data in R, consider using the 'PAMpal' package, </span></span>
+<span id="cb32-129"><a href="#cb32-129" aria-hidden="true" tabindex="-1"></a><span class="co"># which is specialized for loading, manipulating, and analyzing PAMGuard database </span></span>
+<span id="cb32-130"><a href="#cb32-130" aria-hidden="true" tabindex="-1"></a><span class="co"># and binary outputs.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Execution of this code should produce an LTSA plot that looks something like this.</p>
+<p><img src="./public/LTSA_R.png" class="img-fluid"></p>
+</div>
+<div id="tabset-8-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-3-tab">
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>ltsa, background, report <span class="op">=</span> pypamguard.load_pamguard_binary_folder(<span class="st">"enter/your/path/LTSA_2/PAMBinary"</span>,<span class="vs">r"**/*.pgdf"</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(ltsa))</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize variables</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>ltsa_spectrum_list <span class="op">=</span> [] <span class="co"># Use a list to dynamically collect columns</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>n<span class="op">=</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>sr <span class="op">=</span> <span class="dv">384000</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> []</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract data into a 2D array and times</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="co"># We only select every second LTSA data line to reduce the size of the image.</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(ltsa), <span class="dv">2</span>):</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check if data are empty and the channel is the same</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">hasattr</span>(ltsa[i], <span class="st">'data'</span>) <span class="kw">and</span> ltsa[i].data <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extract the first column of the spectrum data</span></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>        ltsa_spectrum_list.append(ltsa[i].data[:])</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extract the date/time</span></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>        times.append(ltsa[i].date)</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the list of arrays (columns) to a single numpy array</span></span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ltsa_spectrum_list:</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Stack the columns and transpose it to match the plotting requirement (Frequency x Time)</span></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>    ltsa_spectrum <span class="op">=</span> np.stack(ltsa_spectrum_list, axis<span class="op">=</span><span class="dv">1</span>) </span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No valid LTSA data found for the specified channel map."</span>)</span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>    ltsa_spectrum <span class="op">=</span> np.array([])</span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure we have data before plotting</span></span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ltsa_spectrum.size <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">#need to flip the arrays as they are back to front time wise. </span></span>
+<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a>    Z_db <span class="op">=</span> <span class="dv">20</span> <span class="op">*</span> np.log10(ltsa_spectrum[:, ::<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a>    times <span class="op">=</span> times[::<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Frequency: from 0 to calculated maximum</span></span>
+<span id="cb33-41"><a href="#cb33-41" aria-hidden="true" tabindex="-1"></a>    f_min <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb33-42"><a href="#cb33-42" aria-hidden="true" tabindex="-1"></a>    f_max <span class="op">=</span> sr<span class="op">/</span><span class="dv">1000</span><span class="op">/</span><span class="dv">2</span></span>
+<span id="cb33-43"><a href="#cb33-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-44"><a href="#cb33-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Time: Convert datetime objects to Matplotlib's internal date numbers</span></span>
+<span id="cb33-45"><a href="#cb33-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># imshow requires numerical values for extent</span></span>
+<span id="cb33-46"><a href="#cb33-46" aria-hidden="true" tabindex="-1"></a>    t_num <span class="op">=</span> mdates.date2num(times)</span>
+<span id="cb33-47"><a href="#cb33-47" aria-hidden="true" tabindex="-1"></a>    t_min <span class="op">=</span> t_num.<span class="bu">min</span>()</span>
+<span id="cb33-48"><a href="#cb33-48" aria-hidden="true" tabindex="-1"></a>    t_max <span class="op">=</span> t_num.<span class="bu">max</span>()</span>
+<span id="cb33-49"><a href="#cb33-49" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb33-50"><a href="#cb33-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Determine the time step size (in Matplotlib date numbers)</span></span>
+<span id="cb33-51"><a href="#cb33-51" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This helps accurately place the final pixel of the image.</span></span>
+<span id="cb33-52"><a href="#cb33-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(t_num) <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb33-53"><a href="#cb33-53" aria-hidden="true" tabindex="-1"></a>        dt <span class="op">=</span> np.mean(np.diff(t_num)) </span>
+<span id="cb33-54"><a href="#cb33-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb33-55"><a href="#cb33-55" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Assume a small duration if only one point exists (e.g., 1 hour)</span></span>
+<span id="cb33-56"><a href="#cb33-56" aria-hidden="true" tabindex="-1"></a>        dt <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">24</span> </span>
+<span id="cb33-57"><a href="#cb33-57" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb33-58"><a href="#cb33-58" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The extent defines the boundaries [xmin, xmax, ymin, ymax]</span></span>
+<span id="cb33-59"><a href="#cb33-59" aria-hidden="true" tabindex="-1"></a>    <span class="co"># We slightly extend the max time by the duration (dt) for a clean plot boundary</span></span>
+<span id="cb33-60"><a href="#cb33-60" aria-hidden="true" tabindex="-1"></a>    extent <span class="op">=</span> [t_min, t_max <span class="op">+</span> dt, f_min, f_max]</span>
+<span id="cb33-61"><a href="#cb33-61" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb33-62"><a href="#cb33-62" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Plot using imshow</span></span>
+<span id="cb33-63"><a href="#cb33-63" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">6</span>))</span>
+<span id="cb33-64"><a href="#cb33-64" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb33-65"><a href="#cb33-65" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use imshow to plot the 2D array (Z_db)</span></span>
+<span id="cb33-66"><a href="#cb33-66" aria-hidden="true" tabindex="-1"></a>    <span class="co"># We need to transpose the data so Time is on the X-axis and Freq on the Y-axis.</span></span>
+<span id="cb33-67"><a href="#cb33-67" aria-hidden="true" tabindex="-1"></a>    <span class="co"># origin='lower' ensures frequency starts at the bottom.</span></span>
+<span id="cb33-68"><a href="#cb33-68" aria-hidden="true" tabindex="-1"></a>    im <span class="op">=</span> ax.imshow(</span>
+<span id="cb33-69"><a href="#cb33-69" aria-hidden="true" tabindex="-1"></a>        Z_db, </span>
+<span id="cb33-70"><a href="#cb33-70" aria-hidden="true" tabindex="-1"></a>        aspect<span class="op">=</span><span class="st">'auto'</span>, </span>
+<span id="cb33-71"><a href="#cb33-71" aria-hidden="true" tabindex="-1"></a>        interpolation<span class="op">=</span><span class="st">'none'</span>,</span>
+<span id="cb33-72"><a href="#cb33-72" aria-hidden="true" tabindex="-1"></a>        origin<span class="op">=</span><span class="st">'lower'</span>,</span>
+<span id="cb33-73"><a href="#cb33-73" aria-hidden="true" tabindex="-1"></a>        extent<span class="op">=</span>extent, <span class="co"># Numerical limits for the axes</span></span>
+<span id="cb33-74"><a href="#cb33-74" aria-hidden="true" tabindex="-1"></a>        vmin<span class="op">=-</span><span class="dv">55</span>, <span class="co"># clim equivalent</span></span>
+<span id="cb33-75"><a href="#cb33-75" aria-hidden="true" tabindex="-1"></a>        vmax<span class="op">=-</span><span class="dv">25</span>  <span class="co"># clim equivalent</span></span>
+<span id="cb33-76"><a href="#cb33-76" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb33-77"><a href="#cb33-77" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb33-78"><a href="#cb33-78" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set color bar</span></span>
+<span id="cb33-79"><a href="#cb33-79" aria-hidden="true" tabindex="-1"></a>    fig.colorbar(im, ax<span class="op">=</span>ax, label<span class="op">=</span><span class="st">'Power (dB)'</span>)</span>
+<span id="cb33-80"><a href="#cb33-80" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb33-81"><a href="#cb33-81" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 5. Format the Time Axis</span></span>
+<span id="cb33-82"><a href="#cb33-82" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert numerical time axis back to formatted datetimes</span></span>
+<span id="cb33-83"><a href="#cb33-83" aria-hidden="true" tabindex="-1"></a>    ax.xaxis_date() </span>
+<span id="cb33-84"><a href="#cb33-84" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_major_formatter(mdates.DateFormatter(<span class="st">'%H:%M:%S'</span>)) </span>
+<span id="cb33-85"><a href="#cb33-85" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_major_locator(mdates.AutoDateLocator())</span>
+<span id="cb33-86"><a href="#cb33-86" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb33-87"><a href="#cb33-87" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set font size and labels</span></span>
+<span id="cb33-88"><a href="#cb33-88" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(axis<span class="op">=</span><span class="st">'both'</span>, which<span class="op">=</span><span class="st">'major'</span>, labelsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb33-89"><a href="#cb33-89" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">'LTSA Spectrogram'</span>)</span>
+<span id="cb33-90"><a href="#cb33-90" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">'Time'</span>)</span>
+<span id="cb33-91"><a href="#cb33-91" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">'Frequency (kHz)'</span>)</span>
+<span id="cb33-92"><a href="#cb33-92" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb33-93"><a href="#cb33-93" aria-hidden="true" tabindex="-1"></a>    fig.autofmt_xdate()</span>
+<span id="cb33-94"><a href="#cb33-94" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb33-95"><a href="#cb33-95" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Execution of this code should produce an LTSA plot that looks something like this.</p>
+<p><img src="./public/LTSA_python.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="youre-done" class="level2">
+<h2 class="anchored" data-anchor-id="youre-done">You’re Done</h2>
+<p>You should now have the basic skills to load binary files and folders in MATLAB, R and/or Python. We have only explored a few examples here but you should now have a good understanding of the capabilities of these libraries and understand how they can be useful for analysis of results, creating plots for papers and further analysis outwith PAMGuard.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

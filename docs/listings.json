@@ -1,12 +1,13 @@
 [
   {
-    "listing": "/tutorials.html",
+    "listing": "/tutorials/tutorials.html",
     "items": [
       "/tutorials/getstarted.html",
       "/tutorials/staticmonitoring.html",
       "/tutorials/batchprocessing.html",
       "/tutorials/deeplearning.html",
-      "/tutorials/tethys.html"
+      "/tutorials/tethys.html",
+      "/tutorials/matlabrpython.html"
     ]
   },
   {
@@ -28,6 +29,23 @@
     ]
   },
   {
+    "listing": "/deep_learning_models/deeplearningmodels.html",
+    "items": [
+      "/deep_learning_models/deep_learning_models/humpback_pacific.html",
+      "/deep_learning_models/deep_learning_models/right_whale_shiu_palmer.html",
+      "/deep_learning_models/deep_learning_models/delphinID_NEAtlantic.html"
+    ]
+  },
+  {
+    "listing": "/configs/configs.html",
+    "items": [
+      "/configs/clickswhistles.html",
+      "/configs/difar.html",
+      "/configs/porpoise.html",
+      "/configs/sperm.html"
+    ]
+  },
+  {
     "listing": "/index.html",
     "items": [
       "/featurepanels/readyforAI.html",
@@ -38,6 +56,7 @@
       "/featurepanels/watchdog.html",
       "/casestudypanels/greenpace.html",
       "/casestudypanels/tidalturbinecasestudy.html",
+      "/news/251124_pgmatlab.html",
       "/news/250813_pypamguardv1.html",
       "/news/250716_pypamguard.html",
       "/news/250625_WindowsSound.html",
@@ -51,23 +70,6 @@
       "/news/241209_V2_02_15.html",
       "/news/241208_batchprocessor.html",
       "/news/241207_newwebsite.html"
-    ]
-  },
-  {
-    "listing": "/configs/configs.html",
-    "items": [
-      "/configs/clickswhistles.html",
-      "/configs/difar.html",
-      "/configs/porpoise.html",
-      "/configs/sperm.html"
-    ]
-  },
-  {
-    "listing": "/deep_learning_models/deeplearningmodels.html",
-    "items": [
-      "/deep_learning_models/deep_learning_models/humpback_pacific.html",
-      "/deep_learning_models/deep_learning_models/right_whale_shiu_palmer.html",
-      "/deep_learning_models/deep_learning_models/delphinID_NEAtlantic.html"
     ]
   },
   {

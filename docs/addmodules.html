@@ -188,7 +188,7 @@ cookieconsent.run({
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-users">    
         <li>
-    <a class="dropdown-item" href="./tutorials.html">
+    <a class="dropdown-item" href="./tutorials/tutorials.html">
  <span class="dropdown-text">User Tutorials</span></a>
   </li>  
         <li>
@@ -367,7 +367,7 @@ cookieconsent.run({
 </header>
 
 
-<p>There are two types of PAMGuard module. <a href="coremodules.html">Core modules</a> which are built into the main PAMGuard code and <a href="pluginmodules.html">Plugin modules</a> which are distributed sparately. This page tells you how to add a <a href="coremodules.html">core module</a> to PAMGuard.</p>
+<p>There are two types of PAMGuard module. <a href="coremodules.html">Core modules</a> which are built into the main PAMGuard code and <a href="pluginmodules.html">Plugin modules</a> which are distributed separately. This page tells you how to add a <a href="coremodules.html">core module</a> to PAMGuard.</p>
 <p>Before reading this page, make sure you’ve read up on how to <a href="devmodules.html">develop a core module</a></p>
 <section id="writing-pamguard-plug-ins" class="level2">
 <h2 class="anchored" data-anchor-id="writing-pamguard-plug-ins">Writing PAMGuard Plug-ins</h2>
@@ -389,7 +389,7 @@ cookieconsent.run({
 <h3 class="anchored" data-anchor-id="set-module-data-dependencies">Set module data dependencies</h3>
 <p>It is likely that your module will be dependent on data from some other PAMGuard module. For example, the click detector requires raw data from an acquisition module, the whistle detector required raw data from a FFT module and the GPS module requires data from an NMEA data source.</p>
 <p>You can set module dependencies using</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>PamModuleInfo<span class="op">.</span><span class="fu">addDependency</span><span class="op">(</span>PamDependency dependancy<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>PamModuleInfo<span class="op">.</span><span class="fu">addDependency</span><span class="op">(</span>PamDependency dependency<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>for example</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>myModule<span class="op">.</span><span class="fu">addDependency</span><span class="op">(</span><span class="kw">new</span> <span class="fu">PamDependency</span><span class="op">(</span>NMEADataUnit<span class="op">.</span><span class="fu">class</span><span class="op">,</span> <span class="st">"NMEA.NMEAControl"</span><span class="op">));</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>tells PAMGuard that myModule is dependent on some source of NMEADataUnit and that a possible source of this type of data is the NMEA.NMEAControl module.</p>
