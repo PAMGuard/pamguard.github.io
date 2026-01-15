@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About PAMGuard – PAMGuard</title>
+<title>Creating Sub-module Plugins – PAMGuard</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -297,24 +297,15 @@ cookieconsent.run({
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#vision" id="toc-vision" class="nav-link active" data-scroll-target="#vision">Vision</a></li>
-  <li><a href="#the-pamguard-name" id="toc-the-pamguard-name" class="nav-link" data-scroll-target="#the-pamguard-name">The PAMGuard name</a></li>
-  <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application">Application</a></li>
-  <li><a href="#its-not-just-about-whales" id="toc-its-not-just-about-whales" class="nav-link" data-scroll-target="#its-not-just-about-whales">It’s not just about whales</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About PAMGuard</h1>
+<h1 class="title">Creating Sub-module Plugins</h1>
 </div>
 
 
@@ -331,29 +322,12 @@ cookieconsent.run({
 </header>
 
 
-<p>Marine mammals, whales and dolphins in particular, are highly vocal. This means that it’s often easier to hear them, than it is to see them. This is particularly true at night or in poor weather.</p>
-<p>If you’ve used PAMGuard in your research, please cite our most recent paper: Gillespie, D., Macaulay, J., Oswald, M., and Roch, M. (2026). “PAMGuard: Application software for passive acoustic detection, classification, and localisation of animal sounds,” The Journal of the Acoustical Society of America, 159, 437–443. <a href="https://doi.org/10.1121/10.0042245">doi.org/10.1121/10.0042245</a>.</p>
-<p>You may also want to cite the specific PAMGuard release you’re using using it’s Zenodo DOI, e.g.&nbsp; Gillespie, D., &amp; Macaulay, J. (2025). PAMGuard (V2.02.17). Zenodo. <a href="https://doi.org/10.5281/zenodo.15593810">https://doi.org/10.5281/zenodo.15593810</a> and any papers written about specific detectors or models you’re using.</p>
-<section id="vision" class="level2">
-<h2 class="anchored" data-anchor-id="vision">Vision</h2>
-<p>The PAMGuard project started in 2006, intending to address the fundamental limitations of existing cetacean passive acoustic monitoring (PAM) software by creating an integrated software infrastructure that is open source and available to all PAM users for the benefit of the marine environment.</p>
-<p>The PAMGuard software provides a suite of Detection, Classification, and Localization algorithms developed specifically for the many types of sounds made by different species. The algorithms are backed up by a powerful user interface that allows a human operator to view sounds in real time, confirm the output of the automatic detectors, and mark out sounds manually when automatic detection is not possible.</p>
-</section>
-<section id="the-pamguard-name" class="level2">
-<h2 class="anchored" data-anchor-id="the-pamguard-name">The PAMGuard name</h2>
-<p>PAMGuard stands for the <u>P</u>assive <u>A</u>coustic <u>M</u>onitoring <u>Guard</u>ianship</p>
-</section>
-<section id="application" class="level2">
-<h2 class="anchored" data-anchor-id="application">Application</h2>
-<p>PAMGuard can process data from hydrophones (under water microphones) in real time, or can process archived data stored in sound files.</p>
-<p>PAMGuard is widely used around the world for mitigation monitoring, density estimation surveys, and to find animals for visual studies, such as photo-id.</p>
-</section>
-<section id="its-not-just-about-whales" class="level2">
-<h2 class="anchored" data-anchor-id="its-not-just-about-whales">It’s not just about whales</h2>
-<p>PAMGuard is also used to study terrestrial animals, including bats, birds, and gibbons.</p>
+<p>As well as <a href="./pluginmodules.html">plugins that are complete PAMGuard modules</a> is is possible to develop sub modules for certain PAMGuard modules. Examples are additional types of acquisition device for the <a href="https://www.pamguard.org/olhelp/sound_processing/AcquisitionHelp/docs/AcquisitionOverview.html">Sound Acquisition Module</a> and new types of analog input device for the <a href="https://www.pamguard.org/olhelp/sensors/analogarray/docs/analogarray.html">Array Sensor module</a>.</p>
+<p>For example, you may have a bespoke data acquisition system for audio data, or a new method for reading other sensors. e.g.&nbsp;we’ve recently developed a reader for a sensor that is only available for the Raspberry Pi. It wouldn’t be appropriate to include this in the PAMGuard core, but it’s useful to us on one particular project.</p>
+<p>The PAMGuard framework allows for easy development of additional types of sub-module plugin as required. These must all be based around a sub-class of <a href="https://www.pamguard.org/api/PamModel/CommonPluginInterface.html">CommonPluginInterface</a>. Any plugin module found in the PAMGuard plugins folder will be loaded when PAMGuard starts and it’s help files added to the PAMGuard online help. If it’s a new sub-plugin type, you’ll also have to add code to the module using the plugin in oder to use that plugin. Examples modules that use sub-module plugins are <a href="https://github.com/PAMGuard/PAMGuard/blob/main/src/analoginput/AnalogDevicesManager.java">AnalolgDeviceManager</a> and <a href="https://github.com/PAMGuard/PAMGuard/blob/main/src/Acquisition/AcquisitionControl.java">AcquisitionControl</a> for examples.</p>
+<p>An example analog sensor plugin is <a href="https://github.com/PAMGuard/DummyAnalogDevice/tree/main">here</a> and a sound acquisition plugin <a href="https://github.com/douggillespie/WindowsSoundJNA">here</a>.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
