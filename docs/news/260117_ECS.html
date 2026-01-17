@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-01-17">
+<meta name="description" content="The PAMGuard team are organising a one day PAMGuard training workshop aimed at beginners">
 
-<title>PAMGuard Tutorials – PAMGuard</title>
+<title>PAMGuard tutorial at the ECS conference – PAMGuard</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,8 +33,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../images/PAMGuardIcon2.png" rel="icon" type="image/png">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -71,35 +71,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-tutorial_listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-tutorial_listing'] = new List('listing-tutorial_listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-0N9ELT30EX"></script>
 
 <script type="text/plain" cookie-consent="tracking">
@@ -128,35 +99,6 @@ cookieconsent.run({
 </script> 
   
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -357,22 +299,33 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="QmF0Y2glMjBwcm9jZXNzb3I=">Batch processor <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmVhbSUyMGZvcm1lcg==">Beam former <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q2xpY2slMjBkZXRlY3Rvcg==">Click detector <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RGVlcCUyMGxlYXJuaW5n">Deep learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RXhwb3J0ZXI=">Exporter <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RkZU">FFT <span class="quarto-category-count">(2)</span></div><div class="category" data-category="SXNobWFlbCUyMGVuZXJneSUyMHN1bQ==">Ishmael energy sum <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SXNobWFlbCUyMHNwZWN0cm9ncmFtJTIwY29ycmVsYXRpb24=">Ishmael spectrogram correlation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TFRTQQ==">LTSA <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TUFUTEFC">MATLAB <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWFw">Map <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWF0bGFi">Matlab <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tm9pc2UlMjBiYW5kJTIwbW9uaXRvcg==">Noise band monitor <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U291bmR0cmFwJTIwY2xpY2slMjBkZXRlY3Rvcg==">Soundtrap click detector <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3BlY3Ryb2dyYW0=">Spectrogram <span class="quarto-category-count">(2)</span></div><div class="category" data-category="VGV0aHlzJTIwZGF0YWJhc2U=">Tethys database <span class="quarto-category-count">(1)</span></div><div class="category" data-category="V2hpc3RsZSUyMGFuZCUyMG1vYW4lMjBkZXRlY3Rvcg==">Whistle and moan detector <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Y2xpY2slMjBkZXRlY3Rvcg==">click detector <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d2hpc3RsZSUyMGRldGVjdG9y">whistle detector <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">PAMGuard Tutorials</h1>
+<h1 class="title">PAMGuard tutorial at the ECS conference</h1>
 </div>
 
+<div>
+  <div class="description">
+    The PAMGuard team are organising a one day PAMGuard training workshop aimed at beginners
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 17, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -382,122 +335,10 @@ window.Quarto = {
 </header>
 
 
-<div id="boldcentred">
-<p>The <a href="https://www.europeancetaceansociety.eu/conference-2026">ECS Conference</a> is coming to Dundee. We’ll be organising a one day PAMGuard training workshop on either Monday 20th, or Tuesday 221st April. Watch this space, and keep an eye on the <a href="https://www.europeancetaceansociety.eu/conference-2026">conference website</a> for updates.</p>
-</div>
-<p>PAMGuard Tutorials are an excellent way to familiarise yourself with PAMGuard. If you’re new to PAMGuard, you should start with one of the introductory tutorials, <a href="./tutorials/getstarted.qmd">Getting Started</a>, or <a href="./tutorials/staticmonitoring.qmd">Introduction to PAMGuard</a> before trying the more advanced ones.</p>
-<p>The tutorials all use freely available pre-recorded sound files and will run on any <a href="systemreq.qmd">compatible computer</a> without the need for specialist equipment.</p>
-<div id="listing-tutorial_listing" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="SXNobWFlbCUyMGVuZXJneSUyMHN1bSUyQ0lzaG1hZWwlMjBzcGVjdHJvZ3JhbSUyMGNvcnJlbGF0aW9uJTJDTWFwJTJDV2hpc3RsZSUyMGFuZCUyMG1vYW4lMjBkZXRlY3RvciUyQ0ZGVCUyQ1NwZWN0cm9ncmFtJTJDQ2xpY2slMjBkZXRlY3Rvcg==" data-listing-file-modified-sort="1764000600202" data-listing-reading-time-sort="1" data-listing-word-count-sort="193">
-<a href="../tutorials/getstarted.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../tutorials/getstartedfiles/pgclickdet1.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Getting Started with PAMGuard
-</h5>
-<div class="card-text listing-description">
-This tutorial will introduce some basic PAMGuard concepts, showing you how to use a range of PAMGuard detectors for clicks, whistle, and baleen whale sounds and to use…
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="TFRTQSUyQ1NvdW5kdHJhcCUyMGNsaWNrJTIwZGV0ZWN0b3IlMkNDbGljayUyMGRldGVjdG9yJTJDTm9pc2UlMjBiYW5kJTIwbW9uaXRvciUyQ1doaXN0bGUlMjBhbmQlMjBtb2FuJTIwZGV0ZWN0b3IlMkNFeHBvcnRlcg==" data-listing-file-modified-sort="1743695322595" data-listing-reading-time-sort="2" data-listing-word-count-sort="349">
-<a href="../tutorials/staticmonitoring.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../tutorials/staticmonfiles/datamap_screenshot.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Introduction to static monitoring
-</h5>
-<div class="card-text listing-description">
-This tutorial is a step by step guide for using PAMGuard to process long term recordings from a static autonomous recorder.
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="QmF0Y2glMjBwcm9jZXNzb3I=" data-listing-file-modified-sort="1749210482960" data-listing-reading-time-sort="2" data-listing-word-count-sort="202">
-<a href="../tutorials/batchprocessing.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../tutorials/batchfiles/normaldiagram.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Batch Processing
-</h5>
-<div class="card-text listing-description">
-This tutorial will teach you how to process multiple datasets using the same PAMGuard configuration using the PAMGuard batch processing plugin.
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="RGVlcCUyMGxlYXJuaW5nJTJDRkZUJTJDU3BlY3Ryb2dyYW0lMkNDbGljayUyMGRldGVjdG9yJTJDQmVhbSUyMGZvcm1lciUyQ01BVExBQiUyQ1I=" data-listing-file-modified-sort="1763999728276" data-listing-reading-time-sort="3" data-listing-word-count-sort="568">
-<a href="../tutorials/deeplearning.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../tutorials/deeplearningfiles/right_whale_deep_learning1.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Deep Learning in PAMGuard
-</h5>
-<div class="card-text listing-description">
-Learn how to import deep learning models into PAMGuard with examples for Right whales, bats and gibbons
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="VGV0aHlzJTIwZGF0YWJhc2U=" data-listing-file-modified-sort="1764000600203" data-listing-reading-time-sort="2" data-listing-word-count-sort="290">
-<a href="../tutorials/tethys.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../tutorials/tethysfiles/Tethys.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-PAMGuard Tethys Interface
-</h5>
-<div class="card-text listing-description">
-This tutorial will introduce the PAMGuard-Tethys interface, show you how to export data from PAMGuard to Tethys, and view the data with the Tethys web client and data…
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="TWF0bGFiJTJDUiUyQ1B5dGhvbiUyQ2NsaWNrJTIwZGV0ZWN0b3IlMkN3aGlzdGxlJTIwZGV0ZWN0b3IlMkNMVFNB" data-listing-file-modified-sort="1764000719073" data-listing-reading-time-sort="2" data-listing-word-count-sort="228">
-<a href="../tutorials/matlabrpython.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../tutorials/matlabrpython/public/waveform-matlab.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Matlab, R, and Python
-</h5>
-<div class="card-text listing-description">
-This tutorial will teach you how to open PAMGuard binary files with Matlab, R, and Python
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-<p>Subject to <a href="funding.qmd">funding</a>, we’re currently trying to expand these to cover more areas of what PAMGuard can do.</p>
-
+<p>The <a href="https://www.europeancetaceansociety.eu/conference-2026">European Cetacean Society annual conference</a> is coming to Dundee in the week of 20 April 2026.</p>
+<p>On the Monday or Tuesday, we’ll be holding a PAMGuard training workshop at the conference centre. This will be aimed at people who are new, or relatively new, to PAMGuard.</p>
+<p>If there is sufficient demand, we may also organise something for more advanced users. Please contact the PAMGuard team if you think this would be of interest.</p>
+<p>Keep and eye on the <a href="https://www.europeancetaceansociety.eu/conference-2026">conference website</a> for updates and registration details.</p>
 
 
 
