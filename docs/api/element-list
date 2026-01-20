@@ -201,6 +201,7 @@ dbht.alarm
 dbht.offline
 decimator
 decimator.layoutFX
+deepWhistle
 depthReadout
 detectiongrouplocaliser
 detectiongrouplocaliser.dialogs
@@ -366,6 +367,8 @@ matchedTemplateClassifer.offline
 mcc
 mcc.mccacquisition
 mcc.mccjna
+mel
+mel.swing
 metadata
 metadata.swing
 meygenturbine
@@ -388,7 +391,9 @@ noiseMonitor.species
 noiseOneBand
 noiseOneBand.alarm
 noiseOneBand.offline
+noiseOneBand.tethys
 offlineProcessing
+offlineProcessing.fx
 offlineProcessing.legacyremotestuff
 offlineProcessing.logging
 offlineProcessing.superdet
@@ -428,6 +433,7 @@ pamScrollSystem.coupling
 pamScrollSystem.jumping
 PamUtils
 PamUtils.avrgwaveform
+PamUtils.clock
 PamUtils.complex
 PamUtils.time
 PamUtils.time.nmea
@@ -528,8 +534,8 @@ rawDeepLearningClassifier.defaultModels
 rawDeepLearningClassifier.dlClassification
 rawDeepLearningClassifier.dlClassification.animalSpot
 rawDeepLearningClassifier.dlClassification.archiveModel
+rawDeepLearningClassifier.dlClassification.deepAcoustics
 rawDeepLearningClassifier.dlClassification.delphinID
-rawDeepLearningClassifier.dlClassification.dummyClassifier
 rawDeepLearningClassifier.dlClassification.genericModel
 rawDeepLearningClassifier.dlClassification.ketos
 rawDeepLearningClassifier.dlClassification.koogu
