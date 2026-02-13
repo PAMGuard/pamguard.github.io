@@ -339,10 +339,12 @@ cookieconsent.run({
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#writing-pamguard-plug-ins" id="toc-writing-pamguard-plug-ins" class="nav-link active" data-scroll-target="#writing-pamguard-plug-ins">Writing PAMGuard Plug-ins</a>
-  <ul class="collapse">
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes:</a></li>
-  </ul></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#setting-up-a-pamguard-plugin" id="toc-setting-up-a-pamguard-plugin" class="nav-link" data-scroll-target="#setting-up-a-pamguard-plugin">Setting up a PAMGuard Plugin</a></li>
+  <li><a href="#building-a-plugin" id="toc-building-a-plugin" class="nav-link" data-scroll-target="#building-a-plugin">Building a plugin</a></li>
+  <li><a href="#help-files" id="toc-help-files" class="nav-link" data-scroll-target="#help-files">Help files</a></li>
+  <li><a href="#testing-the-plugin-jar-file" id="toc-testing-the-plugin-jar-file" class="nav-link" data-scroll-target="#testing-the-plugin-jar-file">Testing the Plugin jar file</a></li>
+  <li><a href="#tips-and-notes" id="toc-tips-and-notes" class="nav-link" data-scroll-target="#tips-and-notes">Tips and Notes</a></li>
   </ul>
 </nav>
     </div>
@@ -368,30 +370,154 @@ cookieconsent.run({
 </header>
 
 
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>There are two types of PAMGuard module. <a href="coremodules.html">Core modules</a> which are built into the main PAMGuard code and <a href="pluginmodules.html">Plugin modules</a> which are distributed separately. This page tells you how to prepare a <a href="pluginmodules.html">Plugin modules</a> for PAMGuard.</p>
-<p>Before reading this page, make sure you’ve read up on how to <a href="devmodules.html">develop a core module</a></p>
-<section id="writing-pamguard-plug-ins" class="level2">
-<h2 class="anchored" data-anchor-id="writing-pamguard-plug-ins">Writing PAMGuard Plug-ins</h2>
-<p>ARCHIVING PLUG-INS INTO A JAR FILE FOR DISTRIBUTION</p>
-<p>Even if the plugin is intended as an External module, it is easiest to develop it as a Core module. In other words, create a new package in the PAMGuard code base to hold all of the new classes, and add a reference to the package classes in PamModel. This way, dependencies do not need to be explicitly managed and debugging is simplified. All development should be done within the new package, and the core PAMGuard classes should not be changed (if modifications are necessary, please contact the PAMGuard development team first).</p>
-<p>To make an external PAMGuard plug-in available to PAMGuard users once development is complete, it is necessary to archive the class files and support files (including help files, graphics, sound files, etc.) into a java archive (jar) file.</p>
-<p>Prior to archiving, the developer must add a class to the project package which implements one of two interfaces: PamModel.PamPluginInterface (for standard plug-in modules) or Acquisition.DaqSystemInterface (for data acquisition modules such as sound cards, file streams, etc.). Override all of the Interface’s inherited methods, returning appropriate values as specified in the Javadoc comments. Create a String object to hold the jar file name. This parameter does not need to be initialized to anything specific; the value will be set by PAMGuard via the inherited setter method. The code could be as simple as</p>
+<p>Before reading this page, make sure you’ve read up on how to <a href="devmodules.html">develop a core module</a>.</p>
+</section>
+<section id="setting-up-a-pamguard-plugin" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-a-pamguard-plugin">Setting up a PAMGuard Plugin</h2>
+<p>The best way to create a PAMGuard, especially if it relies on external dependencies, is to set up a Java Maven project.</p>
+<p>Using <a href="https://eclipseide.org/">Eclipse IDE</a> set up <a href="./sourcecode.html">PAMGuard as a project</a> in your workspace. Then create a separate Maven project in the same workspace. Right click on the Maven project, select <em>Properties</em> and in the <em>Java Build Path</em> section, select the <em>Projects</em> tab. Click on <em>Add</em> and select the PAMGuard project to add it as a dependency.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pamguard_plugin_eclipse.png" class="img-fluid figure-img"></p>
+<figcaption>Adding the project as a dependency</figcaption>
+</figure>
+</div>
+<p><em>Add PAMGuard to the plugin project’s classpath</em></p>
+<p>Now your plugin project will know all the classes in PAMGuard and you can start developing your plugin module. There are multiple types of plugins and each has an example project which you can use as a starting point.</p>
+<ul>
+<li>To develop a standard PAMGuard module refer to the <a href="https://github.com/PAMGuard/haggis">Detector for the Scottish Wild Haggis</a> project.</li>
+<li>To develop a plugin for the SoundAcquisition module (e.g.&nbsp;to implement new type of sound card) refer to the <a href="https://github.com/douggillespie/WindowsSound">Windows Sound</a> project as an example.</li>
+<li>To develop a plugin for the AnalogSensor module (e.g.&nbsp;to implement new type of analog sensor) refer to the <a href="https://github.com/PAMGuard/DummyAnalogDevice">Dummy Analog Device plugin</a> project.</li>
+</ul>
+<p>Note that in all these plugins you must duplicate a PAMGuard class in your plugin project. For example, in a standard module class you must create PamModel class with the same package name as in PAMGuard. Copy the PamModel class from PAMGuard and then add your new module in the plugin version of your PamModel class. When you run your project, the PamModel class from your plugin project will be used instead of the PAMGuard version and your plugin will appear as a module.</p>
+<p>To run the plugin from Eclipse simply run create a Run Configuration that launches the PAMGuard main class (pamguard.Pamguard). Ensure that the plugin project is the selected in the <em>Project:</em> field. When PAMGuard starts it will find the plugin classes in the classpath and load them as if they were part of the core PAMGuard code.</p>
+<p><img src="images/pamguard_plugin_eclipse_2.png" class="img-fluid" alt="Running the plugin project from Eclipse"> <em>Running a plugin project (in this called X3) from Eclipse.</em></p>
+</section>
+<section id="building-a-plugin" class="level2">
+<h2 class="anchored" data-anchor-id="building-a-plugin">Building a plugin</h2>
+<p>Prior to building, you must ensure that your project implements the correct plugin interface e.g.&nbsp;PamModel.PamPluginInterface (for standard plug-in modules) or Acquisition.DaqSystemInterface (for data acquisition modules such as sound cards, file streams, etc.).</p>
+<p>Override all of the Interface’s inherited methods, returning appropriate values as specified in the Javadoc comments. Create a String object to hold the jar file name. This parameter does not need to be initialized to anything specific; the value will be set by PAMGuard via the inherited setter method. The code could be as simple as</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> jarFile<span class="op">;</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">@Override</span> <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setJarFile</span><span class="op">(</span><span class="bu">String</span> jarFile<span class="op">)</span> <span class="op">{</span> </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="fu">jarFile</span> <span class="op">=</span> jarFile<span class="op">;</span> </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It is strongly recommended that help files be included with the plug-in. PAMGuard uses Oracle’s JavaHelp 2.0 system (complete details can be found here). Each page in the help file is an HTML document. Create individual HTML pages (with links and images) to describe the setup and operation of the plug-in, and save all files in the same package folder that your java program is in. Once the pages are completed, create the helpset and support files (map, TOC, index, etc.). Programs like jhelpdev can greatly simplify the process of creating these files.</p>
-<section id="notes" class="level3">
-<h3 class="anchored" data-anchor-id="notes">Notes:</h3>
-<p>To have the help files added to an existing category (i.e.&nbsp;Classifiers, Detectors, etc.) in the PAMGUARDhelp table of contents, the top-level tag text attribute in the plug-in’s TOC xml file must match the category name exactly. Some category names have a space character at the end. If in doubt, check the PAMGUARDTOC.xml file found in src/help for a list of the TOC entries. If the top-level tag text attribute in the plug-in’s TOC xml file does not match any of the category names in the table of contents, the item is simply appended to the bottom of the list. To match the existing table of contents look-and-feel, each tag in the plug-in’s TOC xml file should have image=”topic” added as an attribute. Copy the image.gif file found in src/help to the plug-in package folder. Ensure the line is in the plug-in’s map.jhm file</p>
-<p>Specify the name of the helpset file in the plug-in interface class. Look through the interface Javadoc documentation for the correct format to use.</p>
-<p>Follow these steps to bundle all files together into a single jar, ready for distribution. Note the following are specific to the Eclipse IDE. Other IDE’s will have similar functionality:</p>
-<p>Right-click on the project name in the Package Explorer view and select Export In the Export window, click on the Java folder and highlight JAR file. Hit Next In the window frame on the left, make sure the package and all necessary subfolders are selected to export (sometimes subfolders created by JavaHelp - such as JavaHelpSearch – are not included in the export list by default). Click on the box beside “Export generated class files and resources” and “Export Java source files and resources”. Enter the name of the exported jar file in the text box under “Select the export destination”. You can click on the box beside “Compress the contents of the JAR file”, though this is optional. The default values for the remainder of the windows can be used. Hit Finish to export the package to the location specified.</p>
-<p>To test the jar file, move it to the plugins subfolder in the PAMGuard installation folder. If there is no plugins folder, create one. When PAMGuard is started, it should find the jar file and use the information in the interface class to dynamically load the code. Remember to rename/delete the package in the PAMGuard code first, to ensure that you are really testing the jar file contents and not the original code.</p>
-<p>Final note: if plug-in development has been done in the core PAMGuard code and then exported to a jar, the *.class files may still exist in the PAMGuard project’s bin subfolder (even if the original package has been deleted). If testing the plug-in jar in the IDE, first look through the bin subfolder and delete any plug-in* .class files that are stored. If PAMGuard finds the classes in both the bin folder and the jar file, it is unclear which would get loaded at runtime. The class files are replaced in the bin folder every time a build is completed. Also, remember to remove references to the new module from the PamModel class, as this will be taken care of by the jar file.</p>
-
-
+<p>If you have external dependencies, you will need to build as a Maven project. Maven does not consider Eclipse build settings and so the build will fail unless you add PAMGuard as dependency. In your pom.xml add PAMGuard as a dependency as follows.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">dependency</span>&gt;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">groupId</span>&gt;org.pamguard&lt;/<span class="kw">groupId</span>&gt;</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">artifactId</span>&gt;pamguard&lt;/<span class="kw">artifactId</span>&gt;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">version</span>&gt;2.02.18&lt;/<span class="kw">version</span>&gt;</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">scope</span>&gt;provided&lt;/<span class="kw">scope</span>&gt;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">dependency</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Run <code>mvn clean install</code> for your PAMGuard project (not the plugin) to make sure PAMGuard is added to your local Maven repository. Maven will then build the jar. It’s very important to keep <code>&lt;scope&gt;provided&lt;/scope&gt;</code> as this prevents the entire PAMGuard source code being added to the jar file. <code>mvn clean package</code> run from your plugin project will then build the plugin.</p>
+<p>It is also important to exclude any of the duplicate classes from your build that have been used to run the Plugin. For example, if building a standard module, ensure the PamModel class is excluded from the build.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">plugin</span>&gt;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">artifactId</span>&gt;maven-compiler-plugin&lt;/<span class="kw">artifactId</span>&gt;</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">version</span>&gt;3.13.0&lt;/<span class="kw">version</span>&gt;</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">configuration</span>&gt;</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">release</span>&gt;21&lt;/<span class="kw">release</span>&gt;</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">excludes</span>&gt;</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">exclude</span>&gt;**/PamModel/PamModel.java&lt;/<span class="kw">exclude</span>&gt;</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">excludes</span>&gt;</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">configuration</span>&gt;</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">plugin</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that sometimes Eclipse can get confused between the workspace PAMGuard and Maven dependency so it’s best to keep the Maven dependency commented out until you are ready to build the jar.</p>
+<p>Finally, if you have external dependencies, you will need to ensure that these are included in the jar file. This can be done using the Maven Shade plugin. Add the following to your pom.xml file.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--There is an issue with PAMGuard and module.info files when we package up dependencies with the POM - have to use</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">                the shade plugin to deal with this --&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">plugin</span>&gt;</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">groupId</span>&gt;org.apache.maven.plugins&lt;/<span class="kw">groupId</span>&gt;</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">artifactId</span>&gt;maven-shade-plugin&lt;/<span class="kw">artifactId</span>&gt;</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">version</span>&gt;3.6.1&lt;/<span class="kw">version</span>&gt;</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">executions</span>&gt;</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">execution</span>&gt;</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">phase</span>&gt;package&lt;/<span class="kw">phase</span>&gt;</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">goals</span>&gt;</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                &lt;<span class="kw">goal</span>&gt;shade&lt;/<span class="kw">goal</span>&gt;</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>            &lt;/<span class="kw">goals</span>&gt;</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">configuration</span>&gt;</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                &lt;<span class="kw">transformers</span>&gt;</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                    &lt;<span class="kw">transformer</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="ot">                        implementation=</span><span class="st">"org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"</span> /&gt;</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                    &lt;<span class="kw">transformer</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="ot">                        implementation=</span><span class="st">"org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"</span>&gt;</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                        &lt;<span class="kw">manifestEntries</span>&gt;</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                            &lt;<span class="kw">Multi-Release</span>&gt;false&lt;/<span class="kw">Multi-Release</span>&gt;</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                        &lt;/<span class="kw">manifestEntries</span>&gt;</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                    &lt;/<span class="kw">transformer</span>&gt;</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>                &lt;/<span class="kw">transformers</span>&gt;</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                &lt;<span class="kw">filters</span>&gt;</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                    &lt;<span class="kw">filter</span>&gt;</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                        &lt;<span class="kw">artifact</span>&gt;*:*&lt;/<span class="kw">artifact</span>&gt;</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>                        &lt;<span class="kw">excludes</span>&gt;</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>                            &lt;<span class="kw">exclude</span>&gt;module-info.class&lt;/<span class="kw">exclude</span>&gt;</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                            &lt;<span class="kw">exclude</span>&gt;**/analoginput/AnalogDevicesManager.java&lt;/<span class="kw">exclude</span>&gt;</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                            &lt;<span class="kw">exclude</span>&gt;</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>                                META-INF/versions/**/module-info.class&lt;/<span class="kw">exclude</span>&gt;</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>                            &lt;<span class="kw">exclude</span>&gt;META-INF/*.SF&lt;/<span class="kw">exclude</span>&gt;</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>                            &lt;<span class="kw">exclude</span>&gt;META-INF/*.DSA&lt;/<span class="kw">exclude</span>&gt;</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>                            &lt;<span class="kw">exclude</span>&gt;META-INF/*.RSA&lt;/<span class="kw">exclude</span>&gt;</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>                        &lt;/<span class="kw">excludes</span>&gt;</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>                    &lt;/<span class="kw">filter</span>&gt;</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>                &lt;/<span class="kw">filters</span>&gt;</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>            &lt;/<span class="kw">configuration</span>&gt;</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">execution</span>&gt;</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">executions</span>&gt;</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">plugin</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="help-files" class="level2">
+<h2 class="anchored" data-anchor-id="help-files">Help files</h2>
+<p>It is strongly recommended that help files be included with the plug-in. PAMGuard uses Oracle’s JavaHelp 2.0 system (complete details can be found here). Each page in the help file is an HTML document. Create individual HTML pages (with links and images) to describe the setup and operation of the plug-in, and save all files in the same package folder that your java program is in. Once the pages are completed, create the helpset and support files (map, TOC, index, etc.). Programs like <a href="https://sourceforge.net/projects/jhelpdev/">jhelpdev</a> can greatly simplify the process of creating these files. Again, see the example projects to see how to link to other pages within the main PAMGuard help system and how to create links to your help pages from within your code (e.g.&nbsp;for an example having a Help button in a dialog see <a href="https://github.com/PAMGuard/haggis/blob/main/Haggis/src/haggisdetector/swing/HaggisParametersDialog.java">HaggisParametersDialog.java</a> line 73).</p>
+</section>
+<section id="testing-the-plugin-jar-file" class="level2">
+<h2 class="anchored" data-anchor-id="testing-the-plugin-jar-file">Testing the Plugin jar file</h2>
+<p>To test the jar file, move it to the plugins subfolder in the PAMGuard installation folder. If there is no plugins folder, create one. When PAMGuard is started, it should find the jar file and use the information in the interface class to dynamically load the code. Remember to rename/delete the package in the PAMGuard code first, to ensure that you are really testing the jar file contents and not the original code.</p>
+</section>
+<section id="tips-and-notes" class="level2">
+<h2 class="anchored" data-anchor-id="tips-and-notes">Tips and Notes</h2>
+<p>Even if the plugin is intended as an External module, it can be more straightforward to develop it as a Core module. In other words, create a new package in the PAMGuard code base to hold all of the new classes, and add a reference to the package classes in PamModel. This way, dependencies do not need to be explicitly managed and debugging is simplified. All development should be done within the new package, and the core PAMGuard classes should not be changed (if modifications are necessary, please contact the PAMGuard development team first).</p>
+<p>Another method, which is useful if you’re working on many different plugins, is to have each as a separate project within the same Eclipse workspace, then make a plugin development project which has nothing but a copy of PamModel.java thats modified to include all of your different plugins. See <a href="https://github.com/douggillespie/PluginDevelopment">here</a> for an example. At around line 1200 in the function PamModel.listPlugins I’ve added 14 different plugins I’m either working on or want to use from within Eclipse.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>        pluginList<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="kw">new</span> <span class="fu">CollatorPlugin</span><span class="op">());</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>        pluginList<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="kw">new</span> <span class="fu">DVPlugin</span><span class="op">());</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        pluginList<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="kw">new</span> <span class="fu">DummyAnalogPlugin</span><span class="op">());</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        pluginList<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="kw">new</span> <span class="fu">GibbonPlugin</span><span class="op">());</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        pluginList<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="kw">new</span> <span class="fu">TritechDaqPlugin</span><span class="op">());</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        pluginList<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="kw">new</span> <span class="fu">TritechDetectPlugin</span><span class="op">());</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        pluginList<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="kw">new</span> <span class="fu">resourceMonitorPlugin</span><span class="op">());</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        pluginList<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="kw">new</span> <span class="fu">RiverTriggerPlugin</span><span class="op">());</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        pluginList<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="kw">new</span> <span class="fu">SpermIpiPlugin</span><span class="op">());</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        pluginList<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="kw">new</span> <span class="fu">TrexPlugin</span><span class="op">());</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        pluginList<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="kw">new</span> <span class="fu">WinSoundPlugin</span><span class="op">());</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        pluginList<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="kw">new</span> <span class="fu">BatchJobPlugin</span><span class="op">());</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        pluginList<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="kw">new</span> <span class="fu">GenusPlugin</span><span class="op">());</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        pluginList<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="kw">new</span> <span class="fu">RIONPlugin</span><span class="op">());</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To make it work, each project is included in the Java Build path for my plugin development project.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images\manyplugins.png" class="img-fluid figure-img"></p>
+<figcaption>Java build path for development of several plugins</figcaption>
+</figure>
+</div>
+<p>If plug-in development has been done in the core PAMGuard code and then exported to a jar, the *.class files may still exist in the PAMGuard project’s bin subfolder (even if the original package has been deleted). If testing the plug-in jar in the IDE, first look through the bin subfolder and delete any plug-in* .class files that are stored. If PAMGuard finds the classes in both the bin folder and the jar file, it is unclear which would get loaded at runtime. The class files are replaced in the bin folder every time a build is completed. Also, remember to remove references to the new module from the PamModel class, as this will be taken care of by the jar file.</p>
+<p>To have the help files added to an existing category (i.e., Classifiers, Detectors, etc.) in the PAMGUARDhelp table of contents, the top-level tag text attribute in the plug-in’s TOC XML file must match the category name exactly. Some category names have a space character at the end. If in doubt, check the PAMGUARDTOC.XML file found in src/help for a list of the TOC entries. If the top-level tag text attribute in the plug-in’s TOC XML file does not match any of the category names in the table of contents, the item is simply appended to the bottom of the list. To match the existing table of contents look-and-feel, each tag in the plug-in’s TOC XML file should have image=”topic” added as an attribute. Copy the image.gif file found in src/help to the plug-in package folder. Ensure the line is in the plug-in’s map.jhm file.</p>
+<p>Specify the name of the helpset file in the plug-in interface class. Look through the interface Javadoc documentation for the correct format to use.</p>
+<p>Follow these steps to bundle all files together into a single JAR, ready for distribution. Note the following are specific to the Eclipse IDE. Other IDEs will have similar functionality:</p>
+<ol type="1">
+<li>Right-click on the project name in the Package Explorer view and select Export.</li>
+<li>In the Export window, click on the Java folder and highlight JAR file. Hit Next.</li>
+<li>In the window on the left, make sure the package and all necessary subfolders are selected to export (sometimes subfolders created by JavaHelp - such as JavaHelpSearch – are not included in the export list by default).</li>
+<li>Click on the box beside “Export generated class files and resources” and “Export Java source files and resources”.</li>
+<li>Enter the name of the exported JAR file in the text box under “Select the export destination”. You can click on the box beside “Compress the contents of the JAR file”, though this is optional.</li>
+<li>The default values for the remainder of the windows can be used. Hit Finish to export the package to the location specified.</li>
+</ol>
+<p>To test the JAR file, move it to the plugins subfolder in the PAMGuard installation folder. If there is no plugins folder, create one. When PAMGuard is started, it should find the JAR file and use the information in the interface class to dynamically load the code. Remember to rename/delete the package in the PAMGuard code first, to ensure that you are really testing the JAR file contents and not the original code.</p>
+<p>Final note: if plug-in development has been done in the core PAMGuard code and then exported to a JAR, the *.class files may still exist in the PAMGuard project’s bin subfolder (even if the original package has been deleted). If testing the plug-in JAR in the IDE, first look through the bin subfolder and delete any plug-in* .class files that are stored. If PAMGuard finds the classes in both the bin folder and the JAR file, it is unclear which would get loaded at runtime. The class files are replaced in the bin folder every time a build is completed. Also, remember to remove references to the new module from the PamModel class, as this will be taken care of by the JAR file.</p>
+
+
 </section>
 
 </main> <!-- /main -->

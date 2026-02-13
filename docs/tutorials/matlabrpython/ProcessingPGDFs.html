@@ -382,7 +382,7 @@ cookieconsent.run({
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Various <a href="https://www.pamguard.org/coremodules.html">modules in PAMGuard</a> produce <a href="https://www.pamguard.org/olhelp/utilities/BinaryStore/docs/binarystore_overview.html">binary files</a>. Custom libraries written in MATLAB, R and Python exist to help you further process these files. In this tutorial, we will process a folder of <a href="https://www.pamguard.org/olhelp/detectors/clickDetectorHelp/docs/ClickDetector_clickDetector.html">Click Detector</a> binary files, count clicks per minute and create a concatenated string of porpoise detections.</p>
+<p>Various <a href="https://www.pamguard.org/coremodules.html">modules in PAMGuard</a> produce <a href="https://www.pamguard.org/olhelp/utilities/BinaryStore/docs/binarystore_overview.html">binary files</a>. Custom libraries written in MATLAB, R and Python exist to help you further process these files. In this tutorial, we will process a folder of <a href="https://www.pamguard.org/olhelp/detectors/clickDetectorHelp/docs/ClickDetector_clickDetector.html">Click Detector</a> binary files, count clicks in a binary file, plot <a href="https://www.pamguard.org/olhelp/detectors/whistleMoanHelp/docs/whistleMoan_Overview.html">Whistle and Moan Detector</a> contours and a <a href="https://www.pamguard.org/olhelp/sound_processing/LTSA/Docs/LTSA.html">long term spectral average</a>, demonstrating just a small fraction of what can done with these libraries.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -578,9 +578,10 @@ Note
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <p>R has an in-built method <code>plot()</code> that simplifies plotting the waveform data. We need to create the x-axis manually by creating an array of integers <code>x</code> from 1 to the length of the waveform data. The use of the index <code>[,1]</code> cuts down a potential multi-channel waveform into a single-channel waveform of the lowest channel number.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Get the 28th click - note that R counts from one</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>wave <span class="ot">=</span> clicks[<span class="dv">28</span>]<span class="sc">$</span>wave[,<span class="dv">1</span>]</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(aclick<span class="sc">$</span>wave[,<span class="dv">1</span>])</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, aclick<span class="sc">$</span>wave[,<span class="dv">1</span>], <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>aclick <span class="ot">=</span> clicks[[<span class="dv">28</span>]];</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>wave <span class="ot">=</span>  aclick<span class="sc">$</span>wave[,<span class="dv">1</span>]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(aclick<span class="sc">$</span>wave[,<span class="dv">1</span>])</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, aclick<span class="sc">$</span>wave[,<span class="dv">1</span>], <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="public/waveform-R.png" class="img-fluid figure-img"></p>
@@ -902,8 +903,8 @@ Fun fact
 <p>The <code>data</code> variable produced by the code above will contain at least the following attributes. Please familiarise yourself with them, before continuing on to the next section.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 7%">
-<col style="width: 92%">
+<col style="width: 14%">
+<col style="width: 85%">
 </colgroup>
 <thead>
 <tr class="header">

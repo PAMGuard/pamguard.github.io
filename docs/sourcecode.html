@@ -306,7 +306,16 @@ cookieconsent.run({
    
   <ul>
   <li><a href="#pamguard-source-code" id="toc-pamguard-source-code" class="nav-link active" data-scroll-target="#pamguard-source-code">PAMGuard Source Code</a></li>
-  <li><a href="#use-of-eclipse" id="toc-use-of-eclipse" class="nav-link" data-scroll-target="#use-of-eclipse">Use of Eclipse</a></li>
+  <li><a href="#use-of-eclipse" id="toc-use-of-eclipse" class="nav-link" data-scroll-target="#use-of-eclipse">Use of Eclipse</a>
+  <ul class="collapse">
+  <li><a href="#setting-pamguard-up-in-eclipse" id="toc-setting-pamguard-up-in-eclipse" class="nav-link" data-scroll-target="#setting-pamguard-up-in-eclipse">Setting PAMGuard up in Eclipse</a></li>
+  <li><a href="#running-pamguard" id="toc-running-pamguard" class="nav-link" data-scroll-target="#running-pamguard">Running PAMGuard</a></li>
+  </ul></li>
+  <li><a href="#maven" id="toc-maven" class="nav-link" data-scroll-target="#maven">Maven</a>
+  <ul class="collapse">
+  <li><a href="#building-pamguard" id="toc-building-pamguard" class="nav-link" data-scroll-target="#building-pamguard">Building PAMGuard</a></li>
+  <li><a href="#issues" id="toc-issues" class="nav-link" data-scroll-target="#issues">Issues</a></li>
+  </ul></li>
   <li><a href="#assistance" id="toc-assistance" class="nav-link" data-scroll-target="#assistance">Assistance</a></li>
   </ul>
 </nav>
@@ -342,12 +351,92 @@ cookieconsent.run({
 </section>
 <section id="use-of-eclipse" class="level2">
 <h2 class="anchored" data-anchor-id="use-of-eclipse">Use of Eclipse</h2>
-<p>Many PAMGuard developers use the Eclipse IDE for code development. <a href="./pdf/Setting up with GIT.pdf">Click here for instructions</a> on how to configure Eclipse with a GIT repository.</p>
+<p>Many PAMGuard developers use the Eclipse IDE for code development. This guide shows users how to import PAMGuard into Eclipse and get it running. Other IDE’s will follow similar lines.</p>
+<section id="setting-pamguard-up-in-eclipse" class="level3">
+<h3 class="anchored" data-anchor-id="setting-pamguard-up-in-eclipse">Setting PAMGuard up in Eclipse</h3>
+<p>There are several ways to open the code with Eclipse. The first stage is to import the project. There are two options for this.</p>
+<section id="option-1-using-github-desktop" class="level4">
+<h4 class="anchored" data-anchor-id="option-1-using-github-desktop">Option 1: Using GitHub Desktop</h4>
+<ul>
+<li><strong>Install</strong>: Ensure the GitHub Desktop application is installed.</li>
+<li><strong>Clone</strong>: From the GitHub webpage, click the green <strong>‘Code’</strong> button and select <strong>‘Open with GitHub desktop’</strong>.</li>
+<li><strong>Local Path</strong>: Choose a local path on your computer and press <strong>‘Clone’</strong>.</li>
+<li><strong>Import</strong>: In Eclipse, select <strong>File &gt; Import &gt; Existing Projects into workspace</strong>[cite: 68]. Enter the repository path and click <strong>Finish</strong>.</li>
+</ul>
+</section>
+<section id="option-2-using-egit-direct-import" class="level4">
+<h4 class="anchored" data-anchor-id="option-2-using-egit-direct-import">Option 2: Using EGit (Direct Import)</h4>
+<ol type="1">
+<li>Select <strong>File &gt; Import &gt; Projects from Git</strong>.</li>
+<li>Hit <strong>Next</strong> and select <strong>‘Clone URI’</strong>.</li>
+<li>Copy your repository URL into the <strong>URI</strong> field; other fields should auto-fill.</li>
+<li><strong>Authentication</strong>: If you have password issues, you may need to create a <strong>Personal Access Token</strong> on GitHub to use in place of a regular password.</li>
+<li><strong>Branch</strong>: Select the <strong>‘main’</strong> branch.</li>
+<li><strong>Local Destination</strong>: Select your local storage directory.</li>
+<li><strong>Wizard</strong>: Select the option to <strong>‘Import existing Eclipse projects’</strong>.</li>
+</ol>
+</section>
+</section>
+<section id="running-pamguard" class="level3">
+<h3 class="anchored" data-anchor-id="running-pamguard">Running PAMGuard</h3>
+<p>To run PAMGuard in Eclipse you need to create a new Java run configuration. Click on the drop down menu of the green run arrow in Eclipse. Select Run Configurations</p>
+<p><img src="images/clipboard-346099819.png" class="img-fluid"></p>
+<p><em>The run configuration dialog in Eclipse set up to run PAMGuard.</em></p>
+<p><img src="images/pamguard_eclipse.png" class="img-fluid"></p>
+<p><em>The run configuration dialog in Eclipse set up to run PAMGuard.</em></p>
+<hr>
+</section>
+</section>
+<section id="maven" class="level2">
+<h2 class="anchored" data-anchor-id="maven">Maven</h2>
+<section id="building-pamguard" class="level3">
+<h3 class="anchored" data-anchor-id="building-pamguard">Building PAMGuard</h3>
+<p>PAMGuard is built using Maven. The Maven pom.xml is extensive and includes code to build installers for macOS and Linux as well as packaging dependencies into a jar file, removing files that interfere with deep learning models etc. The Maven commands for building PAMGuard depend on the platform. Building a runnable jar for any platform uses the same Maven goals</p>
+<pre><code>mvn clean package shade:shade</code></pre>
+<p>There are also platform dependent commands for building installers</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">macOS</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Linux</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Maven builds a signed.dmg file for macOS which can be used on Apple Silicon based devices. The installer is signed but this requires an Apple Developer account. PAMGuard also needs to be submitted to Apple and further signed before it can be distributed. This is all handled in the pom.xml file.</p>
+<pre><code>mvn clean package shade:shade macosappbundler:bundle exec:exec@sign-app</code></pre>
+<p>or if you do not wish to sign the app.</p>
+<pre><code>mvn clean package shade:shade macosappbundler:bundle</code></pre>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Maven builds a .deb file for Linux which can be used on Ubuntu and other Debian based systems. The .deb installer will only work if the following maven commands is used. Note that a .deb file will be created during a normal build but will not have the correct jar file with dependencies.</p>
+<pre><code>mvn clean package shade:shade org.vafer:jdeb:jdeb</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="issues" class="level3">
+<h3 class="anchored" data-anchor-id="issues">Issues</h3>
+<section id="javafx" class="level4">
+<h4 class="anchored" data-anchor-id="javafx">JavaFX</h4>
+<p>There are issues with certain Maven repositories interfering with JavaFX</p>
+<ul>
+<li><strong>Locate pom.xml</strong>: Find and edit the <code>pom.xml</code> file</li>
+<li><strong>The Fix</strong>:
+<ul>
+<li>Find the “Repo for Jamie’s code” near line 250</li>
+<li>Comment out this repository section</li>
+<li>Perform a <strong>Maven update</strong></li>
+<li>Uncomment the repository and update Maven again</li>
+</ul></li>
+</ul>
+</section>
+<section id="jpam" class="level4">
+<h4 class="anchored" data-anchor-id="jpam">JPAM</h4>
+<p>jpam is a deep learning library that PAMGuard uses. It is available on Maven Central but, the latest dev version of PAMGuard may use a version of JPam that is not yet on Maven Central. This means that to build PAMGuard you need to first build and install the correct version of jpam. The jpam code is available on GitHub <a href="https://github.com/macster110/jpam">here</a>.</p>
+<p>Clone the project and import the project and all the sub projects into Eclipse. Then run <code>mvn clean install</code> to install to your local machine. PAMGuard will then be able to find the correct version of jpam when you build PAMGuard.</p>
+</section>
+</section>
 </section>
 <section id="assistance" class="level2">
 <h2 class="anchored" data-anchor-id="assistance">Assistance</h2>
 <p>Information on the <a href="./api/index.html">PAMGuard API</a> and on how to make PAMGuard <a href="devmodules.html">modules</a> and <a href="devplugins.html">plug-ins</a> is available on this web site.</p>
-<p>The PAMGuard team have limited time to spend assisting developers if the development project is in line with the interests of our current sponsors.</p>
+<p>The PAMGuard team have limited time to spend assisting developers unless the development project is in line with the interests of our current sponsors.</p>
 
 
 </section>
