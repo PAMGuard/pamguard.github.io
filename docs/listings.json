@@ -18,14 +18,20 @@
     ]
   },
   {
-    "listing": "/releases/download.html",
+    "listing": "/plugins/plugins.html",
     "items": [
-      "/releases/V2_02_17.html",
-      "/releases/V2_02_16.html",
-      "/releases/V2_02_15.html",
-      "/releases/V2_02_14.html",
-      "/releases/V2_02_13.html",
-      "/releases/V2_02_06.html"
+      "/plugins/batchprocessor.html",
+      "/plugins/contactcollator.html",
+      "/plugins/wams.html",
+      "/plugins/rioncompass.html",
+      "/plugins/resourcemon.html",
+      "/plugins/spermipi.html",
+      "/plugins/tritech.html",
+      "/plugins/videorange.html",
+      "/plugins/visangles.html",
+      "/plugins/haggis.html",
+      "/plugins/windowssound.html",
+      "/plugins/demodetector.html"
     ]
   },
   {
@@ -39,6 +45,7 @@
       "/featurepanels/watchdog.html",
       "/casestudypanels/greenpace.html",
       "/casestudypanels/tidalturbinecasestudy.html",
+      "/news/260220_V2_02_18.html",
       "/news/260203_sealspaper.html",
       "/news/260117_ECS.html",
       "/news/260115_jasa.html",
@@ -76,20 +83,15 @@
     ]
   },
   {
-    "listing": "/plugins/plugins.html",
+    "listing": "/releases/download.html",
     "items": [
-      "/plugins/batchprocessor.html",
-      "/plugins/contactcollator.html",
-      "/plugins/wams.html",
-      "/plugins/rioncompass.html",
-      "/plugins/resourcemon.html",
-      "/plugins/spermipi.html",
-      "/plugins/tritech.html",
-      "/plugins/videorange.html",
-      "/plugins/visangles.html",
-      "/plugins/haggis.html",
-      "/plugins/windowssound.html",
-      "/plugins/demodetector.html"
+      "/releases/V2_02_18.html",
+      "/releases/V2_02_17.html",
+      "/releases/V2_02_16.html",
+      "/releases/V2_02_15.html",
+      "/releases/V2_02_14.html",
+      "/releases/V2_02_13.html",
+      "/releases/V2_02_06.html"
     ]
   },
   {
