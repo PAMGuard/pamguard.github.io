@@ -87,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
     const options = {
       valueNames: ['listing-image','listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -367,7 +367,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(0)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="QmF0Y2glMjBwcm9jZXNzb3I=">Batch processor <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmVhbSUyMGZvcm1lcg==">Beam former <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q2xpY2slMjBkZXRlY3Rvcg==">Click detector <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Y2xpY2slMjBkZXRlY3Rvcg==">click detector <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGVlcCUyMGxlYXJuaW5n">Deep learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RXhwb3J0ZXI=">Exporter <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RkZU">FFT <span class="quarto-category-count">(2)</span></div><div class="category" data-category="SXNobWFlbCUyMGVuZXJneSUyMHN1bQ==">Ishmael energy sum <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SXNobWFlbCUyMHNwZWN0cm9ncmFtJTIwY29ycmVsYXRpb24=">Ishmael spectrogram correlation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TFRTQQ==">LTSA <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TWFw">Map <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TUFUTEFC">MATLAB <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWF0bGFi">Matlab <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tm9pc2UlMjBiYW5kJTIwbW9uaXRvcg==">Noise band monitor <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U291bmR0cmFwJTIwY2xpY2slMjBkZXRlY3Rvcg==">Soundtrap click detector <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3BlY3Ryb2dyYW0=">Spectrogram <span class="quarto-category-count">(2)</span></div><div class="category" data-category="VGV0aHlzJTIwZGF0YWJhc2U=">Tethys database <span class="quarto-category-count">(1)</span></div><div class="category" data-category="V2hpc3RsZSUyMGFuZCUyMG1vYW4lMjBkZXRlY3Rvcg==">Whistle and moan detector <span class="quarto-category-count">(2)</span></div><div class="category" data-category="d2hpc3RsZSUyMGRldGVjdG9y">whistle detector <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -397,7 +397,102 @@ window.Quarto = {
 <p>The tutorials all use freely available pre-recorded sound files and will run on any <a href="../systemreq.html">compatible computer</a> without the need for specialist equipment.</p>
 <div id="listing-tutorial_listing" class="quarto-listing quarto-listing-container-grid">
 <div class="list grid quarto-listing-cols-3">
-
+<div class="g-col-1" data-index="0" data-categories="SXNobWFlbCUyMGVuZXJneSUyMHN1bSUyQ0lzaG1hZWwlMjBzcGVjdHJvZ3JhbSUyMGNvcnJlbGF0aW9uJTJDTWFwJTJDV2hpc3RsZSUyMGFuZCUyMG1vYW4lMjBkZXRlY3RvciUyQ0ZGVCUyQ1NwZWN0cm9ncmFtJTJDQ2xpY2slMjBkZXRlY3Rvcg==" data-listing-file-modified-sort="1773345842197" data-listing-reading-time-sort="1" data-listing-word-count-sort="193">
+<a href="../tutorials/getstarted.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../tutorials/getstartedfiles/pgclickdet1.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Getting Started with PAMGuard
+</h5>
+<div class="card-text listing-description delink">
+<p>This tutorial will introduce some basic PAMGuard concepts, showing you how to use a range of PAMGuard detectors for clicks, whistle, and baleen whale sounds and to use…</p>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="TFRTQSUyQ1NvdW5kdHJhcCUyMGNsaWNrJTIwZGV0ZWN0b3IlMkNDbGljayUyMGRldGVjdG9yJTJDTm9pc2UlMjBiYW5kJTIwbW9uaXRvciUyQ1doaXN0bGUlMjBhbmQlMjBtb2FuJTIwZGV0ZWN0b3IlMkNFeHBvcnRlcg==" data-listing-file-modified-sort="1773345842260" data-listing-reading-time-sort="2" data-listing-word-count-sort="349">
+<a href="../tutorials/staticmonitoring.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../tutorials/staticmonfiles/datamap_screenshot.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Introduction to static monitoring
+</h5>
+<div class="card-text listing-description delink">
+<p>This tutorial is a step by step guide for using PAMGuard to process long term recordings from a static autonomous recorder.</p>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="QmF0Y2glMjBwcm9jZXNzb3I=" data-listing-file-modified-sort="1773345842172" data-listing-reading-time-sort="2" data-listing-word-count-sort="202">
+<a href="../tutorials/batchprocessing.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../tutorials/batchfiles/normaldiagram.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Batch Processing
+</h5>
+<div class="card-text listing-description delink">
+<p>This tutorial will teach you how to process multiple datasets using the same PAMGuard configuration using the PAMGuard batch processing plugin.</p>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="RGVlcCUyMGxlYXJuaW5nJTJDRkZUJTJDU3BlY3Ryb2dyYW0lMkNDbGljayUyMGRldGVjdG9yJTJDQmVhbSUyMGZvcm1lciUyQ01BVExBQiUyQ1I=" data-listing-file-modified-sort="1774016871454" data-listing-reading-time-sort="3" data-listing-word-count-sort="568">
+<a href="../tutorials/deeplearning.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../tutorials/deeplearningfiles/right_whale_deep_learning1.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Deep Learning in PAMGuard
+</h5>
+<div class="card-text listing-description delink">
+<p>Learn how to import deep learning models into PAMGuard with examples for Right whales, bats and gibbons</p>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="VGV0aHlzJTIwZGF0YWJhc2U=" data-listing-file-modified-sort="1773345842261" data-listing-reading-time-sort="2" data-listing-word-count-sort="290">
+<a href="../tutorials/tethys.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../tutorials/tethysfiles/Tethys.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+PAMGuard Tethys Interface
+</h5>
+<div class="card-text listing-description delink">
+<p>This tutorial will introduce the PAMGuard-Tethys interface, show you how to export data from PAMGuard to Tethys, and view the data with the Tethys web client and data…</p>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="5" data-categories="TWF0bGFiJTJDUiUyQ1B5dGhvbiUyQ2NsaWNrJTIwZGV0ZWN0b3IlMkN3aGlzdGxlJTIwZGV0ZWN0b3IlMkNMVFNB" data-listing-file-modified-sort="1773345842199" data-listing-reading-time-sort="2" data-listing-word-count-sort="222">
+<a href="../tutorials/matlabrpython.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../tutorials/matlabrpython/public/waveform-matlab.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Matlab, R, and Python
+</h5>
+<div class="card-text listing-description delink">
+<p>This tutorial will teach you how to open PAMGuard binary files with Matlab, R, and Python</p>
+</div>
+</div>
+</div></a>
+</div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
