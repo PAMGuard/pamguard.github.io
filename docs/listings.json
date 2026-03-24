@@ -1,7 +1,14 @@
 [
   {
     "listing": "/tutorials/tutorials.html",
-    "items": []
+    "items": [
+      "/tutorials/getstarted.html",
+      "/tutorials/staticmonitoring.html",
+      "/tutorials/batchprocessing.html",
+      "/tutorials/deeplearning.html",
+      "/tutorials/tethys.html",
+      "/tutorials/matlabrpython.html"
+    ]
   },
   {
     "listing": "/team/team.html",
