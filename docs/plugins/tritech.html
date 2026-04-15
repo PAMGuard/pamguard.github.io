@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Doug Gillespie">
-<meta name="dcterms.date" content="2025-12-19">
+<meta name="dcterms.date" content="2026-03-24">
 <meta name="description" content="Acquisition and processing of data from Tritech Gemini sonars.">
 
 <title>Tritech Sonar Processing – PAMGuard</title>
@@ -308,7 +308,8 @@ cookieconsent.run({
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#tritech-sonar-processing" id="toc-tritech-sonar-processing" class="nav-link active" data-scroll-target="#tritech-sonar-processing">Tritech sonar Processing</a>
+  <li><a href="#tritech-sonar-processing" id="toc-tritech-sonar-processing" class="nav-link active" data-scroll-target="#tritech-sonar-processing">Tritech sonar Processing</a></li>
+  <li><a href="#latest-features-and-bug-fixes" id="toc-latest-features-and-bug-fixes" class="nav-link" data-scroll-target="#latest-features-and-bug-fixes">Latest Features and bug fixes</a>
   <ul class="collapse">
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   <li><a href="#downloads" id="toc-downloads" class="nav-link" data-scroll-target="#downloads">Downloads</a></li>
@@ -343,7 +344,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 19, 2025</p>
+      <p class="date">March 24, 2026</p>
     </div>
   </div>
   
@@ -357,7 +358,28 @@ cookieconsent.run({
 
 <section id="tritech-sonar-processing" class="level2">
 <h2 class="anchored" data-anchor-id="tritech-sonar-processing">Tritech sonar Processing</h2>
-<p>Acquires and processed data in real time or from files from <a href="https://www.tritech.co.uk/products">Tritech Gemini Multibeam Sonars</a> 1. Acquire data directly from Tritech Gemini sonars 2. Run track detectors in real time on the sonar data 3. process data from Tritech GLF data files offline 4. view and annotate detection data using the PAMGuard viewer.</p>
+<p><a href="https://doi.org/10.5281/zenodo.17999634"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.17999634.svg" class="img-fluid"></a></p>
+<p>Acquires and processes data in real time or from files from <a href="https://www.tritech.co.uk/products">Tritech Gemini Multibeam Sonars</a></p>
+<ol type="1">
+<li><p>Acquire data directly from Tritech Gemini sonars</p></li>
+<li><p>Run track detectors in real time on the sonar data</p></li>
+<li><p>process data from Tritech GLF data files offline</p></li>
+<li><p>view and annotate detection data using the PAMGuard viewer.</p></li>
+</ol>
+</section>
+<section id="latest-features-and-bug-fixes" class="level2">
+<h2 class="anchored" data-anchor-id="latest-features-and-bug-fixes">Latest Features and bug fixes</h2>
+<p><strong>V2.00</strong></p>
+<p>Sonar geometry: add absolute sonar coordinates to the sonar configuration settings. These are used in a number of places.</p>
+<ul>
+<li><p>Firstly if multiple sonars are in use, the absolute positions of detection points are used in tracking, that joins tracks across sonars.</p></li>
+<li><p>Second, the sonar data can be shown on the PAMGuard map display, in which case the absolute positions are used relative to the position of the hydrophone streamer. For a static installation, set the reference position of the streamer to a fixed position.</p></li>
+<li><p>Third, on the main Tritech sonar display, the rotated positions of the sonars can be used to correctly orientate the sonars, although the absolute positions are not used on this display.</p></li>
+</ul>
+<p>Absolute positions are also used by other modules, such as the RiverTrigger module.</p>
+<p>On the main Tritech display, you can hold down the Alt key and drag the border of a bounding box controlling where each sonar is drawn on the display.</p>
+<p>Handling out of water (OOW) alarms. When an OOW occurs, detection in GLF file data is paused. When acquiring data, the sonars stop pinging until the OOW alarm clears. When the alarm clears the background measurements are reset to avoid a flurry of false detections when the sonar re-enters the water.</p>
+<p>GLF Recorder: Addition of a GLF Recorder module. This includes a trigger mechanism and a data buffer, so recording can start some time before the trigger occurs. Files are in standard glf format which is a zip archive of the data and some additional metadata. The main .dat file in the archive is identical to that created by the Tritech library, but the additional xml files, which seem to describe Genesis software detector configuration, are not created.</p>
 <section id="references" class="level3">
 <h3 class="anchored" data-anchor-id="references">References</h3>
 <p>Douglas Gillespie, Gordon Hastie, Jessica Montabaranom, Emma Longden, Katie Rapson, Anhelina Holoborodko, and Carol Sparling. “Automated detection and tracking of marine mammals in the vicinity of tidal turbines using multibeam sonar.” Journal of Marine Science and Engineering 11, no. 11 (2023): 2095. <a href="https://doi.org/10.3390/jmse11112095">doi.org/10.3390/jmse11112095</a>.</p>
@@ -366,9 +388,9 @@ cookieconsent.run({
 </section>
 <section id="downloads" class="level3">
 <h3 class="anchored" data-anchor-id="downloads">Downloads</h3>
-<p>For further information see the release notes on <a href="https://github.com/douggillespie/TritechAcquisitionPlugin/releases">GitHub</a></p>
+<p>For further information see the <a href="https://github.com/douggillespie/TritechAcquisitionPlugin/releases">release notes</a> on GitHub.</p>
 <p><a href="https://github.com/douggillespie/TritechAcquisitionPlugin">Source Code</a></p>
-<p><a href="https://github.com/douggillespie/TritechAcquisitionPlugin/releases/tag/V1.47">Built Module</a></p>
+<p><a href="https://github.com/douggillespie/TritechAcquisitionPlugin/releases/tag/V2.00">Built Module</a></p>
 <p><a href="https://douggillespie.github.io/TritechAcquisitionPlugin/docs/tritechoverview.html">Online Help</a></p>
 
 
